@@ -32,7 +32,7 @@ namespace tcp {
 class server: public AbstractSocket {
 public:
 	void accept (AbstractSystemSocket* sock){
-		AbstractSocket<N>::socket_->accept(sock);
+		AbstractSocket::socket_->accept(sock);
 	}
 	void bind (Address* addr){
 		AbstractSocket::socket_->bind(addr);

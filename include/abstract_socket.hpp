@@ -32,53 +32,39 @@
 
 namespace net {
 
-#if 0
-class AsyncOperation {
-public:
-	inline void Run(){
-		if (read_operation_)
-			ret_ = socket_->read(buf_->data(), size_);
-		else
-			ret_ = socket_->write(buf_->data(), size_);
-		m_->unlock();
-	}
-	inline int getResult(){
-		return ret_;
-	}
 
-private:
-	std::array<>* buf_;
-	size_t size_;
-	bool read_operation_;
-	int ret_;
-	AbstractSystemSocket* socket_;
-	std::mutex* m_;
 
-	friend class AbstractSocket;
+struct __buffer {
+	void* ptr_;
+	std::size_t size_;
 };
-#endif
+
+
 
 template<std::size_t N>
-inline void* buffer(std::array<char, N>& buf)
+inline __buffer buffer(std::array<char, N>& buf)
 {
-	return reinterpret_cast<void*>(buf.data());
+	__buffer b;
+	b.ptr_ = reinterpret_cast<void*>(buf.data());
+	b.size_ = buf.size();
+	return b;
 }
 
 class AbstractSocket {
 public:
-	int read (void* buf, std::size_t size){
-		if (buf->size() == 0 || size > buf->size())
+	int read (__buffer buf, std::size_t size){
+		if (buf.size_ == 0 || size > buf.size_)
 			throw std::runtime_error ("Wrong buffer size");
 		m_.lock();
-		int ret = socket_->read(buf->data(), size);
+		int ret = socket_->read(buf.ptr_, size);
 		m_.unlock();
 		return ret;
 	}
-	int write (void* buf, std::size_t size){
-		if (buf->size() == 0 || size > buf->size())
+	int write (__buffer buf, std::size_t size){
+		if (buf.size_ == 0 || size > buf.size_)
 			throw std::runtime_error ("Wrong buffer size");
 		m_.lock();
-		int ret = socket_->write(buf->data(), size);
+		int ret = socket_->write(buf.ptr_, size);
 		m_.unlock();
 		return ret;
 
@@ -91,7 +77,7 @@ public:
 
 protected:
 	AbstractSocket(AbstractSystemSocket* sock):
-		socket_{sock}, worker_{nullptr}, m_{nullptr}{}
+		socket_{sock}, worker_{nullptr} {}
 
 	AbstractSystemSocket* socket_;
 

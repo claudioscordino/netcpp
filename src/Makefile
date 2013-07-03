@@ -1,7 +1,7 @@
 .PHONY: clean 
 CXXFLAGS += -I../include
 
-all:  tcp_ip4.o posix_socket.o logger.o main.o
+all:  main.o tcp_ip4.o posix_socket.o logger.o
 	$(CXX) $(CXXFLAGS) -o netwing tcp_ip4.o posix_socket.o logger.o main.o -pthread
 
 posix_socket.o: posix_socket.cpp ../include/*.hpp
@@ -14,4 +14,4 @@ main.o: main.cpp ../include/*.hpp
 
 
 clean:
-	rm -fr *.o
+	rm -fr *.o netwing
