@@ -29,6 +29,7 @@ namespace net {
 // Definition (and initialization) of static attributes
 Logger* Logger::m_ = 0;
 
+#define LOGGER_MULTITHREAD
 #ifdef LOGGER_MULTITHREAD
 
 std::mutex Logger::lock_ ;

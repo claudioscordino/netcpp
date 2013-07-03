@@ -29,23 +29,6 @@
 #include <mutex>
 
 
-namespace net {
-
-/**
- * \brief Severity level
- *
- * This severity level can be specified for both console messages
- * and file messages. It allows to disable messages (i.e., OFF),
- * show only error messages (i.e. ERROR), show error and warning
- * messages (i.e. WARN) or show all messages (i.e. DEBUG).
- */
-enum severity_level_t {
-	OFF 	= 0, //< No logging messages
-	ERROR	= 1, //< Only errors
-	WARN	= 2, //< Errors and warnings
-	DEBUG	= 3  //< Show all messages
-}; 
-
 /**
  * \brief Macro to configure the logger.
  *
@@ -61,7 +44,7 @@ enum severity_level_t {
 #define DEBUG_CONF(outputFile, \
 		fileSeverityLevel, \
 		screenSeverityLevel) { \
-			Logger::getInstance().configure(outputFile, \
+			net::Logger::getInstance().configure(outputFile, \
 						fileSeverityLevel, \
 						screenSeverityLevel); \
 		}
@@ -77,9 +60,31 @@ enum severity_level_t {
 #define DEBUG(priority, msg) { \
 	std::ostringstream __debug_stream__; \
 	__debug_stream__ << msg; \
-	Logger::getInstance().print(priority, __FILE__, __LINE__, \
+	net::Logger::getInstance().print(priority, __FILE__, __LINE__, \
 			__debug_stream__.str()); \
 	}
+
+
+/**
+ * \brief Severity level
+ *
+ * This severity level can be specified for both console messages
+ * and file messages. It allows to disable messages (i.e., OFF),
+ * show only error messages (i.e. ERROR), show error and warning
+ * messages (i.e. WARN) or show all messages (i.e. DEBUG).
+ */
+enum severity_level_t {
+	OFF 	= 0, //< No logging messages
+	ERROR	= 1, //< Only errors
+	WARN	= 2, //< Errors and warnings
+	DEBUG	= 3  //< Show all messages
+};
+
+namespace net {
+
+
+
+
 
 
 
@@ -121,7 +126,7 @@ class Logger
 	/**
 	 * \brief Lock for mutual exclusion between different threads
 	 */
-	std::mutex lock_;
+	static std::mutex lock_;
 	
 	/**
 	 * \brief Pointer to the unique Logger (i.e., Singleton)
