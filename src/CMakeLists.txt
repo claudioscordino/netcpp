@@ -6,7 +6,7 @@ add_library(netwing_static STATIC logger.cpp posix_socket.cpp  tcp_ip4.cpp)
 add_library(netwing SHARED logger.cpp posix_socket.cpp  tcp_ip4.cpp)
 
 add_executable (test main.cpp)
-target_link_libraries(test netwing_static)
+target_link_libraries(test netwing_static pthread)
 
 # Install file myproject. 
 # The destination directory is relative to CMAKE_INSTALL_PREFIX:

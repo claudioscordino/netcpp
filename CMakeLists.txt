@@ -7,7 +7,7 @@ project(netwing)
 set (CMAKE_BUILD_TYPE Release)
 
 # Compiler flags:
-add_definitions(-Wextra -O3)
+add_definitions(-Wextra -O3 -pthread)
 set(CMAKE_CXX_FLAGS "-std=c++11")
 
 subdirs(src)
