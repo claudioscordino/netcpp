@@ -1,0 +1,16 @@
+# ignore objects, anywhere in the tree.
+*.o
+*.swp
+*.so
+*.a
+*.old
+*.rej
+
+doc/doxygen/html/
+.cproject
+.project
+.settings/
+build/
+
+
+
