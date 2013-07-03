@@ -31,17 +31,22 @@ namespace tcp {
 
 class server: public AbstractSocket {
 public:
-	void accept (AbstractSystemSocket* sock){
+	inline void accept (AbstractSystemSocket* sock){
 		AbstractSocket::socket_->accept(sock);
 	}
-	void bind (Address* addr){
+	inline void bind (Address* addr){
 		AbstractSocket::socket_->bind(addr);
 	}
-	void listen (int max_pending_connections){
+	inline void listen (int max_pending_connections){
 		AbstractSocket::socket_->listen(max_pending_connections);
 	}
 	server():
 	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
+
+	inline void open (Address* addr, int max_pending_connections = 100) {
+		bind (addr);
+		listen(max_pending_connections);
+	}
 };
 
 
@@ -53,6 +58,11 @@ public:
 	}
 	client():
 	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
+
+	inline void open (Address* addr) {
+		connect (addr);
+	}
+
 };
 
 

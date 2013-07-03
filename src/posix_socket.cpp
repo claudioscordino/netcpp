@@ -52,11 +52,11 @@ PosixSocket::PosixSocket(const enum protocol& prot):
 	else if (prot == protocol::UDP_IPv4)	
 		fd_ = socket(AF_INET, SOCK_DGRAM, 0);
 	else {
-// 		DEBUG(ERROR, "Error: protocol unkown");
+ 		DEBUG(ERROR, "Error: protocol unkown");
 		throw std::runtime_error ("Protocol unknown");
 	}
 	if (fd_ < 0) {
-// 		DEBUG(ERROR, "Error when creating socket");
+ 		DEBUG(ERROR, "Error when creating socket");
 		throw std::runtime_error ("Socket error");
 	}
 }
@@ -85,10 +85,12 @@ int PosixSocket::read (void* buffer, size_t size)
 	while (remaining > 0) {
 		ssize_t ret = ::read (fd_, ((char*)buffer)+(size-remaining),
 		    remaining);
-		if (ret == 0)
+		if (ret == 0){
 			// End of file reached
+			DEBUG(DEBUG, "End of file reached");
 			break;
-		else if (ret < 0) {
+		} else if (ret < 0) {
+			DEBUG(ERROR, "Read error");
 			throw std::runtime_error ("Read error");
 			return -1;
 		}
@@ -117,10 +119,12 @@ int PosixSocket::write (const void* buffer, size_t size)
 	while (remaining > 0) {
 		ssize_t ret = ::write (fd_,
 		    ((char*)buffer)+(size-remaining), remaining);
-		if (ret == 0)
+		if (ret == 0){
+			DEBUG(DEBUG, "Cannot write more");
 			// Cannot write more
 			break;
-		else if (ret < 0) {
+		} else if (ret < 0) {
+			DEBUG(ERROR, "Write error");
 			throw std::runtime_error ("Write error");
 			return -1;
 		}
@@ -145,13 +149,13 @@ void PosixSocket::accept (AbstractSystemSocket* sock)
 {
 	if ((sock->getProtocol() != protocol::STREAM_UNIX && sock->getProtocol() != protocol::TCP_IPv4) ||
 	    (protocol_ != protocol::STREAM_UNIX && protocol_ != protocol::TCP_IPv4)){
-// 		DEBUG(ERROR, "Accept not available!");
+ 		DEBUG(ERROR, "Accept not available!");
 		throw std::runtime_error("Accept not available");
 	}
 
 	fd_ = ::accept((dynamic_cast<PosixSocket*> (sock))->fd_, NULL, 0);
 	if (fd_ < 0) {
-// 		DEBUG(ERROR, "Error in accept()!");
+ 		DEBUG(ERROR, "Error in accept()!");
 		throw std::runtime_error("Accept error");
 	}
 }
@@ -160,12 +164,12 @@ void PosixSocket::accept (AbstractSystemSocket* sock)
 void PosixSocket::listen (int maxPendingConnections)
 {
 	if (protocol_ != protocol::STREAM_UNIX && protocol_ != protocol::TCP_IPv4){
-// 		DEBUG(ERROR, "Listen not available!");
+ 		DEBUG(ERROR, "Listen not available!");
 		throw std::runtime_error("Listen not available");
 	}
 	if (::listen(fd_, maxPendingConnections) < 0) {
 		::close(fd_);
-// 		DEBUG(ERROR, "Error when listening");
+ 		DEBUG(ERROR, "Error when listening");
 		throw std::runtime_error ("Listen error");
 	}
 }
@@ -192,7 +196,7 @@ void PosixSocket::bind (Address* addr)
 
 error:
 	::close(fd_);
-// 	DEBUG(ERROR, "Error when binding socket");
+ 	DEBUG(ERROR, "Error when binding socket");
 	throw std::runtime_error ("Bind error");
 }
 
@@ -223,7 +227,7 @@ void PosixSocket::connect (Address* addr)
 
 error:
 	::close(fd_);
-// 	DEBUG(ERROR, "Error when creating client socket");
+ 	DEBUG(ERROR, "Error when creating client socket");
 	throw std::runtime_error ("Client socket error");
 }
 
