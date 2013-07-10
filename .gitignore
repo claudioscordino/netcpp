@@ -6,11 +6,10 @@
 *.old
 *.rej
 
-doc/doxygen/html/
 .cproject
 .project
 .settings/
-build/
+doc/html/
 
 
 
