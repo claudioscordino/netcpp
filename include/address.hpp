@@ -42,29 +42,6 @@ namespace net {
 			std::string address_;
 		};
 
-		namespace tcp {
-
-			class address: public Address {
-			public:
-				address(const std::string& addr, int port):
-					address_{addr}, port_{port}{};
-				std::string getAddress() const {
-					return address_;
-				}
-				int getPort(){
-					return port_;
-				}
-			private:
-				std::string address_;
-				int port_;
-			};
-
-		}
-
-		namespace udp {
-			typedef net::ip4::tcp::address address;
-		}
-
 	}
 
 	namespace local {

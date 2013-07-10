@@ -30,11 +30,10 @@
 #include <netinet/ip.h>
 #include <arpa/inet.h>
 
-
-
 #include "posix_socket.hpp"
 #include "protocol.hpp"
 #include "logger.hpp"
+#include "tcp_ip4.hpp"
 
 
 namespace net {

@@ -22,8 +22,6 @@
 #define POSIX_SOCKET_HPP_
 
 #include <unistd.h>
-// #include <sys/types.h>
-// #include <sys/socket.h>
 
 #include "abstract_system_socket.hpp"
 #include "address.hpp"

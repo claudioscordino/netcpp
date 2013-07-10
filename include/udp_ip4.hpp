@@ -1,5 +1,5 @@
 /*
- * tcp_ipv4.hpp
+ * udp_ipv4.hpp
  *
  * Copyright (C) 2013 Evidence Srl - www.evidence.eu.com
  *
@@ -18,17 +18,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA
  */
 
-#ifndef TCP_IPV4_HPP_
-#define TCP_IPV4_HPP_
+#ifndef UDP_IPV4_HPP_
+#define UDP_IPV4_HPP_
 
 #include <stdexcept>
 #include "abstract_socket.hpp"
 #include "posix_socket.hpp"
 #include "address.hpp"
+#include "tcp_ip4.hpp"
+
+
 
 namespace net {
 namespace ip4 {
-namespace tcp {
+namespace udp {
+
+typedef net::ip4::tcp::address address;
+
 
 class address: public Address {
 public:
@@ -92,4 +98,4 @@ public:
 
 }}}
 
-#endif // TCP_IPV4_HPP_
+#endif // UDP_IPV4_HPP_
