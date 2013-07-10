@@ -1,37 +1,36 @@
 INTRODUCTION
 
-LibNet++ is a C++ networking library.
+LibNetpp is a C++ networking library.
 
 RATIONALE
 
 The C++ standard library is known to be less comprehensive than the libraries
-usually available for other programming languages (e.g., Java, Python, etc.).
-The C++11 standard began to fill this gap by adding several features like
-support for multithreading, smart pointers, etc. Incredibly, however, a basic
-support for networking is still missing.
+traditionally available for other programming languages (e.g., Java, Python,
+etc.).  The C++11 standard began to fill this gap by adding several features
+like support for multithreading, smart pointers, etc. Incredibly, however, a
+basic support for networking is still missing.
 
 During the last years, a number of C++ libraries have been proposed to have
-portable networking, the most important being Boost::asio
+portable networking in C++, the most important being Boost::asio
 (http://www.boost.org/libs/asio/) and cpp-netlib (http://cpp-netlib.org).
-However, we believe that the syntax of both libraries is more complicated than
-necessary.
+However, we believe that the syntax of both these libraries is still more
+complicated than necessary.
 In particular, we believe that an ideal C++ networking library should be:
  - easy to use
  - easy to extend (either in terms of protocols and of supported architectures)
 
-LibNet++ is a proof of concept to show that such a networking library can be
-made in C++. The syntax of the library is straightforward. The modular design
-given by the adoption of design patterns allows to easily add new protocols and
-supported platforms.
+LibNetpp is a proof of concept to show that such a networking library can be
+made easily designed in C++. The syntax of the library is straightforward. The
+modular design given by the adoption of design patterns allows to easily add
+new protocols and supported platforms.
 
 REQUIREMENTS
 
-To build LibNet++ you need both cmake (http://www.cmake.org) and a C++11
+To build LibNetpp you need both cmake (http://www.cmake.org) and a C++11
 compiler (e.g., gcc 4.7+ or LLVM 3.3+).
 
-Currently, the library supports only Posix systems (e.g., Linux). However,
-porting the library to different platforms is easy thanks to its modular
-design.
+Currently, only Posix systems (e.g., Linux). However, porting the library to
+different platforms is very easy thanks to its modular design.
 
 HOW TO BUILD
 
@@ -47,9 +46,42 @@ The library is put in the libnetpp/bin/ directory.
 
 USAGE
 
+Usage of the library is straightforward:
 
+Example of TCP server:
 
-PORTING TO OTHER PLATFORMS
+	net::ip4::tcp::address addr (std::string("127.0.0.1"), 1234);
+	net::ip4::tcp::server main_srv;
+	net::ip4::tcp::server srv(&main_srv);
+	srv.open(&addr);
+	std::array<char, 5> buf;
+	srv.read(net::buffer(buf), 5);
 
+Example of TCP client:
 
-EXTENDING THE PROTOCOLS
+	net::ip4::tcp::address addr (std::string("127.0.0.1"), 1234);
+	net::ip4::tcp::client clt;
+	clt.open(&addr);
+	std::array<char, 5> b {'h', 'e', 'l', 'l', 'o'};
+	clt.write(net::buffer(b), 3);
+
+PORTING THE LIBRARY TO OTHER PLATFORMS
+
+The library has a modular internal design which, thanks to the design patterns
+used, allows to decouple specific platform-dependent code (which is on the
+AbstractSystemSocket hierarchy) from any protocol design (which is on the
+AbstractSocket hierarchy).
+
+Thus, to add a new supported platform, you only need to inherit your
+platform-specific class from class AbstractSystemSocket.
+
+The build system, based on cmake, can be easily ported among all supported
+platforms.
+
+ADDING NEW NETWORK PROTOCOLS
+
+To add a new protocol:
+- Create a proper namespace (like ip4::tcp)
+- Inside the namespace:
+  - Create an address class inheriting from class Address
+  - Create server and client classes inheriting from class AbstractSocket

@@ -146,6 +146,8 @@ protected:
 
 
 private:
+	AbstractSocket();
+
 	/**
 	 * @brief Thread for asynchronous operations
 	 */

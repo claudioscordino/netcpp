@@ -41,6 +41,7 @@ public:
 		return port_;
 	}
 private:
+	address();
 	std::string address_;
 	int port_;
 };
