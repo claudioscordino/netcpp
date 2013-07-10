@@ -19,6 +19,8 @@ be made in C++. The syntax of the library is straightforward. The modular
 design given by the adoption of design patterns allows to easily add new
 protocols and supported platforms.
 
+HOW TO BUILD
+
 USAGE
 
 

@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 # Name of the project:
-project(netwing)
+project(libnetpp)
 
 set (CMAKE_BUILD_TYPE Release)
 
@@ -10,9 +10,9 @@ set (CMAKE_BUILD_TYPE Release)
 add_definitions(-Wextra -O3 -pthread)
 set(CMAKE_CXX_FLAGS "-std=c++11")
 
+# Src directories:
 subdirs(src)
 
-
 # (Absolute) installation directory:
-set (CMAKE_INSTALL_PREFIX /tmp/netwing)
+set (CMAKE_INSTALL_PREFIX /tmp/${CMAKE_PROJECT_NAME})
 
