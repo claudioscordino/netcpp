@@ -17,6 +17,10 @@ void do_server()
 	DEBUG(DEBUG, "SERVER: Opening server...");
 	srv.open(&addr);
 
+	DEBUG(DEBUG, "SERVER: Creating server2...");
+	net::ip4::tcp::server srv2(&srv);
+
+
 	// sleep
 	std::this_thread::sleep_for(std::chrono::seconds(2));
 
@@ -25,7 +29,7 @@ void do_server()
 		DEBUG(DEBUG, "SERVER: Creating buffer...");
 		std::array<char, 5> b;
 		DEBUG(DEBUG, "SERVER: Reading...");
-		srv.read(net::buffer(b), 3);
+		srv2.read(net::buffer(b), 3);
 	}
 }
 

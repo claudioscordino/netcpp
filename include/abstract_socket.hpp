@@ -129,7 +129,10 @@ public:
 		delete worker_;
 	}
 
-
+	/**
+	 * @brief Pointer to the platform-dependent socket
+	 */
+	AbstractSystemSocket* socket_;
 
 protected:
 	/**
@@ -140,10 +143,7 @@ protected:
 	AbstractSocket(AbstractSystemSocket* sock):
 		socket_{sock}, worker_{nullptr} {}
 
-	/**
-	 * @brief Pointer to the platform-dependent socket
-	 */
-	AbstractSystemSocket* socket_;
+
 
 private:
 	/**

@@ -31,9 +31,9 @@ namespace tcp {
 
 class server: public AbstractSocket {
 public:
-	inline void accept (AbstractSystemSocket* sock){
-		AbstractSocket::socket_->accept(sock);
-	}
+//	inline void accept (net::ip4::tcp::server* srv){
+//		AbstractSocket::socket_->accept(srv);
+//	}
 	inline void bind (Address* addr){
 		AbstractSocket::socket_->bind(addr);
 	}
@@ -42,6 +42,12 @@ public:
 	}
 	server():
 	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
+
+	server(AbstractSocket* srv):
+	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){
+		AbstractSocket::socket_->accept(srv->socket_);
+	}
+
 
 	inline void open (Address* addr, int max_pending_connections = 100) {
 		bind (addr);
