@@ -1,31 +1,55 @@
+INTRODUCTION
+
+LibNet++ is a C++ networking library.
+
 RATIONALE
 
 The C++ standard library is known to be less comprehensive than the libraries
-available for other programming languages (e.g., Java, Python, etc.). The C++11
-standard began to fill this gap by adding several features like support for
-multithreading, smart pointers, etc. Incredibly, however, a basic support for
-networking is still missing.
+usually available for other programming languages (e.g., Java, Python, etc.).
+The C++11 standard began to fill this gap by adding several features like
+support for multithreading, smart pointers, etc. Incredibly, however, a basic
+support for networking is still missing.
 
 During the last years, a number of C++ libraries have been proposed to have
-portable networking. The most important libraries are Boost::asio and
-cpp-netlib. However, we believe that the syntax of these two libraries is too
-complicated. In particular, we believe that an ideal C++ networking library
-should be:
+portable networking, the most important being Boost::asio
+(http://www.boost.org/libs/asio/) and cpp-netlib (http://cpp-netlib.org).
+However, we believe that the syntax of both libraries is more complicated than
+necessary.
+In particular, we believe that an ideal C++ networking library should be:
  - easy to use
- - easy to extend (eithat in terms of protocols and of supported architectures)
+ - easy to extend (either in terms of protocols and of supported architectures)
 
-This project is a proof of concept to show that such a networking library can
-be made in C++. The syntax of the library is straightforward. The modular
-design given by the adoption of design patterns allows to easily add new
-protocols and supported platforms.
+LibNet++ is a proof of concept to show that such a networking library can be
+made in C++. The syntax of the library is straightforward. The modular design
+given by the adoption of design patterns allows to easily add new protocols and
+supported platforms.
+
+REQUIREMENTS
+
+To build LibNet++ you need both cmake (http://www.cmake.org) and a C++11
+compiler (e.g., gcc 4.7+ or LLVM 3.3+).
+
+Currently, the library supports only Posix systems (e.g., Linux). However,
+porting the library to different platforms is easy thanks to its modular
+design.
 
 HOW TO BUILD
+
+Compile through the following commands:
+
+	cd libnetpp/build
+	cmake ..
+	make
+	make install
+
+The library is put in the libnetpp/bin/ directory.
+
 
 USAGE
 
 
 
-PORTING
+PORTING TO OTHER PLATFORMS
 
 
-EXTENSIONS
+EXTENDING THE PROTOCOLS
