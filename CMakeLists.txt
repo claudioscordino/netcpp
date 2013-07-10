@@ -11,7 +11,7 @@ add_definitions(-Wextra -O3 -pthread)
 set(CMAKE_CXX_FLAGS "-std=c++11")
 
 # Src directories:
-subdirs(src)
+subdirs(src test)
 
 # (Absolute) installation directory:
 set (CMAKE_INSTALL_PREFIX /tmp/${CMAKE_PROJECT_NAME})
