@@ -4,6 +4,7 @@
 #include <thread>
 
 #include "tcp_ip4.hpp"
+#include "stream_local.hpp"
 #include "address.hpp"
 #include "logger.hpp"
 
@@ -11,15 +12,14 @@
 void do_server()
 {
 	DEBUG(DEBUG, "SERVER: Creating address...");
-	net::ip4::tcp::address addr (std::string("127.0.0.1"), 1234);
+	net::local::stream::address addr ("/tmp/libnetpp");
 	DEBUG(DEBUG, "SERVER: Creating server...");
-	net::ip4::tcp::server srv;
+	net::local::stream::server srv;
 	DEBUG(DEBUG, "SERVER: Opening server...");
 	srv.open(&addr);
 
 	DEBUG(DEBUG, "SERVER: Creating server2...");
-	net::ip4::tcp::server srv2(&srv);
-
+	net::local::stream::server srv2(&srv);
 
 	// sleep
 // 	std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -43,9 +43,9 @@ void do_client()
 	std::this_thread::sleep_for(std::chrono::seconds(2));
 
 	DEBUG(DEBUG, "CLIENT: Creating address...");
-	net::ip4::tcp::address addr (std::string("127.0.0.1"), 1234);
+	net::local::stream::address addr ("/tmp/libnetpp");
 	DEBUG(DEBUG, "CLIENT: Creating client...");
-	net::ip4::tcp::client clt;
+	net::local::stream::client clt;
 	DEBUG(DEBUG, "CLIENT: Opening client...");
 	clt.open(&addr);
 
@@ -60,7 +60,7 @@ void do_client()
 
 int main()
 {
-	DEBUG_CONF("/tmp/libnetpp/log.txt", DEBUG, DEBUG);
+	DEBUG_CONF("libnetpp.log", DEBUG, DEBUG);
 	DEBUG(DEBUG, "Launching 1st thread...");
 	std::thread t1(do_server);
 	DEBUG(DEBUG, "Launching 2nd thread...");

@@ -37,6 +37,9 @@ public:
 	std::string toString(){
 		return address_;
 	}
+	std::string getAddress() const {
+		return address_;
+	}
 private:
 	std::string address_;
 };

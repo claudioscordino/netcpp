@@ -176,6 +176,7 @@ void PosixSocket::listen (int maxPendingConnections)
 void PosixSocket::bind (Address* addr)
 {
 	if ((protocol_ == protocol::DGRAM_LOCAL) || (protocol_ == protocol::STREAM_LOCAL)) { 
+		DEBUG(DEBUG, "Local protocol found");
 		struct sockaddr_un serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
 		serv_addr.sun_family = AF_LOCAL;
@@ -184,6 +185,7 @@ void PosixSocket::bind (Address* addr)
 		if (::bind(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)
 			return;
 	} else if ((protocol_ == protocol::TCP_IPv4) || (protocol_ == protocol::UDP_IPv4)) {
+		DEBUG(DEBUG, "Network protocol found");
 		struct sockaddr_in serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
 		serv_addr.sin_family = AF_INET;
@@ -191,6 +193,8 @@ void PosixSocket::bind (Address* addr)
 		serv_addr.sin_addr.s_addr = INADDR_ANY;
 		if (::bind(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)
 			return;
+	} else {
+		DEBUG(ERROR, "Unknown protocol found");
 	}
 
 error:

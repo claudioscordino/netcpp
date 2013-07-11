@@ -30,23 +30,6 @@ namespace net {
 		virtual std::string getAddress() const =0;
 	};
 
-	namespace ip4 {
-		class address: public Address {
-		public:
-			address(const std::string& addr):
-				address_{addr}{};
-			std::string toString(){
-				return address_;
-			}
-		private:
-			std::string address_;
-		};
-
-	}
-
-	namespace local {
-		typedef net::ip4::address address;
-	}
 }
 
 
