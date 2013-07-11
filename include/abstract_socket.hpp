@@ -36,7 +36,6 @@
 #include "abstract_system_socket.hpp"
 #include "logger.hpp"
 
-
 namespace net {
 
 /** @brief Structure to avoid issues when giving buffers to AbstractSocket.
@@ -136,10 +135,17 @@ public:
 		return socket_->close();
 	}
 
+	/**
+	 * @brief get the socket
+	 *
+	 * This method is used to let derived classes of AbstractSocket invoke
+	 * specific protocol-dependent functions (e.g., accept()).
+	 *
+	 * @return the socket used by this instance of the class
+	 */
 	inline AbstractSystemSocket* getSocket(){
 		return socket_.get();
 	}
-	
 
 protected:
 	/**
@@ -147,13 +153,18 @@ protected:
 	 *
 	 * Constructor is protected because only derived classes
 	 * can construct this class.
+	 * @param the platform-dependent socket; this object is
+	 * constructed by the derived class' constructor, afterwards it
+	 * is managed (i.e., kept and deleted) by this class.
 	 */
 	AbstractSocket(AbstractSystemSocket* sock):
 		socket_{sock} {}
 
-
 	/**
 	 * @brief Pointer to the platform-dependent socket
+	 *
+	 * The platform-dependent socket is created by deriverd
+	 * class' constructor and then owned by this class. 
 	 */
 	std::unique_ptr<AbstractSystemSocket>  socket_;
 
