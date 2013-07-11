@@ -136,11 +136,12 @@ public:
 		return socket_->close();
 	}
 
-protected:
-	inline void accept(AbstractSocket* srv) {
-		socket_->accept(srv->socket_);
+	inline AbstractSystemSocket* getSocket(){
+		return socket_.get();
 	}
+	
 
+protected:
 	/**
 	 * @brief Constructor
 	 *
@@ -150,10 +151,11 @@ protected:
 	AbstractSocket(AbstractSystemSocket* sock):
 		socket_{sock} {}
 
+
 	/**
 	 * @brief Pointer to the platform-dependent socket
 	 */
-	AbstractSystemSocket*  socket_;
+	std::unique_ptr<AbstractSystemSocket>  socket_;
 
 private:
 	/**

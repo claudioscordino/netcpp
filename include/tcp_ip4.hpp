@@ -60,7 +60,7 @@ public:
 
 	server(AbstractSocket* srv):
 	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){
-		accept(srv);
+		socket_->accept((srv->getSocket()));
 	}
 
 	inline void open (Address* addr, int max_pending_connections = 100) {
