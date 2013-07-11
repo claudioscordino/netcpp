@@ -58,7 +58,7 @@ public:
 
 	server(AbstractSocket* srv):
 	    AbstractSocket(new PosixSocket(protocol(protocol::STREAM_LOCAL))){
-		AbstractSocket::socket_->accept(srv->socket_);
+		accept(srv);
 	}
 
 
