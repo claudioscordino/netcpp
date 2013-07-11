@@ -24,8 +24,8 @@
 namespace net {
 
 enum class protocol {
-	STREAM_UNIX,
-	DGRAM_UNIX,
+	STREAM_LOCAL,
+	DGRAM_LOCAL,
 	//SEQ_UNIX,
 	TCP_IPv4,
 	//TCP_IPv6,

@@ -1,6 +1,6 @@
 INTRODUCTION
 
-LibNetpp is a C++ networking library.
+LibNetpp is a tiny C++ networking library.
 
 RATIONALE
 
@@ -20,9 +20,11 @@ In particular, we believe that an ideal C++ networking library should be:
  - easy to extend (either in terms of protocols and of supported architectures)
 
 LibNetpp is a proof of concept to show that such a networking library can be
-made easily designed in C++. The syntax of the library is straightforward. The
-modular design given by the adoption of design patterns allows to easily add
-new protocols and supported platforms.
+made easily designed in C++. This tiny library has been built after the
+experience with the OnPosix library (http://onposix.sourceforge.net). The
+syntax of the library is straightforward. The modular design given by the
+adoption of design patterns allows to easily add new protocols and supported
+platforms.
 
 REQUIREMENTS
 
@@ -85,3 +87,7 @@ To add a new protocol:
 - Inside the namespace:
   - Create an address class inheriting from class Address
   - Create server and client classes inheriting from class AbstractSocket
+
+TODO
+- Add other protocols besides TCP/IP
+- Add asynchronous operations

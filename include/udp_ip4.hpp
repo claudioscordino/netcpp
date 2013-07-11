@@ -36,45 +36,16 @@ namespace udp {
 typedef net::ip4::tcp::address address;
 
 
-class address: public Address {
-public:
-	address(const std::string& addr, int port):
-		address_{addr}, port_{port}{};
-	std::string getAddress() const {
-		return address_;
-	}
-	int getPort(){
-		return port_;
-	}
-private:
-	std::string address_;
-	int port_;
-};
-
-
 class server: public AbstractSocket {
 public:
-//	inline void accept (net::ip4::tcp::server* srv){
-//		AbstractSocket::socket_->accept(srv);
-//	}
 	inline void bind (Address* addr){
 		AbstractSocket::socket_->bind(addr);
 	}
-	inline void listen (int max_pending_connections){
-		AbstractSocket::socket_->listen(max_pending_connections);
-	}
 	server():
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
+	    AbstractSocket(new PosixSocket(protocol(protocol::UDP_IPv4))){}
 
-	server(AbstractSocket* srv):
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){
-		AbstractSocket::socket_->accept(srv->socket_);
-	}
-
-
-	inline void open (Address* addr, int max_pending_connections = 100) {
-		bind (addr);
-		listen(max_pending_connections);
+	inline void open (Address* addr) {
+		bind(addr);
 	}
 };
 
@@ -86,7 +57,7 @@ public:
 		AbstractSocket::socket_->connect(addr);
 	}
 	client():
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
+	    AbstractSocket(new PosixSocket(protocol(protocol::UDP_IPv4))){}
 
 	inline void open (Address* addr) {
 		connect (addr);

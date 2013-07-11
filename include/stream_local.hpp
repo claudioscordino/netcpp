@@ -1,5 +1,5 @@
 /*
- * tcp_ipv4.hpp
+ * stream_local.hpp
  *
  * Copyright (C) 2013 Evidence Srl - www.evidence.eu.com
  *
@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA
  */
 
-#ifndef TCP_IPV4_HPP_
-#define TCP_IPV4_HPP_
+#ifndef STREAM_LOCAL_HPP_
+#define STREAM_LOCAL_HPP_
 
 #include <stdexcept>
 #include "abstract_socket.hpp"
@@ -27,23 +27,18 @@
 #include "address.hpp"
 
 namespace net {
-namespace ip4 {
-namespace tcp {
+namespace local {
+namespace stream {
 
 class address: public Address {
 public:
-	address(const std::string& addr, int port):
-		address_{addr}, port_{port}{};
-	std::string getAddress() const {
+	address(const std::string& addr):
+		address_{addr}{};
+	std::string toString(){
 		return address_;
 	}
-	int getPort(){
-		return port_;
-	}
 private:
-	address();
 	std::string address_;
-	int port_;
 };
 
 
@@ -56,10 +51,10 @@ public:
 		AbstractSocket::socket_->listen(max_pending_connections);
 	}
 	server():
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
+	    AbstractSocket(new PosixSocket(protocol(protocol::STREAM_LOCAL))){}
 
 	server(AbstractSocket* srv):
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){
+	    AbstractSocket(new PosixSocket(protocol(protocol::STREAM_LOCAL))){
 		AbstractSocket::socket_->accept(srv->socket_);
 	}
 
@@ -78,7 +73,7 @@ public:
 		AbstractSocket::socket_->connect(addr);
 	}
 	client():
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
+	    AbstractSocket(new PosixSocket(protocol(protocol::STREAM_LOCAL))){}
 
 	inline void open (Address* addr) {
 		connect (addr);
@@ -90,4 +85,4 @@ public:
 
 }}}
 
-#endif // TCP_IPV4_HPP_
+#endif // STREAM_LOCAL_HPP_

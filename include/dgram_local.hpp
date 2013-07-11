@@ -1,5 +1,5 @@
 /*
- * tcp_ipv4.hpp
+ * dgram_local.hpp
  *
  * Copyright (C) 2013 Evidence Srl - www.evidence.eu.com
  *
@@ -18,33 +18,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA
  */
 
-#ifndef TCP_IPV4_HPP_
-#define TCP_IPV4_HPP_
+#ifndef DGRAM_LOCAL_HPP_
+#define DGRAM_LOCAL_HPP_
 
 #include <stdexcept>
 #include "abstract_socket.hpp"
 #include "posix_socket.hpp"
 #include "address.hpp"
+#include "stream_local.hpp"
+
+
 
 namespace net {
-namespace ip4 {
-namespace tcp {
+namespace local {
+namespace dgram {
 
-class address: public Address {
-public:
-	address(const std::string& addr, int port):
-		address_{addr}, port_{port}{};
-	std::string getAddress() const {
-		return address_;
-	}
-	int getPort(){
-		return port_;
-	}
-private:
-	address();
-	std::string address_;
-	int port_;
-};
+typedef net::local::stream::address address;
 
 
 class server: public AbstractSocket {
@@ -52,21 +41,11 @@ public:
 	inline void bind (Address* addr){
 		AbstractSocket::socket_->bind(addr);
 	}
-	inline void listen (int max_pending_connections){
-		AbstractSocket::socket_->listen(max_pending_connections);
-	}
 	server():
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
+	    AbstractSocket(new PosixSocket(protocol(protocol::DGRAM_LOCAL))){}
 
-	server(AbstractSocket* srv):
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){
-		AbstractSocket::socket_->accept(srv->socket_);
-	}
-
-
-	inline void open (Address* addr, int max_pending_connections = 100) {
-		bind (addr);
-		listen(max_pending_connections);
+	inline void open (Address* addr) {
+		bind(addr);
 	}
 };
 
@@ -78,7 +57,7 @@ public:
 		AbstractSocket::socket_->connect(addr);
 	}
 	client():
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
+	    AbstractSocket(new PosixSocket(protocol(protocol::DGRAM_LOCAL))){}
 
 	inline void open (Address* addr) {
 		connect (addr);
@@ -90,4 +69,4 @@ public:
 
 }}}
 
-#endif // TCP_IPV4_HPP_
+#endif // DGRAM_LOCAL_HPP_

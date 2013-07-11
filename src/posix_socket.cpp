@@ -42,10 +42,10 @@ namespace net {
 PosixSocket::PosixSocket(const enum protocol& prot):
 		AbstractSystemSocket(prot)
 {
-	if (prot == protocol::STREAM_UNIX)
-		fd_ = socket(AF_UNIX, SOCK_STREAM, 0);
-	else if (prot == protocol::DGRAM_UNIX)	
-		fd_ = socket(AF_UNIX, SOCK_DGRAM, 0);
+	if (prot == protocol::STREAM_LOCAL)
+		fd_ = socket(AF_LOCAL, SOCK_STREAM, 0);
+	else if (prot == protocol::DGRAM_LOCAL)	
+		fd_ = socket(AF_LOCAL, SOCK_DGRAM, 0);
 	else if (prot == protocol::TCP_IPv4)	
 		fd_ = socket(AF_INET, SOCK_STREAM, 0);
 	else if (prot == protocol::UDP_IPv4)	
@@ -146,8 +146,8 @@ bool PosixSocket::close(){
  */
 void PosixSocket::accept (AbstractSystemSocket* sock)
 {
-	if ((sock->getProtocol() != protocol::STREAM_UNIX && sock->getProtocol() != protocol::TCP_IPv4) ||
-	    (protocol_ != protocol::STREAM_UNIX && protocol_ != protocol::TCP_IPv4)){
+	if ((sock->getProtocol() != protocol::STREAM_LOCAL && sock->getProtocol() != protocol::TCP_IPv4) ||
+	    (protocol_ != protocol::STREAM_LOCAL && protocol_ != protocol::TCP_IPv4)){
  		DEBUG(ERROR, "Accept not available!");
 		throw std::runtime_error("Accept not available");
 	}
@@ -162,7 +162,7 @@ void PosixSocket::accept (AbstractSystemSocket* sock)
 
 void PosixSocket::listen (int maxPendingConnections)
 {
-	if (protocol_ != protocol::STREAM_UNIX && protocol_ != protocol::TCP_IPv4){
+	if (protocol_ != protocol::STREAM_LOCAL && protocol_ != protocol::TCP_IPv4){
  		DEBUG(ERROR, "Listen not available!");
 		throw std::runtime_error("Listen not available");
 	}
@@ -175,10 +175,10 @@ void PosixSocket::listen (int maxPendingConnections)
 
 void PosixSocket::bind (Address* addr)
 {
-	if ((protocol_ == protocol::DGRAM_UNIX) || (protocol_ == protocol::STREAM_UNIX)) { 
+	if ((protocol_ == protocol::DGRAM_LOCAL) || (protocol_ == protocol::STREAM_LOCAL)) { 
 		struct sockaddr_un serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
-		serv_addr.sun_family = AF_UNIX;
+		serv_addr.sun_family = AF_LOCAL;
 		strncpy(serv_addr.sun_path, addr->getAddress().c_str(),
 		    sizeof(serv_addr.sun_path) - 1);
 		if (::bind(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)
@@ -202,10 +202,10 @@ error:
 
 void PosixSocket::connect (Address* addr)
 {
-	if ((protocol_ == protocol::DGRAM_UNIX) || (protocol_ == protocol::STREAM_UNIX)) {
+	if ((protocol_ == protocol::DGRAM_LOCAL) || (protocol_ == protocol::STREAM_LOCAL)) {
 		struct sockaddr_un serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
-		serv_addr.sun_family = AF_UNIX;
+		serv_addr.sun_family = AF_LOCAL;
 		strncpy(serv_addr.sun_path, addr->getAddress().c_str(), sizeof(serv_addr.sun_path) - 1);
 		if (::connect(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)
 			return;
