@@ -75,62 +75,6 @@ inline __buffer buffer(std::array<char, N>& buf)
 
 class AbstractSocket {
 public:
-	/**
-	 * @brief Read operation on the socket
-	 *
-	 * This function reads from the socket taking care of synchronization
-	 * with any other asynchronous operations.
-	 * @param buf Pointer where read data must be put
-	 * @param size Size of data to be read
-	 * @return Number of bytes actually read
-	 * @exception runtime_error in case of too small buffer
-	 *
-	 * Example of usage:
-	 * <code>
-	 * 		std::array<char, 5> buf;
-	 * 		AbstractSocket::read(net::buffer(b), 3);
-	 * </code>
-	 */
-	inline int read (__buffer buf, std::size_t size)
-	{
-		if (buf.size_ == 0 || size > buf.size_){
-			DEBUG(ERROR, "Wrong buffer size!");
-			throw std::runtime_error ("Wrong buffer size");
-		}
-		read_lock_.lock();
-		int ret = socket_->read(buf.ptr_, size);
-		read_lock_.unlock();
-		return ret;
-	}
-
-	/**
-	 * @brief Write operation on the socket
-	 *
-	 * This function writes to the socket taking care of synchronization
-	 * with any other asynchronous operations.
-	 * @param buf Pointer to data to be written
-	 * @param size Size of data to be written
-	 * @return Number of bytes actually written
-	 * @exception runtime_error in case of too small buffer
-	 *
-	 * Example of usage:
-	 * <code>
-	 * 		std::array<char, 5> buf;
-	 * 		AbstractSocket::write(net::buffer(b), 3);
-	 * </code>
-	 */
-	inline int write (__buffer buf, std::size_t size)
-	{
-		if (buf.size_ == 0 || size > buf.size_){
-			DEBUG(ERROR, "Wrong buffer size!");
-			throw std::runtime_error ("Wrong buffer size");
-		}
-		write_lock_.lock();
-		int ret = socket_->write(buf.ptr_, size);
-		write_lock_.unlock();
-		return ret;
-
-	}
 
 	/**
 	 * @brief Close the socket
@@ -157,6 +101,9 @@ public:
 	{
 		return socket_.get();
 	}
+
+	int read (__buffer buf, std::size_t size);
+	int write (__buffer buf, std::size_t size);
 
 protected:
 	/**

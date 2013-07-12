@@ -1,6 +1,8 @@
 # Version of cmake and programming language:
 cmake_minimum_required(VERSION 2.8)
 
+#set (CMAKE_CXX_COMPILER clang++)
+
 # Name of the project:
 project(libnetpp)
 

@@ -6,6 +6,7 @@
 *.old
 *.rej
 *.log
+*.swo
 
 .cproject
 .project
