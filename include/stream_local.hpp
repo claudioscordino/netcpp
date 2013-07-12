@@ -1,4 +1,6 @@
 /*
+ * Copyright (C) 2013 Evidence Srl - www.evidence.eu.com
+ *
  * Boost Software License - Version 1.0 - August 17th, 2003
  *
  * Permission is hereby granted, free of charge, to any person or organization
@@ -82,7 +84,8 @@ public:
 	 * This method invokes the platform-specific bind() operation.
 	 * @param Address of the local socket
 	 */
-	inline void bind (Address* addr){
+	inline void bind (Address* addr)
+	{
 		AbstractSocket::socket_->bind(addr);
 	}
 	
@@ -92,17 +95,20 @@ public:
 	 * This method invokes the platform-specific listen() operation.
 	 * @param Maximum number of pending connections
 	 */
-	inline void listen (int max_pending_connections){
+	inline void listen (int max_pending_connections)
+	{
 		AbstractSocket::socket_->listen(max_pending_connections);
 	}
 
 	server(AbstractSocket* srv):
-	    AbstractSocket(new PosixSocket(protocol(protocol::STREAM_LOCAL))){
+	    AbstractSocket(new PosixSocket(protocol(protocol::STREAM_LOCAL)))
+	{
 		socket_->accept((srv->getSocket()));
 	}
 
 
-	inline void open (Address* addr, int max_pending_connections = 100) {
+	inline void open (Address* addr, int max_pending_connections = 100)
+	{
 		bind (addr);
 		listen(max_pending_connections);
 	}
@@ -115,13 +121,15 @@ public:
  */
 class client: public AbstractSocket {
 public:
-	void connect (Address* addr){
+	void connect (Address* addr)
+	{
 		AbstractSocket::socket_->connect(addr);
 	}
 	client():
 	    AbstractSocket(new PosixSocket(protocol(protocol::STREAM_LOCAL))){}
 
-	inline void open (Address* addr) {
+	inline void open (Address* addr)
+	{
 		connect (addr);
 	}
 

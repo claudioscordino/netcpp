@@ -5,6 +5,7 @@
 *.a
 *.old
 *.rej
+*.log
 
 .cproject
 .project

@@ -1,4 +1,6 @@
 /*
+ * Copyright (C) 2013 Evidence Srl - www.evidence.eu.com
+ *
  * Boost Software License - Version 1.0 - August 17th, 2003
  *
  * Permission is hereby granted, free of charge, to any person or organization
@@ -45,14 +47,18 @@ namespace net {
  * The user must only use buffer(...).
  */
 struct __buffer {
-	/// Pointer to address holding data:
+	/// Pointer to data in memory
 	void* ptr_;
-	/// Size (in bytes) of data:
+
+	/// Size (in bytes) of data
 	std::size_t size_;
 };
 
 /**
  * @brief Function to pass a std::array to AbstractSocket
+ *
+ * @param reference to a std::array<char>
+ * @return a __buffer structure
  */
 template<std::size_t N>
 inline __buffer buffer(std::array<char, N>& buf)
@@ -66,6 +72,7 @@ inline __buffer buffer(std::array<char, N>& buf)
  * This is the base abstract class for protocols. Any supported protocol
  * must inherit from this class.
  */
+
 class AbstractSocket {
 public:
 	/**
@@ -84,7 +91,8 @@ public:
 	 * 		AbstractSocket::read(net::buffer(b), 3);
 	 * </code>
 	 */
-	inline int read (__buffer buf, std::size_t size){
+	inline int read (__buffer buf, std::size_t size)
+	{
 		if (buf.size_ == 0 || size > buf.size_){
 			DEBUG(ERROR, "Wrong buffer size!");
 			throw std::runtime_error ("Wrong buffer size");
@@ -111,7 +119,8 @@ public:
 	 * 		AbstractSocket::write(net::buffer(b), 3);
 	 * </code>
 	 */
-	inline int write (__buffer buf, std::size_t size){
+	inline int write (__buffer buf, std::size_t size)
+	{
 		if (buf.size_ == 0 || size > buf.size_){
 			DEBUG(ERROR, "Wrong buffer size!");
 			throw std::runtime_error ("Wrong buffer size");
@@ -131,7 +140,8 @@ public:
 	 *
 	 * @return true in case of success; false otherwise
 	 */
-	inline bool close(){
+	inline bool close()
+	{
 		return socket_->close();
 	}
 
@@ -143,7 +153,8 @@ public:
 	 *
 	 * @return the socket used by this instance of the class
 	 */
-	inline AbstractSystemSocket* getSocket(){
+	inline AbstractSystemSocket* getSocket()
+	{
 		return socket_.get();
 	}
 
