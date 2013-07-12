@@ -1,6 +1,6 @@
 INTRODUCTION
 
-LibNetpp is a tiny C++ networking library.
+LibNetpp is a tiny C++ network library.
 
 RATIONALE
 
@@ -89,5 +89,5 @@ To add a new protocol:
   - Create server and client classes inheriting from class AbstractSocket
 
 TODO
-- Add other protocols besides TCP/IP
+- Add other protocols besides TCP/IP and local Unix sockets.
 - Add asynchronous operations
