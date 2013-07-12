@@ -76,33 +76,13 @@ PosixSocket::~PosixSocket()
 /**
  * \brief Low-level read
  *
- * This method is private because it is meant to be used through the other read()
- * methods.
- * Note: it can block the caller, because it continues reading until the given
- * number of bytes have been read.
  * @param buffer Pointer to the buffer where read bytes must be stored
  * @param size Number of bytes to be read
- * @exception runtime_error if the ::read() returns an error
  * @return The number of actually read bytes or -1 in case of error
  */
 int PosixSocket::read (void* buffer, size_t size)
 {
-	size_t remaining = size;
-	while (remaining > 0) {
-		ssize_t ret = ::read (fd_, ((char*)buffer)+(size-remaining),
-		    remaining);
-		if (ret == 0){
-			// End of file reached
-			DEBUG(DEBUG, "End of file reached");
-			break;
-		} else if (ret < 0) {
-			DEBUG(ERROR, "Read error");
-			throw std::runtime_error ("Read error");
-			return -1;
-		}
-		remaining -= ret;
-	}
-	return (size-remaining);
+	return ::read(fd_, buffer , size);
 }
 
 
@@ -110,33 +90,13 @@ int PosixSocket::read (void* buffer, size_t size)
 /**
  * \brief Low-level write
  *
- * This method is private because it is meant to be used through the other
- * write() methods.
- * Note: it can block the caller, because it continues writing until the
- * given number of bytes have been written.
  * @param buffer Pointer to the buffer containing bytes to be written
  * @param size Number of bytes to be written
- * @exception runtime_error if the ::write() returns 0 or an error
  * @return The number of actually written bytes or -1 in case of error
  */
 int PosixSocket::write (const void* buffer, size_t size)
 {
-	size_t remaining = size;
-	while (remaining > 0) {
-		ssize_t ret = ::write (fd_,
-		    ((char*)buffer)+(size-remaining), remaining);
-		if (ret == 0){
-			DEBUG(DEBUG, "Cannot write more");
-			// Cannot write more
-			break;
-		} else if (ret < 0) {
-			DEBUG(ERROR, "Write error");
-			throw std::runtime_error ("Write error");
-			return -1;
-		}
-		remaining -= ret;
-	}
-	return (size-remaining);
+	return ::write(fd_, buffer, size);
 }
 
 

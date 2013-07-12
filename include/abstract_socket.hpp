@@ -118,6 +118,7 @@ protected:
 	AbstractSocket(AbstractSystemSocket* sock):
 		socket_{sock} {}
 
+
 	/**
 	 * @brief Pointer to the platform-dependent socket
 	 *
@@ -127,6 +128,10 @@ protected:
 	std::unique_ptr<AbstractSystemSocket>  socket_;
 
 private:
+
+	int __read (void* buffer, size_t size);
+	int __write (const void* buffer, size_t size);
+
 	/**
 	 * @brief Thread for asynchronous read operations
 	 */
