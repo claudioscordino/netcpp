@@ -44,7 +44,7 @@ void do_server()
 	DEBUG(DEBUG, "SERVER: Creating server...");
 	net::local::stream::server srv;
 	DEBUG(DEBUG, "SERVER: Opening server...");
-	srv.open(&addr);
+	srv.open(addr);
 
 	DEBUG(DEBUG, "SERVER: Creating server2...");
 	net::local::stream::server srv2(&srv);
@@ -75,7 +75,7 @@ void do_client()
 	DEBUG(DEBUG, "CLIENT: Creating client...");
 	net::local::stream::client clt;
 	DEBUG(DEBUG, "CLIENT: Opening client...");
-	clt.open(&addr);
+	clt.open(addr);
 
 
 	while (true){

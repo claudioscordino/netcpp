@@ -84,7 +84,7 @@ public:
 	 * This method invokes the platform-specific bind() operation.
 	 * @param Address of the local socket
 	 */
-	inline void bind (Address* addr)
+	inline void bind (const Address& addr)
 	{
 		AbstractSocket::socket_->bind(addr);
 	}
@@ -107,7 +107,7 @@ public:
 	}
 
 
-	inline void open (Address* addr, int max_pending_connections = 100)
+	inline void open (const Address& addr, int max_pending_connections = 100)
 	{
 		bind (addr);
 		listen(max_pending_connections);
@@ -121,14 +121,14 @@ public:
  */
 class client: public AbstractSocket {
 public:
-	void connect (Address* addr)
+	void connect (const Address& addr)
 	{
 		AbstractSocket::socket_->connect(addr);
 	}
 	client():
 	    AbstractSocket(new PosixSocket(protocol(protocol::STREAM_LOCAL))){}
 
-	inline void open (Address* addr)
+	inline void open (const Address& addr)
 	{
 		connect (addr);
 	}

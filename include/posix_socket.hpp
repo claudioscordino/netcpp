@@ -41,8 +41,8 @@ namespace net {
 class PosixSocket: public AbstractSystemSocket {
 
 public:
-	virtual void connect (Address* addr);
-	virtual void bind (Address* addr);
+	virtual void connect (const Address& addr);
+	virtual void bind (const Address& addr);
 
 	virtual int read (void* buffer, size_t size);
 	virtual int write (const void* buffer, size_t size);

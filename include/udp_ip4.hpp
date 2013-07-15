@@ -46,13 +46,13 @@ typedef net::ip4::tcp::address address;
 
 class server: public AbstractSocket {
 public:
-	inline void bind (Address* addr){
+	inline void bind (const Address& addr){
 		AbstractSocket::socket_->bind(addr);
 	}
 	server():
 	    AbstractSocket(new PosixSocket(protocol(protocol::UDP_IPv4))){}
 
-	inline void open (Address* addr) {
+	inline void open (const Address& addr) {
 		bind(addr);
 	}
 };
@@ -61,13 +61,13 @@ public:
 
 class client: public AbstractSocket {
 public:
-	void connect (Address* addr){
+	void connect (const Address& addr){
 		AbstractSocket::socket_->connect(addr);
 	}
 	client():
 	    AbstractSocket(new PosixSocket(protocol(protocol::UDP_IPv4))){}
 
-	inline void open (Address* addr) {
+	inline void open (const Address& addr) {
 		connect (addr);
 	}
 

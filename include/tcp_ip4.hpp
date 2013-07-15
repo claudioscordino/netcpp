@@ -45,7 +45,7 @@ public:
 	std::string getAddress() const {
 		return address_;
 	}
-	int getPort(){
+	int getPort() const {
 		return port_;
 	}
 private:
@@ -57,7 +57,7 @@ private:
 
 class server: public AbstractSocket {
 public:
-	inline void bind (Address* addr){
+	inline void bind (const Address& addr){
 		AbstractSocket::socket_->bind(addr);
 	}
 	inline void listen (int max_pending_connections){
@@ -71,7 +71,7 @@ public:
 		socket_->accept((srv->getSocket()));
 	}
 
-	inline void open (Address* addr, int max_pending_connections = 100) {
+	inline void open (const Address& addr, int max_pending_connections = 100) {
 		bind (addr);
 		listen(max_pending_connections);
 	}
@@ -81,13 +81,13 @@ public:
 
 class client: public AbstractSocket {
 public:
-	void connect (Address* addr){
+	void connect (const Address& addr){
 		AbstractSocket::socket_->connect(addr);
 	}
 	client():
 	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
 
-	inline void open (Address* addr) {
+	inline void open (const Address& addr) {
 		connect (addr);
 	}
 

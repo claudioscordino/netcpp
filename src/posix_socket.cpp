@@ -140,14 +140,14 @@ void PosixSocket::listen (int maxPendingConnections)
 	}
 }
 
-void PosixSocket::bind (Address* addr)
+void PosixSocket::bind (const Address& addr)
 {
 	if ((protocol_ == protocol::DGRAM_LOCAL) || (protocol_ == protocol::STREAM_LOCAL)) { 
 		DEBUG(DEBUG, "Local protocol found");
 		struct sockaddr_un serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
 		serv_addr.sun_family = AF_LOCAL;
-		strncpy(serv_addr.sun_path, addr->getAddress().c_str(),
+		strncpy(serv_addr.sun_path, addr.getAddress().c_str(),
 		    sizeof(serv_addr.sun_path) - 1);
 		if (::bind(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)
 			return;
@@ -156,7 +156,7 @@ void PosixSocket::bind (Address* addr)
 		struct sockaddr_in serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
 		serv_addr.sin_family = AF_INET;
-		serv_addr.sin_port = htons((dynamic_cast<ip4::tcp::address*>(addr))->getPort());
+		serv_addr.sin_port = htons((dynamic_cast<const ip4::tcp::address*>(&addr))->getPort());
 		serv_addr.sin_addr.s_addr = INADDR_ANY;
 		if (::bind(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)
 			return;
@@ -171,24 +171,24 @@ error:
 }
 
 
-void PosixSocket::connect (Address* addr)
+void PosixSocket::connect (const Address& addr)
 {
 	if ((protocol_ == protocol::DGRAM_LOCAL) || (protocol_ == protocol::STREAM_LOCAL)) {
 		struct sockaddr_un serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
 		serv_addr.sun_family = AF_LOCAL;
-		strncpy(serv_addr.sun_path, addr->getAddress().c_str(), sizeof(serv_addr.sun_path) - 1);
+		strncpy(serv_addr.sun_path, addr.getAddress().c_str(), sizeof(serv_addr.sun_path) - 1);
 		if (::connect(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)
 			return;
 	} else if ((protocol_ == protocol::UDP_IPv4) || (protocol_ == protocol::TCP_IPv4)) {
 		struct sockaddr_in serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
 		serv_addr.sin_family = AF_INET;
-		serv_addr.sin_port = htons((dynamic_cast<ip4::tcp::address*>(addr))->getPort());
+		serv_addr.sin_port = htons((dynamic_cast<const ip4::tcp::address*>(&addr))->getPort());
 
 
 		struct in_addr add;
-		inet_aton(addr->getAddress().c_str(), &add);
+		inet_aton(addr.getAddress().c_str(), &add);
 		bcopy(&add, &serv_addr.sin_addr.s_addr, sizeof(add));
 
 		if (::connect(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)

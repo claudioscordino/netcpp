@@ -88,7 +88,7 @@ public:
 	 * @param addr Address wich the socket must be connected to
 	 * @exception runtime_error in case of error
 	 */
-	virtual void connect (Address* addr)=0;
+	virtual void connect (const Address& addr)=0;
 	
 	/**
 	 * @brief Method to bind the socket to an address
@@ -96,7 +96,7 @@ public:
 	 * @param addr Address wich the socket must be bound to
 	 * @exception runtime_error in case of error
 	 */
-	virtual void bind (Address* addr)=0;
+	virtual void bind (const Address& addr)=0;
 	
 	/**
 	 * @brief Method to set the maximum number of pending connections
