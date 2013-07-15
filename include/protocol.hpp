@@ -31,16 +31,60 @@
 
 namespace net {
 
-enum class protocol {
-	STREAM_LOCAL,
-	DGRAM_LOCAL,
-	//SEQ_UNIX,
-	TCP_IPv4,
-	//TCP_IPv6,
-	UDP_IPv4
-	//UDP_IPv6
+enum class protocol_type {
+	STREAM,
+	DGRAM
 };
 
+enum class protocol_domain {
+	LOCAL,
+	IPv4
+};
+
+class protocol {
+public:
+	protocol (enum protocol_type type, 
+	enum protocol_domain domain):
+		type_{type}, domain_{domain}{}
+	inline enum protocol_type getType() const
+	{
+		return type_;
+	}
+	inline enum protocol_domain getDomain() const
+	{
+		return domain_;
+	}
+
+	bool operator==(const protocol& p) const 
+	{
+		if ((type_ == p.type_) && (domain_ == p.domain_))
+			return true;
+		return false;
+	}
+
+	bool operator!=(const protocol& p) const 
+	{
+		if ((type_ == p.type_) && (domain_ == p.domain_))
+			return false;
+		return true;
+	}
+
+private:
+	enum protocol_type type_;
+	enum protocol_domain domain_;
+};
+
+static const net::protocol_type STREAM=net::protocol_type::STREAM;
+static const net::protocol_type DGRAM=net::protocol_type::STREAM;
+static const net::protocol_domain IPv4=net::protocol_domain::IPv4;
+static const net::protocol_domain LOCAL=net::protocol_domain::LOCAL;
+
+// #define TCP_IPv4 protocol{STREAM, IPv4}
+// #define UDP_IPv4 protocol{DGRAM, IPv4}
+// #define STREAM_LOCAL protocol{STREAM, LOCAL}
+// #define DGRAM_LOCAL protocol{DGRAM, LOCAL}
+
 }
+
 #endif // PROTOCOL_HPP_
 

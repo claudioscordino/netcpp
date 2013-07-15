@@ -49,7 +49,7 @@ public:
 		AbstractSocket::socket_->bind(addr);
 	}
 	server():
-	    AbstractSocket(new PosixSocket(protocol(protocol::DGRAM_LOCAL))){}
+	    AbstractSocket(new PosixSocket(protocol(DGRAM, LOCAL))){}
 
 	inline void open (const Address& addr) {
 		bind(addr);
@@ -64,7 +64,7 @@ public:
 		AbstractSocket::socket_->connect(addr);
 	}
 	client():
-	    AbstractSocket(new PosixSocket(protocol(protocol::DGRAM_LOCAL))){}
+	    AbstractSocket(new PosixSocket(protocol(DGRAM, LOCAL))){}
 
 	inline void open (const Address& addr) {
 		connect (addr);

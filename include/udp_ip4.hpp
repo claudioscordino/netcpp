@@ -50,7 +50,7 @@ public:
 		AbstractSocket::socket_->bind(addr);
 	}
 	server():
-	    AbstractSocket(new PosixSocket(protocol(protocol::UDP_IPv4))){}
+	    AbstractSocket(new PosixSocket(protocol(DGRAM, IPv4))){}
 
 	inline void open (const Address& addr) {
 		bind(addr);
@@ -65,7 +65,7 @@ public:
 		AbstractSocket::socket_->connect(addr);
 	}
 	client():
-	    AbstractSocket(new PosixSocket(protocol(protocol::UDP_IPv4))){}
+	    AbstractSocket(new PosixSocket(protocol(DGRAM, IPv4))){}
 
 	inline void open (const Address& addr) {
 		connect (addr);

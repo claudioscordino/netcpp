@@ -46,16 +46,16 @@
 namespace net {
 
 
-PosixSocket::PosixSocket(const enum protocol& prot):
+PosixSocket::PosixSocket(const protocol& prot):
 		AbstractSystemSocket(prot)
 {
-	if (prot == protocol::STREAM_LOCAL)
+	if (prot == protocol(STREAM, LOCAL))
 		fd_ = socket(AF_LOCAL, SOCK_STREAM, 0);
-	else if (prot == protocol::DGRAM_LOCAL)	
+	else if (prot == protocol(DGRAM, LOCAL))	
 		fd_ = socket(AF_LOCAL, SOCK_DGRAM, 0);
-	else if (prot == protocol::TCP_IPv4)	
+	else if (prot == protocol(STREAM, IPv4))	
 		fd_ = socket(AF_INET, SOCK_STREAM, 0);
-	else if (prot == protocol::UDP_IPv4)	
+	else if (prot == protocol(DGRAM, IPv4))	
 		fd_ = socket(AF_INET, SOCK_DGRAM, 0);
 	else {
  		DEBUG(ERROR, "Error: protocol unkown");
@@ -113,8 +113,7 @@ bool PosixSocket::close(){
  */
 void PosixSocket::accept (AbstractSystemSocket* sock)
 {
-	if ((sock->getProtocol() != protocol::STREAM_LOCAL && sock->getProtocol() != protocol::TCP_IPv4) ||
-	    (protocol_ != protocol::STREAM_LOCAL && protocol_ != protocol::TCP_IPv4)){
+	if ((sock->getProtocol() != getProtocol()) || (getProtocol().getType() != net::STREAM)) {
  		DEBUG(ERROR, "Accept not available!");
 		throw std::runtime_error("Accept not available");
 	}
@@ -129,7 +128,7 @@ void PosixSocket::accept (AbstractSystemSocket* sock)
 
 void PosixSocket::listen (int maxPendingConnections)
 {
-	if (protocol_ != protocol::STREAM_LOCAL && protocol_ != protocol::TCP_IPv4){
+	if (getProtocol().getType() != net::STREAM) {
  		DEBUG(ERROR, "Listen not available!");
 		throw std::runtime_error("Listen not available");
 	}
@@ -142,7 +141,7 @@ void PosixSocket::listen (int maxPendingConnections)
 
 void PosixSocket::bind (const Address& addr)
 {
-	if ((protocol_ == protocol::DGRAM_LOCAL) || (protocol_ == protocol::STREAM_LOCAL)) { 
+	if (getProtocol().getDomain() == net::LOCAL) {
 		DEBUG(DEBUG, "Local protocol found");
 		struct sockaddr_un serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
@@ -151,7 +150,7 @@ void PosixSocket::bind (const Address& addr)
 		    sizeof(serv_addr.sun_path) - 1);
 		if (::bind(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)
 			return;
-	} else if ((protocol_ == protocol::TCP_IPv4) || (protocol_ == protocol::UDP_IPv4)) {
+	} else if (getProtocol().getDomain() == net::IPv4) {
 		DEBUG(DEBUG, "Network protocol found");
 		struct sockaddr_in serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
@@ -173,14 +172,14 @@ error:
 
 void PosixSocket::connect (const Address& addr)
 {
-	if ((protocol_ == protocol::DGRAM_LOCAL) || (protocol_ == protocol::STREAM_LOCAL)) {
+	if (getProtocol().getDomain() == net::LOCAL) {
 		struct sockaddr_un serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
 		serv_addr.sun_family = AF_LOCAL;
 		strncpy(serv_addr.sun_path, addr.getAddress().c_str(), sizeof(serv_addr.sun_path) - 1);
 		if (::connect(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)
 			return;
-	} else if ((protocol_ == protocol::UDP_IPv4) || (protocol_ == protocol::TCP_IPv4)) {
+	} else if (getProtocol().getDomain() == net::IPv4) {
 		struct sockaddr_in serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
 		serv_addr.sin_family = AF_INET;

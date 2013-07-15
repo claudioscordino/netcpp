@@ -64,10 +64,10 @@ public:
 		AbstractSocket::socket_->listen(max_pending_connections);
 	}
 	server():
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
+	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM, protocol_domain::IPv4))){}
 
 	server(AbstractSocket* srv):
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){
+	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM, protocol_domain::IPv4))){
 		socket_->accept((srv->getSocket()));
 	}
 
@@ -85,7 +85,7 @@ public:
 		AbstractSocket::socket_->connect(addr);
 	}
 	client():
-	    AbstractSocket(new PosixSocket(protocol(protocol::TCP_IPv4))){}
+	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM, protocol_domain::IPv4))){}
 
 	inline void open (const Address& addr) {
 		connect (addr);

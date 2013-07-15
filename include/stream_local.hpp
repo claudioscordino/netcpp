@@ -76,7 +76,7 @@ public:
 	 * It creates a STREAM_LOCAL socket
 	 */
 	server():
-	    AbstractSocket(new PosixSocket(protocol(protocol::STREAM_LOCAL))){}
+	    AbstractSocket(new PosixSocket(protocol(STREAM, LOCAL))){}
 
 	/**
 	 * @brief Bind operation
@@ -101,7 +101,7 @@ public:
 	}
 
 	server(AbstractSocket* srv):
-	    AbstractSocket(new PosixSocket(protocol(protocol::STREAM_LOCAL)))
+	    AbstractSocket(new PosixSocket(protocol (STREAM, LOCAL)))
 	{
 		socket_->accept((srv->getSocket()));
 	}
@@ -126,7 +126,7 @@ public:
 		AbstractSocket::socket_->connect(addr);
 	}
 	client():
-	    AbstractSocket(new PosixSocket(protocol(protocol::STREAM_LOCAL))){}
+	    AbstractSocket(new PosixSocket(protocol (STREAM, LOCAL))){}
 
 	inline void open (const Address& addr)
 	{

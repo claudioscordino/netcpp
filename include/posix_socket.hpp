@@ -53,7 +53,7 @@ public:
 
 	virtual void listen (int maxPendingConnections);
 
-	PosixSocket(const enum protocol& prot);
+	PosixSocket(const protocol& prot);
 	virtual ~PosixSocket();
 
 
