@@ -36,29 +36,109 @@
 
 namespace net {
 
+/**
+ * @brief Virtual class for platform-dependent code.
+ *
+ * This is the virtual class which every platform-dependent implementation must
+ * inherit from.
+ * The class offers a set of primitives which must be implemented by the concrete
+ * derived classes.
+ */
 class AbstractSystemSocket {
 
 public:
+	/**
+	 * \brief Method to read data from the socket.
+	 *
+	 * The buffer is filled with the read data.
+	 * @param p buf Pointer to the memory address containing data
+	 * @param size Number of bytes that must be read
+	 * @return the number of bytes actually read; < 0 in case of error
+	 */
 	virtual int read (void* buf, size_t size)=0;
+	
+	/**
+	 * \brief Method to write data to the socket.
+	 *
+	 * @param p buf Pointer to the memory address containing data
+	 * @param size Number of bytes that must be written
+	 * @return the number of bytes actually written; < 0 in case of error
+	 */
 	virtual int write (const void* buf, size_t size)=0;
+
+	/**
+	 * @brief Close the socket
+	 *
+	 * Currently there is no mechanism to re-open a closed socket.
+	 * @return true in case of success; false otherwise
+	 */
 	virtual bool close()=0;
+	
+	/**
+	 * @brief Method to accept a connection on a socket
+	 *
+	 * @param sock Pointer to the socket on which the new connection must be accepted.
+	 * @exception runtime_error in case of error
+	 */
 	virtual void accept (AbstractSystemSocket* sock)=0;
+	
+	/**
+	 * @brief Method to connect the socket to an address
+	 *
+	 * @param addr Address wich the socket must be connected to
+	 * @exception runtime_error in case of error
+	 */
 	virtual void connect (Address* addr)=0;
+	
+	/**
+	 * @brief Method to bind the socket to an address
+	 *
+	 * @param addr Address wich the socket must be bound to
+	 * @exception runtime_error in case of error
+	 */
 	virtual void bind (Address* addr)=0;
+	
+	/**
+	 * @brief Method to set the maximum number of pending connections
+	 *
+	 * This method allows to set the maximum number of pending connections for
+	 * stream (e.g., TCP) communications.
+	 * @param max_pending_connections Maximum number of pending connections
+	 * @exception runtime_error in case of error or non-streamed communication
+	 */
 	virtual void listen (int max_pending_connections)=0;
+	
+	/**
+	 * @brief Method to get the socket protocol
+	 *
+	 * This method returns the protocol, which has been set at socket creation
+	 * (and cannot be changed).
+	 * @return Protocol used by the socket
+	 */
 	protocol getProtocol() const {
 		return protocol_;
 	}
 
-protected:
+protected:	
+	/**
+	 * @brief Constructor
+	 *
+	 * The constructor is protected because only derived classes can
+	 * use it.
+	 * @param prot Protocol used by the socket
+	 */
 	AbstractSystemSocket(const protocol& prot):
 		protocol_{prot}{};
 
+	/**
+	 * @brief Protocol used by the socket.
+	 *
+	 * This protocol is set during socket creation and cannot be changed.
+	 */
 	protocol protocol_;
 };
 
 }
-
 
 #endif // ABSTRACT_SYSTEM_SOCKET_HPP_
 
