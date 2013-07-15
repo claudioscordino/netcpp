@@ -75,8 +75,16 @@ public:
 	 *
 	 * It creates a STREAM_LOCAL socket
 	 */
-	server():
-	    AbstractSocket(new PosixSocket(protocol(STREAM, LOCAL))){}
+	server(int max_pending_connections = 100):
+	    AbstractSocket(new PosixSocket(protocol(STREAM, LOCAL))),
+	    max_pending_connections_(max_pending_connections){}
+
+	server(AbstractSocket* srv, int max_pending_connections = 100):
+	    AbstractSocket(new PosixSocket(protocol (STREAM, LOCAL))),
+	    max_pending_connections_(max_pending_connections)
+	{
+		socket_->accept((srv->getSocket()));
+	}
 
 	/**
 	 * @brief Bind operation
@@ -95,23 +103,21 @@ public:
 	 * This method invokes the platform-specific listen() operation.
 	 * @param Maximum number of pending connections
 	 */
-	inline void listen (int max_pending_connections)
+	inline void listen()
 	{
-		AbstractSocket::socket_->listen(max_pending_connections);
-	}
-
-	server(AbstractSocket* srv):
-	    AbstractSocket(new PosixSocket(protocol (STREAM, LOCAL)))
-	{
-		socket_->accept((srv->getSocket()));
+		AbstractSocket::socket_->listen(max_pending_connections_);
 	}
 
 
-	inline void open (const Address& addr, int max_pending_connections = 100)
+
+	inline void open (const Address& addr)
 	{
 		bind (addr);
-		listen(max_pending_connections);
+		listen();
 	}
+private:
+
+	int max_pending_connections_;
 };
 
 

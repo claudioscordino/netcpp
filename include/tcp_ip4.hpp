@@ -57,24 +57,30 @@ private:
 
 class server: public AbstractSocket {
 public:
-	inline void bind (const Address& addr){
-		AbstractSocket::socket_->bind(addr);
-	}
-	inline void listen (int max_pending_connections){
-		AbstractSocket::socket_->listen(max_pending_connections);
-	}
-	server():
-	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM, protocol_domain::IPv4))){}
+	server(int max_pending_connections = 100):
+	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM, protocol_domain::IPv4))),
+	    max_pending_connections_(max_pending_connections){}
 
-	server(AbstractSocket* srv):
-	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM, protocol_domain::IPv4))){
+	server(AbstractSocket* srv, int max_pending_connections = 100):
+	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM, protocol_domain::IPv4))),
+	    max_pending_connections_(max_pending_connections){
 		socket_->accept((srv->getSocket()));
 	}
 
-	inline void open (const Address& addr, int max_pending_connections = 100) {
-		bind (addr);
-		listen(max_pending_connections);
+	inline void bind (const Address& addr){
+		AbstractSocket::socket_->bind(addr);
 	}
+	inline void listen(){
+		AbstractSocket::socket_->listen(max_pending_connections_);
+	}
+
+	inline void open (const Address& addr) {
+		bind (addr);
+		listen();
+	}
+
+private:
+	int max_pending_connections_;
 };
 
 
