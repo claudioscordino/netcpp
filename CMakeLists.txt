@@ -6,6 +6,9 @@ cmake_minimum_required(VERSION 2.8)
 # Name of the project:
 project(libnetpp)
 
+set (libnetpp_VERSION_MAJOR 0)
+set (libnetpp_VERSION_MINOR 1)
+
 set (CMAKE_BUILD_TYPE Release)
 
 # Compiler flags:
