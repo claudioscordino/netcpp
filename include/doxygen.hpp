@@ -31,7 +31,7 @@
  * \htmlonly
  * <br>
  * <center>
- * <img src="../libnetpp.png" width="250"></img><br>
+ * <img src="../libnetpp.png" width="300"></img><br>
  * A C++ network library
  * </center>
  * <br>
@@ -155,11 +155,11 @@
  *
  * The library has a modular internal design which, thanks to the design patterns 
  * used, allows to decouple specific platform-dependent code (which is on the
- * AbstractSystemSocket hierarchy) from any protocol design (which is on the
- * AbstractSocket hierarchy).
+ * net::AbstractSystemSocket hierarchy) from any protocol design (which is on the
+ * net::AbstractSocket hierarchy).
  *
  * Thus, to add a new supported platform, you only need to inherit your
- * platform-specific class from class AbstractSystemSocket.
+ * platform-specific class from class net::AbstractSystemSocket.
  * The build system, based on cmake, can be easily ported among all supported
  * platforms.
  *
@@ -169,13 +169,31 @@
  *
  * To add a new protocol:
  * <ul>
- * <li> Create a proper namespace (like ip4::tcp)
+ * <li> Create a proper namespace (like net::ip4::tcp)
  * <li> Inside the new namespace:
  * <ul>
  * <li> Create an address class inheriting from class Address
- * <li> Create server and client classes inheriting from class AbstractSocket
+ * <li> Create server and client classes inheriting from class net::AbstractSocket
  * </ul>
  * </ul>
+ *
+ * <br>
+ * <br>
+ * <h1>License</h1>
+ *
+ * The library is under the
+ * <a href="http://www.boost.org/users/license.html" target="_blank">Boost license</a>.
+ * Read the LICENSE file for more information.
+ *
+ *
+ * <br>
+ * <br>
+ * <h1>Support</h1>
+ *
+ * For reporting bugs or proposing new patches, use 
+ * <a href="https://github.com/claudioscordino/libnetpp/issues" target="_blank">
+ * the issues link of GitHub</a>.
+ *
  *
  * <br>
  * <br>
