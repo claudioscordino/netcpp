@@ -30,19 +30,18 @@
 #define DGRAM_LOCAL_HPP_
 
 #include <stdexcept>
+
 #include "abstract_socket.hpp"
 #include "posix_socket.hpp"
 #include "address.hpp"
 #include "stream_local.hpp"
 
-
-
 namespace net {
 namespace local {
 namespace dgram {
 
+/// Address for local dgram communications.
 typedef net::local::stream::address address;
-
 
 class server: public AbstractSocket {
 public:
@@ -72,7 +71,6 @@ public:
 	}
 
 };
-
 
 
 }}}
