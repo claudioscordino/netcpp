@@ -31,13 +31,13 @@
  * \htmlonly
  * <br>
  * <center>
- * <img src="../libnetpp.png" width="300"></img><br>
+ * <img src="../netcpp.png" width="300"></img><br>
  * A C++ network library
  * </center>
  * <br>
  * \endhtmlonly
  *
- * @mainpage LibNetpp
+ * @mainpage NetCpp
  * 
  * @author Evidence Srl - <a href="http://www.evidence.eu.com" target="_blank">www.evidence.eu.com</a>
  *
@@ -45,7 +45,7 @@
  * <br>
  * <h1>Introduction</h1>
  *
- * LibNetpp is a tiny C++ network library.
+ * NetCpp is a tiny C++ network library.
  *
  *
  * <br>
@@ -70,7 +70,7 @@
  * <li> easy to extend (either in terms of protocols and of supported architectures)
  * </ul>
  *
- * LibNetpp is a proof of concept to show that such a networking library can be
+ * NetCpp is a proof of concept to show that such a networking library can be
  * made easily designed in C++. This tiny library has been built after the
  * experience with the <a href="http://onposix.sourceforge.net" target="_blank">OnPosix library</a>.
  * The syntax of the library is straightforward. The modular design given by the
@@ -82,7 +82,7 @@
  * <br>
  * <h1>Requirements</h1>
  *
- * To build LibNetpp you need both:
+ * To build NetCpp you need both:
  * <ul>
  * <li> <a href="http://www.cmake.org" target="_blank">cmake</a>
  * <li> a C++11 compiler (e.g., gcc 4.7+ or LLVM 3.3+)
@@ -99,22 +99,22 @@
  * Compile through the following commands:
  *
  * \code
- * git clone https://github.com/claudioscordino/libnetpp.git
- * cd libnetpp/build
+ * git clone https://github.com/claudioscordino/netcpp.git
+ * cd netcpp/build
  * cmake ..
  * make
  * make install
  * \endcode
  *
- * The library is put in the <i>libnetpp/bin/</i> directory.
+ * The library is put in the <i>netcpp/bin/</i> directory.
  *
  * Documentation is generated through
  * <a href="htttp://www.doxygen.org" target="_blank">Doxygen</a>.
  * To generate the documentation, type:
  *
  * \code
- * git clone https://github.com/claudioscordino/libnetpp.git
- * cd libnetpp/build
+ * git clone https://github.com/claudioscordino/netcpp.git
+ * cd netcpp/build
  * cmake ..
  * make doc
  * \endcode
@@ -191,7 +191,7 @@
  * <h1>Support</h1>
  *
  * For reporting bugs or proposing new patches, use 
- * <a href="https://github.com/claudioscordino/libnetpp/issues" target="_blank">
+ * <a href="https://github.com/claudioscordino/netcpp/issues" target="_blank">
  * the issues link of GitHub</a>.
  *
  *

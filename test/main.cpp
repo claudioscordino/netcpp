@@ -40,7 +40,7 @@
 void do_server()
 {
 	DEBUG(DEBUG, "SERVER: Creating address...");
-	net::local::stream::address addr ("/tmp/libnetpp");
+	net::local::stream::address addr ("/tmp/netcpp");
 	DEBUG(DEBUG, "SERVER: Creating server...");
 	net::local::stream::server srv;
 	DEBUG(DEBUG, "SERVER: Opening server...");
@@ -71,7 +71,7 @@ void do_client()
 	std::this_thread::sleep_for(std::chrono::seconds(2));
 
 	DEBUG(DEBUG, "CLIENT: Creating address...");
-	net::local::stream::address addr ("/tmp/libnetpp");
+	net::local::stream::address addr ("/tmp/netcpp");
 	DEBUG(DEBUG, "CLIENT: Creating client...");
 	net::local::stream::client clt;
 	DEBUG(DEBUG, "CLIENT: Opening client...");
@@ -88,7 +88,7 @@ void do_client()
 
 int main()
 {
-	DEBUG_CONF("libnetpp.log", DEBUG, DEBUG);
+	DEBUG_CONF("netcpp.log", DEBUG, DEBUG);
 	DEBUG(DEBUG, "Launching 1st thread...");
 	std::thread t1(do_server);
 	DEBUG(DEBUG, "Launching 2nd thread...");
