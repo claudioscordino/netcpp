@@ -1,4 +1,4 @@
 <map id="listen" name="listen">
 <area shape="rect" id="node3" href="$classnet_1_1AbstractSystemSocket.html#ad3230cec00a4957731fd3485d8eb6a70" title="Method to get the socket protocol." alt="" coords="111,5,308,51"/>
-<area shape="rect" id="node5" href="$classnet_1_1PosixSocket.html#a46143fd6de3be9ab9951f140d3ae8c2f" title="Close the socket." alt="" coords="183,75,236,104"/>
+<area shape="rect" id="node5" href="$classnet_1_1PosixSocket.html#a46143fd6de3be9ab9951f140d3ae8c2f" title="Method to close the socket." alt="" coords="183,75,236,104"/>
 </map>

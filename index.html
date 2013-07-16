@@ -146,7 +146,7 @@ a C++11 compiler (e.g., gcc 4.7+ or LLVM 3.3+) </li>
 <div class="line">cmake ..</div>
 <div class="line">make</div>
 <div class="line">make install</div>
-</div><!-- fragment --><p>The library is put in the <em>netcpp/bin/</em> directory.</p>
+</div><!-- fragment --><p>The library is put in the <em>netcpp/bin/</em> directory. The include files are available in the <em>netcpp/include/</em> directory.</p>
 <p>Documentation is generated through <a href="htttp://www.doxygen.org" target="_blank">Doxygen</a>. To generate the documentation, type:</p>
 <div class="fragment"><div class="line">git clone https:<span class="comment">//github.com/claudioscordino/netcpp.git</span></div>
 <div class="line">cd netcpp/build</div>
@@ -159,16 +159,16 @@ a C++11 compiler (e.g., gcc 4.7+ or LLVM 3.3+) </li>
 <h1>Usage</h1>
 <p>Usage of the library is straightforward:</p>
 <p>Example of TCP server: </p>
-<div class="fragment"><div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1address.html">net::ip4::tcp::address</a> addr (std::string(<span class="stringliteral">&quot;127.0.0.1&quot;</span>), 1234);</div>
-<div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1server.html">net::ip4::tcp::server</a> main_srv;</div>
-<div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1server.html">net::ip4::tcp::server</a> srv(&amp;main_srv);</div>
+<div class="fragment"><div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1address.html" title="Address for IPv4 TCP communications.">net::ip4::tcp::address</a> addr (std::string(<span class="stringliteral">&quot;127.0.0.1&quot;</span>), 1234);</div>
+<div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1server.html" title="Server for IPv4 TCP communications.">net::ip4::tcp::server</a> main_srv;</div>
+<div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1server.html" title="Server for IPv4 TCP communications.">net::ip4::tcp::server</a> srv(&amp;main_srv);</div>
 <div class="line">srv.open(&amp;addr);</div>
 <div class="line">std::array&lt;char, 5&gt; buf;</div>
 <div class="line">srv.read(<a class="code" href="namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40" title="Function to pass a std::array to AbstractSocket.">net::buffer</a>(buf), 5);</div>
 </div><!-- fragment --><p>Example of TCP client: </p>
-<div class="fragment"><div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1address.html">net::ip4::tcp::address</a> addr (std::string(<span class="stringliteral">&quot;127.0.0.1&quot;</span>), 1234);</div>
-<div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1client.html">net::ip4::tcp::client</a> clt;</div>
-<div class="line">clt.<a class="code" href="classnet_1_1ip4_1_1tcp_1_1client.html#a41b2488190f8374aff25d7b86f2020d8">open</a>(&amp;addr);</div>
+<div class="fragment"><div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1address.html" title="Address for IPv4 TCP communications.">net::ip4::tcp::address</a> addr (std::string(<span class="stringliteral">&quot;127.0.0.1&quot;</span>), 1234);</div>
+<div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1client.html" title="Client for IPv4 TCP communications.">net::ip4::tcp::client</a> clt;</div>
+<div class="line">clt.<a class="code" href="classnet_1_1ip4_1_1tcp_1_1client.html#a41b2488190f8374aff25d7b86f2020d8" title="Method to open the client towards a certain address.">open</a>(&amp;addr);</div>
 <div class="line">std::array&lt;char, 5&gt; b {<span class="charliteral">&#39;h&#39;</span>, <span class="charliteral">&#39;e&#39;</span>, <span class="charliteral">&#39;l&#39;</span>, <span class="charliteral">&#39;l&#39;</span>, <span class="charliteral">&#39;o&#39;</span>};</div>
 <div class="line">clt.<a class="code" href="classnet_1_1AbstractSocket.html#ae432b4291e92c68b56e187c024ce3322" title="Write operation on the socket.">write</a>(<a class="code" href="namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40" title="Function to pass a std::array to AbstractSocket.">net::buffer</a>(b), 3);</div>
 </div><!-- fragment --><p><br/>
@@ -177,7 +177,11 @@ a C++11 compiler (e.g., gcc 4.7+ or LLVM 3.3+) </li>
 <h1>Supported platforms</h1>
 <p>The library has a modular internal design which, thanks to the design patterns used, allows to decouple specific platform-dependent code (which is on the <a class="el" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">net::AbstractSystemSocket</a> hierarchy) from any protocol design (which is on the <a class="el" href="classnet_1_1AbstractSocket.html" title="Base abstract class for protocols.">net::AbstractSocket</a> hierarchy).</p>
 <p>Thus, to add a new supported platform, you only need to inherit your platform-specific class from class <a class="el" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">net::AbstractSystemSocket</a>. The build system, based on cmake, can be easily ported among all supported platforms.</p>
-<p><br/>
+<p>See the following picture to understand the collaboration between classes:</p>
+<center> <div class="image">
+<img src="netcpp-architecture.png"  width="800"/>
+</div>
+ </center><p><br/>
  <br/>
  </p>
 <h1>Adding further network protocols</h1>
@@ -219,7 +223,7 @@ Add asynchronous operations </li>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Jul 16 2013 13:59:01 for NetCpp by
+    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

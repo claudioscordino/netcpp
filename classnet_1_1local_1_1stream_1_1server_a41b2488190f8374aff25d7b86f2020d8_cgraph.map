@@ -1,4 +1,4 @@
 <map id="open" name="open">
-<area shape="rect" id="node3" href="$classnet_1_1local_1_1stream_1_1server.html#ac5c5949865c5ce0614f7321ffd250f79" title="Bind operation." alt="" coords="113,5,161,35"/>
+<area shape="rect" id="node3" href="$classnet_1_1local_1_1stream_1_1server.html#ac5c5949865c5ce0614f7321ffd250f79" title="Method to bind the server to a local socket." alt="" coords="113,5,161,35"/>
 <area shape="rect" id="node5" href="$classnet_1_1local_1_1stream_1_1server.html#a458bbe4cf81360301586b2e62a7f9dd2" title="Listen operation." alt="" coords="109,59,165,88"/>
 </map>

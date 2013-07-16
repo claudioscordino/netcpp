@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('classnet_1_1local_1_1stream_1_1address
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a> for local (i.e., Unix) stream communications.  
+<p><a class="el" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a> for local stream communications.  
  <a href="classnet_1_1local_1_1stream_1_1address.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="stream__local_8hpp_source.html">stream_local.hpp</a>&gt;</code></p>
@@ -122,20 +122,13 @@ Inheritance diagram for address:</div>
 <map name="address_inherit__map" id="address_inherit__map">
 <area shape="rect" id="node2" href="classnet_1_1Address.html" title="Base class for all addresses." alt="" coords="5,5,125,91"/></map>
 </div>
-<div class="dynheader">
-Collaboration diagram for address:</div>
-<div class="dyncontent">
-<div class="center"><img src="classnet_1_1local_1_1stream_1_1address__coll__graph.png" border="0" usemap="#address_coll__map" alt="Collaboration graph"/></div>
-<map name="address_coll__map" id="address_coll__map">
-<area shape="rect" id="node2" href="classnet_1_1Address.html" title="Base class for all addresses." alt="" coords="5,5,125,91"/></map>
-</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a578eb323307f0caf9aa5fd83099c80e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1local_1_1stream_1_1address.html#a578eb323307f0caf9aa5fd83099c80e7">address</a> (const std::string &amp;addr)</td></tr>
 <tr class="memdesc:a578eb323307f0caf9aa5fd83099c80e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a578eb323307f0caf9aa5fd83099c80e7"></a><br/></td></tr>
 <tr class="memitem:a211cb9c49487972650a67dd31175846c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1local_1_1stream_1_1address.html#a211cb9c49487972650a67dd31175846c">getAddress</a> () const </td></tr>
-<tr class="memdesc:a211cb9c49487972650a67dd31175846c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get socket address (i.e., local path)  <a href="#a211cb9c49487972650a67dd31175846c"></a><br/></td></tr>
+<tr class="memdesc:a211cb9c49487972650a67dd31175846c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the path of the local socket.  <a href="#a211cb9c49487972650a67dd31175846c"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -143,9 +136,9 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a1e2ddd57de288f7ee0529bbd1fb50a8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path of the local socket:  <a href="#a1e2ddd57de288f7ee0529bbd1fb50a8e"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a> for local (i.e., Unix) stream communications. </p>
+<div class="textblock"><p><a class="el" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a> for local stream communications. </p>
 
-<p>Definition at line <a class="el" href="stream__local_8hpp_source.html#l00045">45</a> of file <a class="el" href="stream__local_8hpp_source.html">stream_local.hpp</a>.</p>
+<p>Definition at line <a class="el" href="stream__local_8hpp_source.html#l00043">43</a> of file <a class="el" href="stream__local_8hpp_source.html">stream_local.hpp</a>.</p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a578eb323307f0caf9aa5fd83099c80e7"></a>
 <div class="memitem">
@@ -172,12 +165,12 @@ Private Attributes</h2></td></tr>
 <p>Constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Path</td><td>of the local socket </td></tr>
+    <tr><td class="paramname">addr</td><td>std::string containing the path of the local socket </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="stream__local_8hpp_source.html#l00052">52</a> of file <a class="el" href="stream__local_8hpp_source.html">stream_local.hpp</a>.</p>
+<p>Definition at line <a class="el" href="stream__local_8hpp_source.html#l00050">50</a> of file <a class="el" href="stream__local_8hpp_source.html">stream_local.hpp</a>.</p>
 <div class="fragment"><div class="line">                                      :</div>
          <a class="code" href="classnet_1_1local_1_1stream_1_1address.html#a1e2ddd57de288f7ee0529bbd1fb50a8e" title="Path of the local socket:">address_</a>{addr}{};</div>
 </div><!-- fragment -->
@@ -205,12 +198,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get socket address (i.e., local path) </p>
-<dl class="section return"><dt>Returns</dt><dd>Path of the local socket </dd></dl>
+<p>Get the path of the local socket. </p>
+<dl class="section return"><dt>Returns</dt><dd>a std::string containing the path of the local socket </dd></dl>
 
 <p>Implements <a class="el" href="classnet_1_1Address.html#a2da36483ee861dda1bdae4201932f805">Address</a>.</p>
 
-<p>Definition at line <a class="el" href="stream__local_8hpp_source.html#l00060">60</a> of file <a class="el" href="stream__local_8hpp_source.html">stream_local.hpp</a>.</p>
+<p>Definition at line <a class="el" href="stream__local_8hpp_source.html#l00058">58</a> of file <a class="el" href="stream__local_8hpp_source.html">stream_local.hpp</a>.</p>
 <div class="fragment"><div class="line">                                            {</div>
 <div class="line">                <span class="keywordflow">return</span> <a class="code" href="classnet_1_1local_1_1stream_1_1address.html#a1e2ddd57de288f7ee0529bbd1fb50a8e" title="Path of the local socket:">address_</a>;</div>
 <div class="line">        }</div>
@@ -238,7 +231,7 @@ Private Attributes</h2></td></tr>
 
 <p>Path of the local socket: </p>
 
-<p>Definition at line <a class="el" href="stream__local_8hpp_source.html#l00065">65</a> of file <a class="el" href="stream__local_8hpp_source.html">stream_local.hpp</a>.</p>
+<p>Definition at line <a class="el" href="stream__local_8hpp_source.html#l00063">63</a> of file <a class="el" href="stream__local_8hpp_source.html">stream_local.hpp</a>.</p>
 
 </div>
 </div>
@@ -251,7 +244,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacenet.html">net</a></li><li class="navelem"><a class="el" href="namespacenet_1_1local.html">local</a></li><li class="navelem"><a class="el" href="namespacenet_1_1local_1_1stream.html">stream</a></li><li class="navelem"><a class="el" href="classnet_1_1local_1_1stream_1_1address.html">address</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 13:59:01 for NetCpp by
+    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

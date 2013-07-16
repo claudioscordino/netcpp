@@ -183,8 +183,8 @@ Enumerations</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">{ \</div>
 <div class="line">        std::ostringstream __debug_stream__; \</div>
-<div class="line">        __debug_stream__ &lt;&lt; msg; <a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton) It is a static method.">\</a></div>
-<div class="line"><a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton) It is a static method.">	net::Logger::getInstance</a>().<a class="code" href="classnet_1_1Logger.html#a3cc8038ea181163e476ed33638765074" title="Method used to print messages. Called by the DEBUG() macro.">print</a>(priority, __FILE__, __LINE__, \</div>
+<div class="line">        __debug_stream__ &lt;&lt; msg; <a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton)">\</a></div>
+<div class="line"><a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton)">	net::Logger::getInstance</a>().<a class="code" href="classnet_1_1Logger.html#a3cc8038ea181163e476ed33638765074" title="Method used to print messages.">print</a>(priority, __FILE__, __LINE__, \</div>
 <div class="line">                        __debug_stream__.str()); \</div>
 <div class="line">        }</div>
 </div><!-- fragment -->
@@ -192,7 +192,7 @@ Enumerations</h2></td></tr>
 <p>Example of usage of the Logger: </p>
 <div class="fragment"><div class="line"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>, <span class="stringliteral">&quot;hello &quot;</span> &lt;&lt; <span class="stringliteral">&quot;world&quot;</span>);</div>
 </div><!-- fragment --> 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00068">68</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00067">67</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
 </div>
 </div>
@@ -225,8 +225,8 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">{ <a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton) It is a static method.">\</a></div>
-<div class="line"><a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton) It is a static method.">			net::Logger::getInstance</a>().<a class="code" href="classnet_1_1Logger.html#a0b7db44a5dc99ef725e0f40e3ff7057a" title="Method to configure the logger. Called by the DEBUG_CONF() macro. To make implementation easier...">configure</a>(outputFile, \</div>
+<b>Value:</b><div class="fragment"><div class="line">{ <a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton)">\</a></div>
+<div class="line"><a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton)">			net::Logger::getInstance</a>().<a class="code" href="classnet_1_1Logger.html#a0b7db44a5dc99ef725e0f40e3ff7057a" title="Method to configure the logger.">configure</a>(outputFile, \</div>
 <div class="line">                                                fileSeverityLevel, \</div>
 <div class="line">                                                screenSeverityLevel); \</div>
 <div class="line">                }</div>
@@ -243,7 +243,7 @@ Enumerations</h2></td></tr>
 <p>Example of configuration of the Logger: * </p>
 <div class="fragment"><div class="line"><a class="code" href="logger_8hpp.html#a4fa6c077331384e914f46be8eddbcec8" title="Macro to configure the logger.">DEBUG_CONF</a>(<span class="stringliteral">&quot;outputfile&quot;</span>, <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>, <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>);</div>
 </div><!-- fragment --> 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00052">52</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00051">51</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
 </div>
 </div>
@@ -273,7 +273,7 @@ Enumerations</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00084">84</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00083">83</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 <div class="fragment"><div class="line">                      {</div>
 <div class="line">        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75">OFF</a>     = 0, <span class="comment">//&lt; No logging messages</span></div>
 <div class="line">        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>   = 1, <span class="comment">//&lt; Only errors</span></div>
@@ -289,7 +289,7 @@ Enumerations</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="logger_8hpp.html">logger.hpp</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 13:59:01 for NetCpp by
+    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

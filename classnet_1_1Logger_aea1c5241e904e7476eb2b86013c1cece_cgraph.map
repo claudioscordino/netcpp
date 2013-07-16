@@ -1,5 +1,5 @@
 <map id="getInstance" name="getInstance">
 <area shape="rect" id="node3" href="$classnet_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading." alt="" coords="163,5,208,35"/>
-<area shape="rect" id="node5" href="$classnet_1_1Logger.html#a4fac0c9f6ee2dce6abd726264b9195f7" title="Constructor. It is a private constructor, called only by getInstance() and only the first time..." alt="" coords="152,59,219,88"/>
+<area shape="rect" id="node5" href="$classnet_1_1Logger.html#a4fac0c9f6ee2dce6abd726264b9195f7" title="Constructor." alt="" coords="152,59,219,88"/>
 <area shape="rect" id="node7" href="$classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading." alt="" coords="155,112,216,141"/>
 </map>

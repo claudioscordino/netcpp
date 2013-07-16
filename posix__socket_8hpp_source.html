@@ -141,50 +141,48 @@ $(document).ready(function(){initNavTree('posix__socket_8hpp_source.html','');})
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="address_8hpp.html">address.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="protocol_8hpp.html">protocol.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">namespace </span>net {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classnet_1_1PosixSocket.html">   41</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnet_1_1PosixSocket.html">PosixSocket</a>: <span class="keyword">public</span> <a class="code" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">AbstractSystemSocket</a> {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1PosixSocket.html#a7bb068abd87b4e06495e4ca0e03cf9f6" title="Method to connect the socket to an address.">connect</a> (<span class="keyword">const</span> <a class="code" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a>&amp; addr);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1PosixSocket.html#ac5c5949865c5ce0614f7321ffd250f79" title="Method to bind the socket to an address.">bind</a> (<span class="keyword">const</span> <a class="code" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a>&amp; addr);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">namespace </span>net {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> * @brief Class for platform-dependent code.</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> * This is the class containing the code for Posix platforms.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="classnet_1_1PosixSocket.html">   45</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnet_1_1PosixSocket.html" title="Class for platform-dependent code.">PosixSocket</a>: <span class="keyword">public</span> <a class="code" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">AbstractSystemSocket</a> {</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classnet_1_1PosixSocket.html#a82f36250b98544af72d90ee598d9ae75" title="Low-level read.">read</a> (<span class="keywordtype">void</span>* <a class="code" href="namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40" title="Function to pass a std::array to AbstractSocket.">buffer</a>, <span class="keywordtype">size_t</span> size);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classnet_1_1PosixSocket.html#a0f2634517840d511533b8b77e076b1fd" title="Low-level write.">write</a> (<span class="keyword">const</span> <span class="keywordtype">void</span>* buffer, <span class="keywordtype">size_t</span> size);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1PosixSocket.html#a46143fd6de3be9ab9951f140d3ae8c2f" title="Close the socket.">close</a>();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1PosixSocket.html#a64504b4504a65664f28082a85bc65c1e" title="Constructor to accept() connections on a socket.">accept</a> (<a class="code" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">AbstractSystemSocket</a>* sock);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1PosixSocket.html#a68aeb15de91fe236b339f6430df0b5b5" title="Method to set the maximum number of pending connections.">listen</a> (<span class="keywordtype">int</span> maxPendingConnections);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classnet_1_1PosixSocket.html#ac76fbda987c5284982973083d12fd4fe">PosixSocket</a>(<span class="keyword">const</span> <a class="code" href="classnet_1_1protocol.html">protocol</a>&amp; prot);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classnet_1_1PosixSocket.html#a68ddbaddbbfa2ab8e6b798472438aef5">~PosixSocket</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classnet_1_1PosixSocket.html#ac76fbda987c5284982973083d12fd4fe" title="Constructor.">PosixSocket</a>(<span class="keyword">const</span> <a class="code" href="classnet_1_1protocol.html" title="Protocol used for the communication.">protocol</a>&amp; prot);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classnet_1_1PosixSocket.html#a68ddbaddbbfa2ab8e6b798472438aef5" title="Destructor.">~PosixSocket</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1PosixSocket.html#a7bb068abd87b4e06495e4ca0e03cf9f6" title="Method to connect() the socket to an address.">connect</a> (<span class="keyword">const</span> <a class="code" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a>&amp; addr);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1PosixSocket.html#ac5c5949865c5ce0614f7321ffd250f79" title="Method to bind() the socket to an address.">bind</a> (<span class="keyword">const</span> <a class="code" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a>&amp; addr);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classnet_1_1PosixSocket.html#a82f36250b98544af72d90ee598d9ae75" title="Low-level read.">read</a> (<span class="keywordtype">void</span>* <a class="code" href="namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40" title="Function to pass a std::array to AbstractSocket.">buffer</a>, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classnet_1_1PosixSocket.html#a0f2634517840d511533b8b77e076b1fd" title="Low-level write.">write</a> (<span class="keyword">const</span> <span class="keywordtype">void</span>* buffer, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1PosixSocket.html#a46143fd6de3be9ab9951f140d3ae8c2f" title="Method to close the socket.">close</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1PosixSocket.html#a64504b4504a65664f28082a85bc65c1e" title="Method to accept() a connection on the socket.">accept</a> (<a class="code" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">AbstractSystemSocket</a>* sock);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1PosixSocket.html#a68aeb15de91fe236b339f6430df0b5b5" title="Listen operation.">listen</a> (<span class="keywordtype">int</span> maxPendingConnections);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">         * \brief Number of the file descriptor.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">         * This is the return value of open(), socket() or accept().</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5">   66</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor. This is the return value of open(), socket() or accept().">fd_</a>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">        /**</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">         * @brief Number of the file descriptor.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">         * </span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">         * This is the return value of open(), socket() or accept().</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5">   65</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;} <span class="comment">// net</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif // POSIX_SOCKET_HPP_</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#endif // POSIX_SOCKET_HPP_</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="posix__socket_8hpp.html">posix_socket.hpp</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 13:59:01 for NetCpp by
+    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

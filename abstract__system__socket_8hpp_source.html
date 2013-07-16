@@ -173,12 +173,12 @@ $(document).ready(function(){initNavTree('abstract__system__socket_8hpp_source.h
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classnet_1_1AbstractSystemSocket.html#ae2dea7cfc01221bf17823098296b13c3" title="Method to write data to the socket.">write</a> (<span class="keyword">const</span> <span class="keywordtype">void</span>* buf, <span class="keywordtype">size_t</span> size)=0;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">         * @brief Close the socket</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">         * @brief Method to close the socket</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">         *</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">         * Currently there is no mechanism to re-open a closed socket.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">         * Note: currently there is no mechanism to re-open a closed socket.</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">         * @return true in case of success; false otherwise</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1AbstractSystemSocket.html#aad0a9e425479bdb0239facdf6626fbc8" title="Close the socket.">close</a>()=0;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1AbstractSystemSocket.html#aad0a9e425479bdb0239facdf6626fbc8" title="Method to close the socket.">close</a>()=0;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment"></span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">        /**</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">         * @brief Method to accept a connection on a socket</span></div>
@@ -191,7 +191,7 @@ $(document).ready(function(){initNavTree('abstract__system__socket_8hpp_source.h
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">        /**</span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">         * @brief Method to connect the socket to an address</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">         *</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">         * @param addr Address wich the socket must be connected to</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">         * @param addr Address which the socket must be connected to</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">         * @exception runtime_error in case of error</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">         */</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1AbstractSystemSocket.html#a6130dede786a727031ab0f75153afbc6" title="Method to connect the socket to an address.">connect</a> (<span class="keyword">const</span> <a class="code" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a>&amp; addr)=0;</div>
@@ -199,7 +199,7 @@ $(document).ready(function(){initNavTree('abstract__system__socket_8hpp_source.h
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">        /**</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">         * @brief Method to bind the socket to an address</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">         *</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">         * @param addr Address wich the socket must be bound to</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">         * @param addr Address which the socket must be bound to</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">         * @exception runtime_error in case of error</span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">         */</span></div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1AbstractSystemSocket.html#a682f147b20d030d49fffd48de59f05d0" title="Method to bind the socket to an address.">bind</a> (<span class="keyword">const</span> <a class="code" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a>&amp; addr)=0;</div>
@@ -221,7 +221,7 @@ $(document).ready(function(){initNavTree('abstract__system__socket_8hpp_source.h
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">         * (and cannot be changed).</span></div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">         * @return Protocol used by the socket</span></div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno"><a class="code" href="classnet_1_1AbstractSystemSocket.html#ad3230cec00a4957731fd3485d8eb6a70">  118</a></span>&#160;        <a class="code" href="classnet_1_1protocol.html">protocol</a> <a class="code" href="classnet_1_1AbstractSystemSocket.html#ad3230cec00a4957731fd3485d8eb6a70" title="Method to get the socket protocol.">getProtocol</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="code" href="classnet_1_1AbstractSystemSocket.html#ad3230cec00a4957731fd3485d8eb6a70">  118</a></span>&#160;        <a class="code" href="classnet_1_1protocol.html" title="Protocol used for the communication.">protocol</a> <a class="code" href="classnet_1_1AbstractSystemSocket.html#ad3230cec00a4957731fd3485d8eb6a70" title="Method to get the socket protocol.">getProtocol</a>()<span class="keyword"> const </span>{</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="classnet_1_1AbstractSystemSocket.html#af0ceee3e6b5d4e5a91a2d0626243f990" title="Protocol used by the socket.">protocol_</a>;</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        }</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
@@ -233,7 +233,7 @@ $(document).ready(function(){initNavTree('abstract__system__socket_8hpp_source.h
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">         * use it.</span></div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">         * @param prot Protocol used by the socket</span></div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno"><a class="code" href="classnet_1_1AbstractSystemSocket.html#a1d599afae4a9349210d3748f9bc7efea">  130</a></span>&#160;        <a class="code" href="classnet_1_1AbstractSystemSocket.html#a1d599afae4a9349210d3748f9bc7efea" title="Constructor.">AbstractSystemSocket</a>(<span class="keyword">const</span> <a class="code" href="classnet_1_1protocol.html">protocol</a>&amp; prot):</div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="code" href="classnet_1_1AbstractSystemSocket.html#a1d599afae4a9349210d3748f9bc7efea">  130</a></span>&#160;        <a class="code" href="classnet_1_1AbstractSystemSocket.html#a1d599afae4a9349210d3748f9bc7efea" title="Constructor.">AbstractSystemSocket</a>(<span class="keyword">const</span> <a class="code" href="classnet_1_1protocol.html" title="Protocol used for the communication.">protocol</a>&amp; prot):</div>
 <div class="line"><a name="l00131"></a><span class="lineno"><a class="code" href="classnet_1_1AbstractSystemSocket.html#af0ceee3e6b5d4e5a91a2d0626243f990">  131</a></span>&#160;                <a class="code" href="classnet_1_1AbstractSystemSocket.html#af0ceee3e6b5d4e5a91a2d0626243f990" title="Protocol used by the socket.">protocol_</a>{prot}{};</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">        /**</span></div>
@@ -244,7 +244,7 @@ $(document).ready(function(){initNavTree('abstract__system__socket_8hpp_source.h
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        protocol <a class="code" href="classnet_1_1AbstractSystemSocket.html#af0ceee3e6b5d4e5a91a2d0626243f990" title="Protocol used by the socket.">protocol_</a>;</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;};</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;} <span class="comment">// net</span></div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#endif // ABSTRACT_SYSTEM_SOCKET_HPP_</span></div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor"></span></div>
@@ -254,7 +254,7 @@ $(document).ready(function(){initNavTree('abstract__system__socket_8hpp_source.h
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="abstract__system__socket_8hpp.html">abstract_system_socket.hpp</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 13:59:01 for NetCpp by
+    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

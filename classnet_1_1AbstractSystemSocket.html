@@ -121,14 +121,7 @@ Inheritance diagram for AbstractSystemSocket:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnet_1_1AbstractSystemSocket__inherit__graph.png" border="0" usemap="#AbstractSystemSocket_inherit__map" alt="Inheritance graph"/></div>
 <map name="AbstractSystemSocket_inherit__map" id="AbstractSystemSocket_inherit__map">
-<area shape="rect" id="node3" href="classnet_1_1PosixSocket.html" title="{PosixSocket\n|&#45; fd_\l|+ connect()\l+ bind()\l+ read()\l+ write()\l+ close()\l+ accept()\l+ listen()\l+ PosixSocket()\l+ ~PosixSocket()\l}" alt="" coords="36,277,169,501"/></map>
-</div>
-<div class="dynheader">
-Collaboration diagram for AbstractSystemSocket:</div>
-<div class="dyncontent">
-<div class="center"><img src="classnet_1_1AbstractSystemSocket__coll__graph.png" border="0" usemap="#AbstractSystemSocket_coll__map" alt="Collaboration graph"/></div>
-<map name="AbstractSystemSocket_coll__map" id="AbstractSystemSocket_coll__map">
-<area shape="rect" id="node2" href="classnet_1_1protocol.html" title="{protocol\n||+ protocol()\l}" alt="" coords="53,5,152,91"/></map>
+<area shape="rect" id="node3" href="classnet_1_1PosixSocket.html" title="Class for platform&#45;dependent code." alt="" coords="36,277,169,501"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
@@ -138,7 +131,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae2dea7cfc01221bf17823098296b13c3"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1AbstractSystemSocket.html#ae2dea7cfc01221bf17823098296b13c3">write</a> (const void *buf, size_t size)=0</td></tr>
 <tr class="memdesc:ae2dea7cfc01221bf17823098296b13c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to write data to the socket.  <a href="#ae2dea7cfc01221bf17823098296b13c3"></a><br/></td></tr>
 <tr class="memitem:aad0a9e425479bdb0239facdf6626fbc8"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1AbstractSystemSocket.html#aad0a9e425479bdb0239facdf6626fbc8">close</a> ()=0</td></tr>
-<tr class="memdesc:aad0a9e425479bdb0239facdf6626fbc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the socket.  <a href="#aad0a9e425479bdb0239facdf6626fbc8"></a><br/></td></tr>
+<tr class="memdesc:aad0a9e425479bdb0239facdf6626fbc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to close the socket.  <a href="#aad0a9e425479bdb0239facdf6626fbc8"></a><br/></td></tr>
 <tr class="memitem:a39594a0aa25dfc03f6ab396919cd8644"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1AbstractSystemSocket.html#a39594a0aa25dfc03f6ab396919cd8644">accept</a> (<a class="el" href="classnet_1_1AbstractSystemSocket.html">AbstractSystemSocket</a> *sock)=0</td></tr>
 <tr class="memdesc:a39594a0aa25dfc03f6ab396919cd8644"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to accept a connection on a socket.  <a href="#a39594a0aa25dfc03f6ab396919cd8644"></a><br/></td></tr>
 <tr class="memitem:a6130dede786a727031ab0f75153afbc6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1AbstractSystemSocket.html#a6130dede786a727031ab0f75153afbc6">connect</a> (const <a class="el" href="classnet_1_1Address.html">Address</a> &amp;addr)=0</td></tr>
@@ -269,7 +262,7 @@ Protected Attributes</h2></td></tr>
 <p>Method to bind the socket to an address. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">addr</td><td><a class="el" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a> wich the socket must be bound to </td></tr>
+    <tr><td class="paramname">addr</td><td><a class="el" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a> which the socket must be bound to </td></tr>
   </table>
   </dd>
 </dl>
@@ -305,8 +298,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Close the socket. </p>
-<p>Currently there is no mechanism to re-open a closed socket. </p>
+<p>Method to close the socket. </p>
+<p>Note: currently there is no mechanism to re-open a closed socket. </p>
 <dl class="section return"><dt>Returns</dt><dd>true in case of success; false otherwise </dd></dl>
 
 <p>Implemented in <a class="el" href="classnet_1_1PosixSocket.html#a46143fd6de3be9ab9951f140d3ae8c2f">PosixSocket</a>.</p>
@@ -338,7 +331,7 @@ Protected Attributes</h2></td></tr>
 <p>Method to connect the socket to an address. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">addr</td><td><a class="el" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a> wich the socket must be connected to </td></tr>
+    <tr><td class="paramname">addr</td><td><a class="el" href="classnet_1_1Address.html" title="Base class for all addresses.">Address</a> which the socket must be connected to </td></tr>
   </table>
   </dd>
 </dl>
@@ -388,7 +381,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnet_1_1AbstractSystemSocket_ad3230cec00a4957731fd3485d8eb6a70_icgraph.png" border="0" usemap="#classnet_1_1AbstractSystemSocket_ad3230cec00a4957731fd3485d8eb6a70_icgraph" alt=""/></div>
 <map name="classnet_1_1AbstractSystemSocket_ad3230cec00a4957731fd3485d8eb6a70_icgraph" id="classnet_1_1AbstractSystemSocket_ad3230cec00a4957731fd3485d8eb6a70_icgraph">
-<area shape="rect" id="node3" href="classnet_1_1PosixSocket.html#a64504b4504a65664f28082a85bc65c1e" title="Constructor to accept() connections on a socket." alt="" coords="153,5,332,35"/><area shape="rect" id="node5" href="classnet_1_1PosixSocket.html#a68aeb15de91fe236b339f6430df0b5b5" title="Method to set the maximum number of pending connections." alt="" coords="157,59,328,88"/><area shape="rect" id="node7" href="classnet_1_1PosixSocket.html#ac5c5949865c5ce0614f7321ffd250f79" title="Method to bind the socket to an address." alt="" coords="161,112,324,141"/><area shape="rect" id="node9" href="classnet_1_1PosixSocket.html#a7bb068abd87b4e06495e4ca0e03cf9f6" title="Method to connect the socket to an address." alt="" coords="149,165,336,195"/></map>
+<area shape="rect" id="node3" href="classnet_1_1PosixSocket.html#a64504b4504a65664f28082a85bc65c1e" title="Method to accept() a connection on the socket." alt="" coords="153,5,332,35"/><area shape="rect" id="node5" href="classnet_1_1PosixSocket.html#a68aeb15de91fe236b339f6430df0b5b5" title="Listen operation." alt="" coords="157,59,328,88"/><area shape="rect" id="node7" href="classnet_1_1PosixSocket.html#ac5c5949865c5ce0614f7321ffd250f79" title="Method to bind() the socket to an address." alt="" coords="161,112,324,141"/><area shape="rect" id="node9" href="classnet_1_1PosixSocket.html#a7bb068abd87b4e06495e4ca0e03cf9f6" title="Method to connect() the socket to an address." alt="" coords="149,165,336,195"/></map>
 </div>
 </p>
 
@@ -563,7 +556,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacenet.html">net</a></li><li class="navelem"><a class="el" href="classnet_1_1AbstractSystemSocket.html">AbstractSystemSocket</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 13:59:01 for NetCpp by
+    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

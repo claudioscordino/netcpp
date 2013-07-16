@@ -141,194 +141,186 @@ $(document).ready(function(){initNavTree('logger_8hpp_source.html','');});
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;sys/time.h&gt;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;mutex&gt;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> * \brief Macro to configure the logger.</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> * @param Base name of the file used for logging (e.g. &quot;/tmp/myproject&quot;)</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> * @param File severity level (i.e., OFF, ERROR, WARN, DEBUG)</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"> * @param Console severity level (i.e., OFF, ERROR, WARN, DEBUG)</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> * Example of configuration of the Logger: *</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> * \code</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"> *      DEBUG_CONF(&quot;outputfile&quot;, DEBUG, ERROR);</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"> * \endcode</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a4fa6c077331384e914f46be8eddbcec8">   52</a></span>&#160;<span class="preprocessor">#define DEBUG_CONF(outputFile, \</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">                fileSeverityLevel, \</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">                screenSeverityLevel) { \</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">                        net::Logger::getInstance().configure(outputFile, \</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">                                                fileSeverityLevel, \</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">                                                screenSeverityLevel); \</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">                }</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor"></span><span class="comment"></span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> * \brief Macro to print log messages.</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * Example of usage of the Logger:</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> * \code</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"> *      DEBUG(DEBUG, &quot;hello &quot; &lt;&lt; &quot;world&quot;);</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"> * \endcode</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a6096d2de68803d9fb947ee1353df1804">   68</a></span>&#160;<span class="preprocessor">#define DEBUG(priority, msg) { \</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">        std::ostringstream __debug_stream__; \</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">        __debug_stream__ &lt;&lt; msg; \</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">        net::Logger::getInstance().print(priority, __FILE__, __LINE__, \</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">                        __debug_stream__.str()); \</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">        }</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"> * \brief Severity level</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"> * This severity level can be specified for both console messages</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"> * and file messages. It allows to disable messages (i.e., OFF),</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"> * show only error messages (i.e. ERROR), show error and warning</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"> * messages (i.e. WARN) or show all messages (i.e. DEBUG).</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe">   84</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a> {</div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75">   85</a></span>&#160;        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75">OFF</a>     = 0, <span class="comment">//&lt; No logging messages</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">   86</a></span>&#160;        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>   = 1, <span class="comment">//&lt; Only errors</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea74dac7ac23d5b810db6d4067f14e8676">   87</a></span>&#160;        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea74dac7ac23d5b810db6d4067f14e8676">WARN</a>    = 2, <span class="comment">//&lt; Errors and warnings</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">   88</a></span>&#160;        <a class="code" href="logger_8hpp.html#a6096d2de68803d9fb947ee1353df1804" title="Macro to print log messages.">DEBUG</a>   = 3  <span class="comment">//&lt; Show all messages</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">namespace </span>net {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"> * \brief Simple logger to log messages on file and console.</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"> * This is the implementation of a simple logger in C++. It is implemented </span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"> * as a Singleton, so it can be easily called through two DEBUG macros.</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"> * It is Pthread-safe.</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"> * It allows to log on both file and screen, and to specify a severity level</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment"> * for both.</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"> * Example of configuration of the Logger: *</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"> * \code</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment"> *      DEBUG_CONF(&quot;outputfile&quot;, DEBUG, ERROR);</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment"> * \endcode</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"> * Example of usage of the Logger:</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"> * \code</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment"> *      DEBUG(DEBUG, &quot;hello &quot; &lt;&lt; &quot;world&quot;);</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"> * \endcode</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html">  120</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnet_1_1Logger.html" title="Simple logger to log messages on file and console.">Logger</a></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;{</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="comment">/* \brief Current severity level for logging on file.</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">         *</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">         * It can be OFF, DEBUG, WARN or ERROR.</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#ae4c1a9d717405baa78677a7552c0df9b">  126</a></span>&#160;        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a> <a class="code" href="classnet_1_1Logger.html#ae4c1a9d717405baa78677a7552c0df9b">fileSeverityLevel_</a>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="comment">/* \brief Current severity level for logging on screen.</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">         *</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">         * It can be OFF, DEBUG, WARN or ERROR.</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a94c743662c451d49dbe90aa3b9402eb7">  132</a></span>&#160;        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a> <a class="code" href="classnet_1_1Logger.html#a94c743662c451d49dbe90aa3b9402eb7">screenSeverityLevel_</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> * @brief Macro to configure the logger.</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> * @param Base name of the file used for logging (e.g. &quot;/tmp/myproject&quot;)</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> * @param File severity level (i.e., OFF, ERROR, WARN, DEBUG)</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> * @param Console severity level (i.e., OFF, ERROR, WARN, DEBUG)</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"> * Example of configuration of the Logger: *</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> * \code</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> *      DEBUG_CONF(&quot;outputfile&quot;, DEBUG, ERROR);</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"> * \endcode</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a4fa6c077331384e914f46be8eddbcec8">   51</a></span>&#160;<span class="preprocessor">#define DEBUG_CONF(outputFile, \</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">                fileSeverityLevel, \</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">                screenSeverityLevel) { \</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">                        net::Logger::getInstance().configure(outputFile, \</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">                                                fileSeverityLevel, \</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">                                                screenSeverityLevel); \</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">                }</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor"></span><span class="comment"></span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> * @brief Macro to print log messages.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * Example of usage of the Logger:</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * \code</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> *      DEBUG(DEBUG, &quot;hello &quot; &lt;&lt; &quot;world&quot;);</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"> * \endcode</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a6096d2de68803d9fb947ee1353df1804">   67</a></span>&#160;<span class="preprocessor">#define DEBUG(priority, msg) { \</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">        std::ostringstream __debug_stream__; \</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">        __debug_stream__ &lt;&lt; msg; \</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">        net::Logger::getInstance().print(priority, __FILE__, __LINE__, \</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">                        __debug_stream__.str()); \</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">        }</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"> * @brief Severity level</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"> * This severity level can be specified for both console messages</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"> * and file messages. It allows to disable messages (i.e., OFF),</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"> * show only error messages (i.e. ERROR), show error and warning</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"> * messages (i.e. WARN) or show all messages (i.e. DEBUG).</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe">   83</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a> {</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75">   84</a></span>&#160;        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75">OFF</a>     = 0, <span class="comment">//&lt; No logging messages</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">   85</a></span>&#160;        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>   = 1, <span class="comment">//&lt; Only errors</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea74dac7ac23d5b810db6d4067f14e8676">   86</a></span>&#160;        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea74dac7ac23d5b810db6d4067f14e8676">WARN</a>    = 2, <span class="comment">//&lt; Errors and warnings</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">   87</a></span>&#160;        <a class="code" href="logger_8hpp.html#a6096d2de68803d9fb947ee1353df1804" title="Macro to print log messages.">DEBUG</a>   = 3  <span class="comment">//&lt; Show all messages</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">namespace </span>net {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"> * @brief Simple logger to log messages on file and console.</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment"> * This is the implementation of a simple logger in C++. It is implemented </span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"> * as a Singleton, so it can be easily called through two DEBUG macros.</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> * It is Pthread-safe.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"> * It allows to log on both file and screen, and to specify a severity level</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"> * for both.</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"> * Example of configuration of the Logger: *</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"> * \code</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"> *      DEBUG_CONF(&quot;outputfile&quot;, DEBUG, ERROR);</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"> * \endcode</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"> * Example of usage of the Logger:</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"> * \code</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment"> *      DEBUG(DEBUG, &quot;hello &quot; &lt;&lt; &quot;world&quot;);</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"> * \endcode</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html">  111</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnet_1_1Logger.html" title="Simple logger to log messages on file and console.">Logger</a></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keyword">static</span> <a class="code" href="classnet_1_1Logger.html" title="Simple logger to log messages on file and console.">Logger</a>&amp; <a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton)">getInstance</a>();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#a3cc8038ea181163e476ed33638765074" title="Method used to print messages.">print</a>(<span class="keyword">const</span> <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a>       severityLevel,</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                        <span class="keyword">const</span> std::string&amp;      sourceFile,</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">int</span>               codeLine,</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                        <span class="keyword">const</span> std::string&amp;      message);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#a0b7db44a5dc99ef725e0f40e3ff7057a" title="Method to configure the logger.">configure</a> (<span class="keyword">const</span> std::string&amp;      outputFile,</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                        <span class="keyword">const</span> <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a>  fileSeverityLevel,</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                        <span class="keyword">const</span> <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a>  screenSeverityLevel);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">        /**</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">         * @brief Method to know if the latest message has been printed on file</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">         *</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">         * @return true if it has been printed; false otherwise</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a04c82229f5f2de63dd87f6d2211b5e1c">  130</a></span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1Logger.html#a04c82229f5f2de63dd87f6d2211b5e1c" title="Method to know if the latest message has been printed on file.">latestMsgPrintedOnFile</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3" title="Debug: to know if the latest message has been printed on file.">latestMsgPrintedOnFile_</a>;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        }</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">         * \brief Lock for mutual exclusion between different threads</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#abc76da0f3a3ac0b07d43633a1c194418">  137</a></span>&#160;        <span class="keyword">static</span> std::mutex <a class="code" href="classnet_1_1Logger.html#abc76da0f3a3ac0b07d43633a1c194418" title="Lock for mutual exclusion between different threads.">lock_</a>;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="comment"></span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">         * \brief Pointer to the unique Logger (i.e., Singleton)</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b">  142</a></span>&#160;        <span class="keyword">static</span> <a class="code" href="classnet_1_1Logger.html" title="Simple logger to log messages on file and console.">Logger</a>* <a class="code" href="classnet_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a>;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">         * \brief Initial part of the name of the file used for Logging.</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">         * Date and time are automatically appended.</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526">  148</a></span>&#160;        std::string <a class="code" href="classnet_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526" title="Initial part of the name of the file used for Logging. Date and time are automatically appended...">logFile_</a>;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">         * \brief Stream used when logging on a file</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">         * @brief Method to know if the latest message has been printed on file</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">         *</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">         * @return true if it has been printed; false otherwise</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#ab825e879c81001e0459a373a3c391728">  139</a></span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1Logger.html#ab825e879c81001e0459a373a3c391728" title="Method to know if the latest message has been printed on file.">latestMsgPrintedOnScreen</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643" title="Debug: to know if the latest message has been printed on screen.">latestMsgPrintedOnScreen_</a>;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="comment">/* @brief Current severity level for logging on file.</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">         *</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">         * It can be OFF, DEBUG, WARN or ERROR.</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#ae4c1a9d717405baa78677a7552c0df9b">  147</a></span>&#160;        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a> <a class="code" href="classnet_1_1Logger.html#ae4c1a9d717405baa78677a7552c0df9b">fileSeverityLevel_</a>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="comment">/* @brief Current severity level for logging on screen.</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">         *</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">         * It can be OFF, DEBUG, WARN or ERROR.</span></div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a17eef15bcb146b377ac28137ff780364">  153</a></span>&#160;        std::ofstream <a class="code" href="classnet_1_1Logger.html#a17eef15bcb146b377ac28137ff780364" title="Stream used when logging on a file.">out_</a>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a94c743662c451d49dbe90aa3b9402eb7">  153</a></span>&#160;        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a> <a class="code" href="classnet_1_1Logger.html#a94c743662c451d49dbe90aa3b9402eb7">screenSeverityLevel_</a>;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">         * \brief Initial time (used to print relative times)</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">         * @brief Lock for mutual exclusion between different threads</span></div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keyword">struct </span>timeval initialTime_;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#abc76da0f3a3ac0b07d43633a1c194418">  158</a></span>&#160;        <span class="keyword">static</span> std::mutex <a class="code" href="classnet_1_1Logger.html#abc76da0f3a3ac0b07d43633a1c194418" title="Lock for mutual exclusion between different threads.">lock_</a>;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="comment"></span></div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">         * \brief Debug: to know if the latest message has been printed</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment">         * on file.</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3">  164</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3" title="Debug: to know if the latest message has been printed on file.">latestMsgPrintedOnFile_</a>;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">         * \brief Debug: to know if the latest message has been printed </span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">         * on screen.</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">         * @brief Pointer to the unique Logger (i.e., Singleton)</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b">  163</a></span>&#160;        <span class="keyword">static</span> <a class="code" href="classnet_1_1Logger.html" title="Simple logger to log messages on file and console.">Logger</a>* <a class="code" href="classnet_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a>;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">        /**</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">         * @brief Initial part of the name of the file used for Logging.</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">         *</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">         * Date and time are automatically appended.</span></div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643">  170</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643" title="Debug: to know if the latest message has been printed on screen.">latestMsgPrintedOnScreen_</a>;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <a class="code" href="classnet_1_1Logger.html#a4fac0c9f6ee2dce6abd726264b9195f7" title="Constructor. It is a private constructor, called only by getInstance() and only the first time...">Logger</a>();</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <a class="code" href="classnet_1_1Logger.html#a0d77f27eb95c246d555904aaf08018eb" title="Destructor. It only closes the file, if open, and cleans memory.">~Logger</a>();</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">         * \brief Method to lock in case of multithreading</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">lock</a>();</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">         * \brief Method to unlock in case of multithreading</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">unlock</a>();</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keyword">static</span> <a class="code" href="classnet_1_1Logger.html" title="Simple logger to log messages on file and console.">Logger</a>&amp; <a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton) It is a static method.">getInstance</a>();</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#a3cc8038ea181163e476ed33638765074" title="Method used to print messages. Called by the DEBUG() macro.">print</a>(<span class="keyword">const</span> <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a>       severityLevel,</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                        <span class="keyword">const</span> std::string&amp;      sourceFile,</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">int</span>               codeLine,</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                        <span class="keyword">const</span> std::string&amp;      message);</div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526">  170</a></span>&#160;        std::string <a class="code" href="classnet_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526" title="Initial part of the name of the file used for Logging.">logFile_</a>;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">        /**</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">         * @brief Stream used when logging on a file</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a17eef15bcb146b377ac28137ff780364">  175</a></span>&#160;        std::ofstream <a class="code" href="classnet_1_1Logger.html#a17eef15bcb146b377ac28137ff780364" title="Stream used when logging on a file.">out_</a>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">        /**</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">         * @brief Initial time (used to print relative times)</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="keyword">struct </span>timeval initialTime_;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">        /**</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">         * @brief Debug: to know if the latest message has been printed</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">         * on file.</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3">  186</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3" title="Debug: to know if the latest message has been printed on file.">latestMsgPrintedOnFile_</a>;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment">        /**</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">         * @brief Debug: to know if the latest message has been printed </span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">         * on screen.</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643">  192</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643" title="Debug: to know if the latest message has been printed on screen.">latestMsgPrintedOnScreen_</a>;</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#a0b7db44a5dc99ef725e0f40e3ff7057a" title="Method to configure the logger. Called by the DEBUG_CONF() macro. To make implementation easier...">configure</a> (<span class="keyword">const</span> std::string&amp;      outputFile,</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                        <span class="keyword">const</span> <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a>  fileSeverityLevel,</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                        <span class="keyword">const</span> <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a>  screenSeverityLevel);</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">         * \brief Method to know if the latest message has been printed on file</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">         * @return true if it has been printed; false otherwise</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a04c82229f5f2de63dd87f6d2211b5e1c">  202</a></span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1Logger.html#a04c82229f5f2de63dd87f6d2211b5e1c" title="Method to know if the latest message has been printed on file.">latestMsgPrintedOnFile</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3" title="Debug: to know if the latest message has been printed on file.">latestMsgPrintedOnFile_</a>;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        }</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">        /**</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment">         * \brief Method to know if the latest message has been printed on file</span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment">         * @return true if it has been printed; false otherwise</span></div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#ab825e879c81001e0459a373a3c391728">  210</a></span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classnet_1_1Logger.html#ab825e879c81001e0459a373a3c391728" title="Method to know if the latest message has been printed on file.">latestMsgPrintedOnScreen</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643" title="Debug: to know if the latest message has been printed on screen.">latestMsgPrintedOnScreen_</a>;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        }</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;};</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;} <span class="comment">// logger</span></div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="preprocessor">#endif // LOGGER_HPP_</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <a class="code" href="classnet_1_1Logger.html#a4fac0c9f6ee2dce6abd726264b9195f7" title="Constructor.">Logger</a>();</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <a class="code" href="classnet_1_1Logger.html#a0d77f27eb95c246d555904aaf08018eb" title="Destructor.">~Logger</a>();</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">        /**</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">         * @brief Method to lock in case of multithreading</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">lock</a>();</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">        /**</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">         * @brief Method to unlock in case of multithreading</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">unlock</a>();</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;};</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;} <span class="comment">// net</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">#endif // LOGGER_HPP_</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="logger_8hpp.html">logger.hpp</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 13:59:01 for NetCpp by
+    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

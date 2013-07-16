@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$classnet_1_1Address.html" title="Base class for all addresses." alt="" coords="5,32,80,61"/>
-<area shape="rect" id="node3" href="$classnet_1_1ip4_1_1tcp_1_1address.html" title="address" alt="" coords="129,5,201,35"/>
-<area shape="rect" id="node5" href="$classnet_1_1local_1_1stream_1_1address.html" title="Address for local (i.e., Unix) stream communications." alt="" coords="129,59,201,88"/>
+<area shape="rect" id="node3" href="$classnet_1_1ip4_1_1tcp_1_1address.html" title="Address for IPv4 TCP communications." alt="" coords="129,5,201,35"/>
+<area shape="rect" id="node5" href="$classnet_1_1local_1_1stream_1_1address.html" title="Address for local stream communications." alt="" coords="129,59,201,88"/>
 </map>

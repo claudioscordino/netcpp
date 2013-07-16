@@ -129,12 +129,16 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1Logger.html">Logger</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple logger to log messages on file and console.  <a href="classnet_1_1Logger.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1PosixSocket.html">PosixSocket</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for platform-dependent code.  <a href="classnet_1_1PosixSocket.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1protocol.html">protocol</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protocol used for the communication.  <a href="classnet_1_1protocol.html#details">More...</a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ac921c2e8625e26392a9679359d60e396"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenet.html#ac921c2e8625e26392a9679359d60e396">protocol_type</a> </td></tr>
+<tr class="memdesc:ac921c2e8625e26392a9679359d60e396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protocol type.  <a href="namespacenet.html#ac921c2e8625e26392a9679359d60e396">More...</a><br/></td></tr>
 <tr class="memitem:aac1f73820c10cd8f86e97b84413866d5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenet.html#aac1f73820c10cd8f86e97b84413866d5">protocol_domain</a> </td></tr>
+<tr class="memdesc:aac1f73820c10cd8f86e97b84413866d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protocol domain.  <a href="namespacenet.html#aac1f73820c10cd8f86e97b84413866d5">More...</a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -160,10 +164,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00039">39</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
+<p>Protocol domain. </p>
+
+<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00045">45</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
 <div class="fragment"><div class="line">                           {</div>
-<div class="line">        <a class="code" href="namespacenet.html#a77471361c24b51ac6faf95e69191bac0">LOCAL</a>,</div>
-<div class="line">        <a class="code" href="namespacenet.html#a2494e23aba629a8595be8b5dd2467d48">IPv4</a></div>
+<div class="line">        <a class="code" href="namespacenet.html#a77471361c24b51ac6faf95e69191bac0">LOCAL</a>,  <span class="comment">//&lt; Local (e.g., Unix) communications</span></div>
+<div class="line">        <a class="code" href="namespacenet.html#a2494e23aba629a8595be8b5dd2467d48">IPv4</a>    <span class="comment">//&lt; IPv4 communications</span></div>
 <div class="line">};</div>
 </div><!-- fragment -->
 </div>
@@ -178,10 +184,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00034">34</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
+<p>Protocol type. </p>
+
+<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00037">37</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
 <div class="fragment"><div class="line">                         {</div>
-<div class="line">        <a class="code" href="namespacenet.html#a13c62bda7fafc9d24687bedd883733b0">STREAM</a>,</div>
-<div class="line">        <a class="code" href="namespacenet.html#ad5751c8b0fa416296be84a5e10d8a0e3">DGRAM</a></div>
+<div class="line">        <a class="code" href="namespacenet.html#a13c62bda7fafc9d24687bedd883733b0">STREAM</a>, <span class="comment">//&lt; Stream (e.g., TCP) communications</span></div>
+<div class="line">        <a class="code" href="namespacenet.html#ad5751c8b0fa416296be84a5e10d8a0e3">DGRAM</a>   <span class="comment">//&lt; Dgram (e.g., UDP) communications</span></div>
 <div class="line">};</div>
 </div><!-- fragment -->
 </div>
@@ -244,7 +252,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00078">78</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
+<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00122">122</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
 
 </div>
 </div>
@@ -266,7 +274,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00079">79</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
+<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00123">123</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
 
 </div>
 </div>
@@ -288,7 +296,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00080">80</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
+<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00124">124</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
 
 </div>
 </div>
@@ -310,7 +318,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00077">77</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
+<p>Definition at line <a class="el" href="protocol_8hpp_source.html#l00121">121</a> of file <a class="el" href="protocol_8hpp_source.html">protocol.hpp</a>.</p>
 
 </div>
 </div>
@@ -320,7 +328,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacenet.html">net</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 13:59:01 for NetCpp by
+    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

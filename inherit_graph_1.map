@@ -1,11 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$classnet_1_1AbstractSocket.html" title="Base abstract class for protocols." alt="" coords="5,192,125,221"/>
-<area shape="rect" id="node3" href="$classnet_1_1ip4_1_1tcp_1_1client.html" title="client" alt="" coords="177,5,233,35"/>
-<area shape="rect" id="node5" href="$classnet_1_1ip4_1_1tcp_1_1server.html" title="server" alt="" coords="175,59,236,88"/>
-<area shape="rect" id="node7" href="$classnet_1_1ip4_1_1udp_1_1client.html" title="client" alt="" coords="177,112,233,141"/>
-<area shape="rect" id="node9" href="$classnet_1_1ip4_1_1udp_1_1server.html" title="server" alt="" coords="175,165,236,195"/>
-<area shape="rect" id="node11" href="$classnet_1_1local_1_1dgram_1_1client.html" title="client" alt="" coords="177,219,233,248"/>
-<area shape="rect" id="node13" href="$classnet_1_1local_1_1dgram_1_1server.html" title="server" alt="" coords="175,272,236,301"/>
-<area shape="rect" id="node15" href="$classnet_1_1local_1_1stream_1_1client.html" title="Client for local (i.e., Unix) stream communications." alt="" coords="177,325,233,355"/>
-<area shape="rect" id="node17" href="$classnet_1_1local_1_1stream_1_1server.html" title="Server for local (i.e., Unix) stream communications." alt="" coords="175,379,236,408"/>
+<area shape="rect" id="node3" href="$classnet_1_1ip4_1_1tcp_1_1client.html" title="Client for IPv4 TCP communications." alt="" coords="177,5,233,35"/>
+<area shape="rect" id="node5" href="$classnet_1_1ip4_1_1tcp_1_1server.html" title="Server for IPv4 TCP communications." alt="" coords="175,59,236,88"/>
+<area shape="rect" id="node7" href="$classnet_1_1ip4_1_1udp_1_1client.html" title="Client for IPv4 UDP communications." alt="" coords="177,112,233,141"/>
+<area shape="rect" id="node9" href="$classnet_1_1ip4_1_1udp_1_1server.html" title="Server for IPv4 UDP communications." alt="" coords="175,165,236,195"/>
+<area shape="rect" id="node11" href="$classnet_1_1local_1_1dgram_1_1client.html" title="Client for local dgram communications." alt="" coords="177,219,233,248"/>
+<area shape="rect" id="node13" href="$classnet_1_1local_1_1dgram_1_1server.html" title="Server for local dgram communications." alt="" coords="175,272,236,301"/>
+<area shape="rect" id="node15" href="$classnet_1_1local_1_1stream_1_1client.html" title="Client for local stream communications." alt="" coords="177,325,233,355"/>
+<area shape="rect" id="node17" href="$classnet_1_1local_1_1stream_1_1server.html" title="Server for local stream communications." alt="" coords="175,379,236,408"/>
 </map>

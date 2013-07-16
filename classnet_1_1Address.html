@@ -119,12 +119,7 @@ Inheritance diagram for Address:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnet_1_1Address__inherit__graph.png" border="0" usemap="#Address_inherit__map" alt="Inheritance graph"/></div>
 <map name="Address_inherit__map" id="Address_inherit__map">
-<area shape="rect" id="node3" href="classnet_1_1ip4_1_1tcp_1_1address.html" title="{address\n|&#45; address_\l&#45; port_\l|+ address()\l+ getAddress()\l+ getPort()\l&#45; address()\l}" alt="" coords="5,139,125,293"/></map>
-</div>
-<div class="dynheader">
-Collaboration diagram for Address:</div>
-<div class="dyncontent">
-<div class="center"><img src="classnet_1_1Address__coll__graph.png" border="0" usemap="#Address_coll__map" alt="Collaboration graph"/></div>
+<area shape="rect" id="node3" href="classnet_1_1ip4_1_1tcp_1_1address.html" title="Address for IPv4 TCP communications." alt="" coords="5,139,125,277"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
@@ -134,8 +129,8 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Base class for all addresses. </p>
-<p>This is the base virtual class for all addresses. Every protocol must define its own address by inheriting a class called "address" in its own namespace. The new class must implement the <a class="el" href="classnet_1_1Address.html#a2da36483ee861dda1bdae4201932f805" title="Get the address.">getAddress()</a> virtual method. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnet_1_1ip4_1_1tcp_1_1address.html">net::ip4::tcp::address</a> </dd></dl>
+<p>This is the base virtual class for all addresses. Every protocol must define its own address by inheriting a class called "address" in its own namespace. The derived class must implement the <a class="el" href="classnet_1_1Address.html#a2da36483ee861dda1bdae4201932f805" title="Get the address.">getAddress()</a> virtual method. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnet_1_1ip4_1_1tcp_1_1address.html" title="Address for IPv4 TCP communications.">net::ip4::tcp::address</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="address_8hpp_source.html#l00045">45</a> of file <a class="el" href="address_8hpp_source.html">address.hpp</a>.</p>
 </div><h2>Member Function Documentation</h2>
@@ -161,17 +156,17 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the address. </p>
-<p>This mthod must be implemented by every concrete derived class. </p>
+<p>This method must be implemented by every concrete derived class. </p>
 <dl class="section return"><dt>Returns</dt><dd>a std::string containing the address </dd></dl>
 
-<p>Implemented in <a class="el" href="classnet_1_1local_1_1stream_1_1address.html#a211cb9c49487972650a67dd31175846c">address</a>, and <a class="el" href="classnet_1_1ip4_1_1tcp_1_1address.html#a211cb9c49487972650a67dd31175846c">address</a>.</p>
+<p>Implemented in <a class="el" href="classnet_1_1ip4_1_1tcp_1_1address.html#a211cb9c49487972650a67dd31175846c">address</a>, and <a class="el" href="classnet_1_1local_1_1stream_1_1address.html#a211cb9c49487972650a67dd31175846c">address</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnet_1_1Address_a2da36483ee861dda1bdae4201932f805_icgraph.png" border="0" usemap="#classnet_1_1Address_a2da36483ee861dda1bdae4201932f805_icgraph" alt=""/></div>
 <map name="classnet_1_1Address_a2da36483ee861dda1bdae4201932f805_icgraph" id="classnet_1_1Address_a2da36483ee861dda1bdae4201932f805_icgraph">
-<area shape="rect" id="node3" href="classnet_1_1PosixSocket.html#ac5c5949865c5ce0614f7321ffd250f79" title="Method to bind the socket to an address." alt="" coords="161,5,324,35"/><area shape="rect" id="node5" href="classnet_1_1PosixSocket.html#a7bb068abd87b4e06495e4ca0e03cf9f6" title="Method to connect the socket to an address." alt="" coords="149,59,336,88"/></map>
+<area shape="rect" id="node3" href="classnet_1_1PosixSocket.html#ac5c5949865c5ce0614f7321ffd250f79" title="Method to bind() the socket to an address." alt="" coords="161,5,324,35"/><area shape="rect" id="node5" href="classnet_1_1PosixSocket.html#a7bb068abd87b4e06495e4ca0e03cf9f6" title="Method to connect() the socket to an address." alt="" coords="149,59,336,88"/></map>
 </div>
 </p>
 
@@ -186,7 +181,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacenet.html">net</a></li><li class="navelem"><a class="el" href="classnet_1_1Address.html">Address</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 13:59:01 for NetCpp by
+    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>
