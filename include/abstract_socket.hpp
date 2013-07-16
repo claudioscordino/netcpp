@@ -72,7 +72,6 @@ inline __buffer buffer(std::array<char, N>& buf)
  * This is the base abstract class for protocols. Any supported protocol
  * must inherit from this class.
  */
-
 class AbstractSocket {
 public:
 
@@ -153,6 +152,6 @@ private:
 	std::mutex write_lock_;
 };
 
-}
+} // net
 
 #endif // ABSTRACT_SOCKET_HPP_

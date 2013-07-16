@@ -35,6 +35,8 @@ namespace net {
  *
  * This function reads from the socket taking care of synchronization
  * with any other asynchronous operations.
+ * Note: it can block the caller, because it calls __read() which
+ * continues reading until the given number of bytes have been read.
  * @param buf Pointer where read data must be put
  * @param size Size of data to be read
  * @return Number of bytes actually read
@@ -69,6 +71,8 @@ int AbstractSocket::read (struct __buffer buf, std::size_t size)
  *
  * This function writes to the socket taking care of synchronization
  * with any other asynchronous operations.
+ * Note: it can block the caller, because it calls __write() which
+ * continues writing until the given number of bytes have been written.
  * @param buf Pointer to data to be written
  * @param size Size of data to be written
  * @return Number of bytes actually written
@@ -164,8 +168,4 @@ int AbstractSocket::__write (const void* buffer, size_t size)
 	return (size-remaining);
 }
 
-
-
-
-
-}
+} // net

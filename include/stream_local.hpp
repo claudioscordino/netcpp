@@ -39,23 +39,21 @@ namespace net {
 namespace local {
 namespace stream {
 
-/**
- * @brief Address for local (i.e., Unix) stream communications.
- */
+/// Address for local stream communications.
 class address: public Address {
 public:
 	/**
 	 * @brief Constructor
 	 *
-	 * @param Path of the local socket
+	 * @param addr std::string containing the path of the local socket
 	 */
 	address(const std::string& addr):
 		address_{addr}{};
 
 	/**
-	 * @brief Get socket address (i.e., local path)
+	 * @brief Get the path of the local socket
 	 *
-	 * @return Path of the local socket
+	 * @return a std::string containing the path of the local socket
 	 */
 	inline std::string getAddress() const {
 		return address_;
@@ -66,19 +64,28 @@ private:
 };
 
 /**
- * @brief Server for local (i.e., Unix) stream communications.
+ * @brief Server for local stream communications.
  */
 class server: public AbstractSocket {
 public:
 	/**
 	 * @brief Constructor
 	 *
-	 * It creates a STREAM_LOCAL socket
+	 * This constructor allocates a concrete class derived from net::AbstractSystemSocket.
+	 * @param max_pending_connections Number of maximum allowed pending connections
 	 */
 	server(int max_pending_connections = 100):
 	    AbstractSocket(new PosixSocket(protocol(STREAM, LOCAL))),
 	    max_pending_connections_(max_pending_connections){}
 
+	/**
+	 * @brief Constructor to accept() a local stream connection on an existing socket.
+	 *
+	 * This constructor allocates a concrete class derived from net::AbstractSystemSocket
+	 * and accept a local stream connection on the given (existing) local stream socket.
+	 * @param srv Existing local stream socket on which the new connection must be accepted.
+	 * @param max_pending_connections Number of maximum allowed pending connections
+	 */
 	server(AbstractSocket* srv, int max_pending_connections = 100):
 	    AbstractSocket(new PosixSocket(protocol (STREAM, LOCAL))),
 	    max_pending_connections_(max_pending_connections)
@@ -87,10 +94,11 @@ public:
 	}
 
 	/**
-	 * @brief Bind operation
+	 * @brief Method to bind the server to a local socket
 	 *
 	 * This method invokes the platform-specific bind() operation.
-	 * @param Address of the local socket
+	 * @param addr Address (i.e., net::local::stream::address)
+	 * containing the local path of the socket which the server must be bound to
 	 */
 	inline void bind (const Address& addr)
 	{
@@ -101,39 +109,72 @@ public:
 	 * @brief Listen operation
 	 *
 	 * This method invokes the platform-specific listen() operation.
-	 * @param Maximum number of pending connections
+	 * This method sets the number of maximum allowed pending connections.
 	 */
 	inline void listen()
 	{
 		AbstractSocket::socket_->listen(max_pending_connections_);
 	}
 
-
-
+	/**
+	 * @brief Method to open the server on a certain socket
+	 *
+	 * This method calls net::local::stream::server::bind() and
+	 * net::local::stream::server::listen(). They, in turn, call
+	 * the platform-specific operations.
+	 * @param addr Address (i.e., net::local::stream::address)
+	 * containing the local path of the socket that must be open
+	 */
 	inline void open (const Address& addr)
 	{
 		bind (addr);
 		listen();
 	}
+
 private:
 
+	/// Number of maximum allowed pending connections
 	int max_pending_connections_;
 };
 
 
 
 /**
- * @brief Client for local (i.e., Unix) stream communications.
+ * @brief Client for local stream communications.
  */
 class client: public AbstractSocket {
 public:
-	void connect (const Address& addr)
-	{
-		AbstractSocket::socket_->connect(addr);
-	}
+	/**
+	 * @brief Constructor
+	 *
+	 * This constructor allocates a concrete class
+	 * derived from net::AbstractSystemSocket.
+	 */
 	client():
 	    AbstractSocket(new PosixSocket(protocol (STREAM, LOCAL))){}
 
+	/**
+	 * @brief Method to connect the client to a certain local socket
+	 *
+	 * This method invokes the platform-specific connect() operation.
+	 * @param addr Address (i.e., net::local::stream::address)
+	 * containing the path of the local socket which the client must
+	 * be connected to
+	 */
+	inline void connect (const Address& addr)
+	{
+		AbstractSocket::socket_->connect(addr);
+	}
+
+	/**
+	 * @brief Method to open the client towards a certain address
+	 *
+	 * This method calls net::local::stream::connect(),
+	 * which in turn invokes the platform-specific connect() operation.
+	 * @param addr Address (i.e., net::local::stream::address)
+	 * containing the path of the local socket which the client must
+	 * open
+	 */
 	inline void open (const Address& addr)
 	{
 		connect (addr);
@@ -141,7 +182,6 @@ public:
 
 };
 
-
-}}}
+}}} // net::local::stream
 
 #endif // STREAM_LOCAL_HPP_

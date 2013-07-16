@@ -30,6 +30,7 @@
 #define TCP_IPV4_HPP_
 
 #include <stdexcept>
+
 #include "abstract_socket.hpp"
 #include "posix_socket.hpp"
 #include "address.hpp"
@@ -38,69 +39,158 @@ namespace net {
 namespace ip4 {
 namespace tcp {
 
+/// Address for IPv4 TCP communications.
 class address: public Address {
 public:
+	/**
+	 * @brief Constructor
+	 *
+	 * @param addr std::string containing the address (e.g., "127.0.0.1")
+	 * @param port Integer containing the port number (e.g., 1234)
+	 */
 	address(const std::string& addr, int port):
 		address_{addr}, port_{port}{};
-	std::string getAddress() const {
+	
+	/**
+	 * @brief Get the address
+	 *
+	 * @return a std::string containing the IP address
+	 * (not the port number)
+	 */
+	inline std::string getAddress() const {
 		return address_;
 	}
-	int getPort() const {
+
+	/**
+	 * @brief Get the port number
+	 *
+	 * @return an integer containing the port number
+	 */
+	inline int getPort() const {
 		return port_;
 	}
+
 private:
-	address();
+	/// IP address
 	std::string address_;
+	
+	/// Port number
 	int port_;
 };
 
 
+/**
+ * @brief Server for IPv4 TCP communications.
+ */
 class server: public AbstractSocket {
 public:
+	/**
+	 * @brief Constructor
+	 *
+	 * This constructor allocates a concrete class derived from net::AbstractSystemSocket.
+	 * @param max_pending_connections Number of maximum allowed pending connections
+	 */
 	server(int max_pending_connections = 100):
-	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM, protocol_domain::IPv4))),
-	    max_pending_connections_(max_pending_connections){}
+	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM,
+	        protocol_domain::IPv4))), max_pending_connections_(max_pending_connections){}
 
+	/**
+	 * @brief Constructor to accept() a TCP connection on an existing socket.
+	 *
+	 * This constructor allocates a concrete class derived from net::AbstractSystemSocket
+	 * and accept a TCP connection on the given (existing) TCP socket.
+	 * @param srv Existing TCP socket on which the new connection must be accepted.
+	 * @param max_pending_connections Number of maximum allowed pending connections
+	 */
 	server(AbstractSocket* srv, int max_pending_connections = 100):
-	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM, protocol_domain::IPv4))),
-	    max_pending_connections_(max_pending_connections){
-		socket_->accept((srv->getSocket()));
+	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM,
+	        protocol_domain::IPv4))), max_pending_connections_(max_pending_connections)
+	{
+			socket_->accept((srv->getSocket()));
 	}
 
+	/**
+	 * @brief Method to bind the server to an address
+	 *
+	 * This method invokes the platform-specific bind() operation.
+	 * @param addr Address (i.e., net::ip4::tcp::address)
+	 * which the server must be bound to
+	 */
 	inline void bind (const Address& addr){
 		AbstractSocket::socket_->bind(addr);
 	}
+
+	/**
+	 * @brief Listen operation
+	 *
+	 * This method sets the number of maximum allowed pending connections.
+	 * This method invokes the platform-specific listen() operation.
+	 */
 	inline void listen(){
 		AbstractSocket::socket_->listen(max_pending_connections_);
 	}
 
+	/**
+	 * @brief Method to open the server towards a certain address
+	 *
+	 * This method calls net::ip4::tcp::server::bind() and
+	 * net::ip4::tcp::server::listen(). They, in turn, call
+	 * the platform-specific operations.
+	 * @param addr Address (i.e., net::ip4::tcp::address) 
+	 * that must be open by the server
+	 */
 	inline void open (const Address& addr) {
 		bind (addr);
 		listen();
 	}
 
 private:
+	/// Number of maximum allowed pending connections
 	int max_pending_connections_;
 };
 
 
 
+/**
+ * @brief Client for IPv4 TCP communications.
+ */
 class client: public AbstractSocket {
 public:
-	void connect (const Address& addr){
+	/**
+	 * @brief Constructor
+	 *
+	 * This constructor allocates a concrete class
+	 * derived from net::AbstractSystemSocket.
+	 */
+	client():
+	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM,
+	        protocol_domain::IPv4))){}
+	
+	/**
+	 * @brief Method to connect the client to an address
+	 *
+	 * This method invokes the platform-specific connect() operation.
+	 * @param addr Address (i.e., net::ip4::tcp::address)
+	 * which the client must be connected to
+	 */
+	inline void connect (const Address& addr){
 		AbstractSocket::socket_->connect(addr);
 	}
-	client():
-	    AbstractSocket(new PosixSocket(protocol(protocol_type::STREAM, protocol_domain::IPv4))){}
 
+	/**
+	 * @brief Method to open the client towards a certain address
+	 *
+	 * This method calls net::ip4::tcp::client::connect(),
+	 * which in turn invokes the platform-specific connect() operation.
+	 * @param addr Address (i.e., net::ip4::tcp::address) 
+	 * that must be open by the client
+	 */
 	inline void open (const Address& addr) {
-		connect (addr);
+		connect(addr);
 	}
 
 };
 
-
-
-}}}
+}}} // net::ip4::tcp
 
 #endif // TCP_IPV4_HPP_

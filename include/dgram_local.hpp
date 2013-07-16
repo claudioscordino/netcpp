@@ -43,14 +43,39 @@ namespace dgram {
 /// Address for local dgram communications.
 typedef net::local::stream::address address;
 
+/**
+ * @brief Server for local dgram communications.
+ */
 class server: public AbstractSocket {
 public:
+	/**
+	 * @brief Constructor
+	 *
+	 * This constructor allocates a concrete class
+	 * derived from net::AbstractSystemSocket.
+	 */
+	server():
+	    AbstractSocket(new PosixSocket(protocol(DGRAM, LOCAL))){}
+	
+	/**
+	 * @brief Method to bind the server to an address
+	 *
+	 * This method invokes the platform-specific bind() operation.
+	 * @param addr Address (i.e., net::local::dgram::address)
+	 * which the server must be bound to
+	 */
 	inline void bind (const Address& addr){
 		AbstractSocket::socket_->bind(addr);
 	}
-	server():
-	    AbstractSocket(new PosixSocket(protocol(DGRAM, LOCAL))){}
 
+	/**
+	 * @brief Method to open the server towards a certain address
+	 *
+	 * This method calls net::local::dgram::server::bind(),
+	 * which in turn invokes the platform-specific bind() operation.
+	 * @param addr Address (i.e., net::local::dgram::address) 
+	 * that must be open by the server
+	 */
 	inline void open (const Address& addr) {
 		bind(addr);
 	}
@@ -58,14 +83,39 @@ public:
 
 
 
+/**
+ * @brief Client for local dgram communications.
+ */
 class client: public AbstractSocket {
 public:
-	void connect (const Address& addr){
-		AbstractSocket::socket_->connect(addr);
-	}
+	/**
+	 * @brief Constructor
+	 *
+	 * This constructor allocates a concrete class
+	 * derived from net::AbstractSystemSocket.
+	 */
 	client():
 	    AbstractSocket(new PosixSocket(protocol(DGRAM, LOCAL))){}
 
+	/**
+	 * @brief Method to connect the client to an address
+	 *
+	 * This method invokes the platform-specific connect() operation.
+	 * @param addr Address (i.e., net::local::dgram::address)
+	 * which the client must be connected to
+	 */
+	inline void connect (const Address& addr){
+		AbstractSocket::socket_->connect(addr);
+	}
+
+	/**
+	 * @brief Method to open the client towards a certain address
+	 *
+	 * This method calls net::local::dgram::client::connect(),
+	 * which in turn invokes the platform-specific bind() operation.
+	 * @param addr Address (i.e., net::local::dgram::address) 
+	 * that must be open by the client
+	 */
 	inline void open (const Address& addr) {
 		connect (addr);
 	}
@@ -73,6 +123,6 @@ public:
 };
 
 
-}}}
+}}} // net::local::dgram
 
 #endif // DGRAM_LOCAL_HPP_

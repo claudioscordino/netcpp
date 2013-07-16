@@ -30,28 +30,52 @@
 #define UDP_IPV4_HPP_
 
 #include <stdexcept>
+
 #include "abstract_socket.hpp"
 #include "posix_socket.hpp"
 #include "address.hpp"
 #include "tcp_ip4.hpp"
 
-
-
 namespace net {
 namespace ip4 {
 namespace udp {
 
+/// Address for IPv4 UDP communications.
 typedef net::ip4::tcp::address address;
 
-
+/**
+ * @brief Server for IPv4 UDP communications.
+ */
 class server: public AbstractSocket {
 public:
+	/**
+	 * @brief Constructor
+	 *
+	 * This constructor allocates a concrete class
+	 * derived from net::AbstractSystemSocket.
+	 */
+	server():
+	    AbstractSocket(new PosixSocket(protocol(DGRAM, IPv4))){}
+	
+	/**
+	 * @brief Method to bind the server to an address
+	 *
+	 * This method invokes the platform-specific bind() operation.
+	 * @param addr Address (i.e., net::ip4::udp::address)
+	 * which the server must be bound to
+	 */
 	inline void bind (const Address& addr){
 		AbstractSocket::socket_->bind(addr);
 	}
-	server():
-	    AbstractSocket(new PosixSocket(protocol(DGRAM, IPv4))){}
 
+	/**
+	 * @brief Method to open the server towards a certain address
+	 *
+	 * This method calls net::ip4::udp::server::bind(),
+	 * which in turn invokes the platform-specific bind() operation.
+	 * @param addr Address (i.e., net::ip4::udp::address) 
+	 * that must be open by the server
+	 */
 	inline void open (const Address& addr) {
 		bind(addr);
 	}
@@ -59,22 +83,46 @@ public:
 
 
 
+/**
+ * @brief Client for IPv4 UDP communications.
+ */
 class client: public AbstractSocket {
 public:
-	void connect (const Address& addr){
-		AbstractSocket::socket_->connect(addr);
-	}
+	/**
+	 * @brief Constructor
+	 *
+	 * This constructor allocates a concrete class
+	 * derived from net::AbstractSystemSocket.
+	 */
 	client():
 	    AbstractSocket(new PosixSocket(protocol(DGRAM, IPv4))){}
 
+	/**
+	 * @brief Method to connect the client to an address
+	 *
+	 * This method invokes the platform-specific connect() operation.
+	 * @param addr Address (i.e., net::ip4::udp::address)
+	 * which the client must be connected to
+	 */
+	inline void connect (const Address& addr){
+		AbstractSocket::socket_->connect(addr);
+	}
+	
+	/**
+	 * @brief Method to open the client towards a certain address
+	 *
+	 * This method calls net::ip4::udp::client::connect(),
+	 * which in turn invokes the platform-specific connect() operation.
+	 * @param addr Address (i.e., net::ip4::udp::address) 
+	 * that must be open by the client
+	 */
 	inline void open (const Address& addr) {
 		connect (addr);
 	}
-
 };
 
 
 
-}}}
+}}} // net::ip4::udp
 
 #endif // UDP_IPV4_HPP_

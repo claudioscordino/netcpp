@@ -39,7 +39,7 @@ namespace net {
  * This is the base virtual class for all addresses.
  * Every protocol must define its own address by inheriting
  * a class called "address" in its own namespace.
- * The new class must implement the getAddress() virtual method.
+ * The derived class must implement the getAddress() virtual method.
  * @see net::ip4::tcp::address
  */
 class Address {
@@ -47,14 +47,14 @@ public:
 	/**
 	 * @brief Get the address
 	 *
-	 * This mthod must be implemented by every concrete derived
+	 * This method must be implemented by every concrete derived
 	 * class.
 	 * @return a std::string containing the address
 	 */
 	virtual std::string getAddress() const = 0;
 };
 
-}
+} // net
 
 #endif // ADDRESS_HPP_
 

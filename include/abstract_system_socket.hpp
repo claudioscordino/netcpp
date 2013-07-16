@@ -67,9 +67,9 @@ public:
 	virtual int write (const void* buf, size_t size)=0;
 
 	/**
-	 * @brief Close the socket
+	 * @brief Method to close the socket
 	 *
-	 * Currently there is no mechanism to re-open a closed socket.
+	 * Note: currently there is no mechanism to re-open a closed socket.
 	 * @return true in case of success; false otherwise
 	 */
 	virtual bool close()=0;
@@ -138,7 +138,7 @@ protected:
 	protocol protocol_;
 };
 
-}
+} // net
 
 #endif // ABSTRACT_SYSTEM_SOCKET_HPP_
 
