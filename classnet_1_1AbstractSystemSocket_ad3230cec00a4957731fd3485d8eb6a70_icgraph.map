@@ -1,0 +1,6 @@
+<map id="getProtocol" name="getProtocol">
+<area shape="rect" id="node3" href="$classnet_1_1PosixSocket.html#a64504b4504a65664f28082a85bc65c1e" title="Constructor to accept() connections on a socket." alt="" coords="153,5,332,35"/>
+<area shape="rect" id="node5" href="$classnet_1_1PosixSocket.html#a68aeb15de91fe236b339f6430df0b5b5" title="Method to set the maximum number of pending connections." alt="" coords="157,59,328,88"/>
+<area shape="rect" id="node7" href="$classnet_1_1PosixSocket.html#ac5c5949865c5ce0614f7321ffd250f79" title="Method to bind the socket to an address." alt="" coords="161,112,324,141"/>
+<area shape="rect" id="node9" href="$classnet_1_1PosixSocket.html#a7bb068abd87b4e06495e4ca0e03cf9f6" title="Method to connect the socket to an address." alt="" coords="149,165,336,195"/>
+</map>

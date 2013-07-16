@@ -1,0 +1,14 @@
+<map id="/home/cloud/work/eclipse&#45;workspace/netcpp.orig/include/abstract_system_socket.hpp" name="/home/cloud/work/eclipse&#45;workspace/netcpp.orig/include/abstract_system_socket.hpp">
+<area shape="rect" id="node3" href="$abstract__socket_8hpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/include/abstract_socket.hpp" alt="" coords="253,136,459,200"/>
+<area shape="rect" id="node27" href="$posix__socket_8hpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/include/posix_socket.hpp" alt="" coords="488,136,672,200"/>
+<area shape="rect" id="node5" href="$abstract__socket_8cpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/src/abstract_socket.cpp" alt="" coords="5,248,187,312"/>
+<area shape="rect" id="node7" href="$dgram__local_8hpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/include/dgram_local.hpp" alt="" coords="69,360,251,424"/>
+<area shape="rect" id="node11" href="$stream__local_8hpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/include/stream_local.hpp" alt="" coords="261,248,445,312"/>
+<area shape="rect" id="node16" href="$tcp__ip4_8hpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/include/tcp_ip4.hpp" alt="" coords="621,248,803,312"/>
+<area shape="rect" id="node22" href="$udp__ip4_8hpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/include/udp_ip4.hpp" alt="" coords="480,360,661,424"/>
+<area shape="rect" id="node9" href="$dgram__local_8cpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/src/dgram_local.cpp" alt="" coords="69,472,251,536"/>
+<area shape="rect" id="node13" href="$stream__local_8cpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/src/stream_local.cpp" alt="" coords="275,360,456,424"/>
+<area shape="rect" id="node18" href="$posix__socket_8cpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/src/posix_socket.cpp" alt="" coords="891,360,1072,424"/>
+<area shape="rect" id="node20" href="$tcp__ip4_8cpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/src/tcp_ip4.cpp" alt="" coords="685,360,867,424"/>
+<area shape="rect" id="node24" href="$udp__ip4_8cpp.html" title="/home/cloud/work/eclipse\l&#45;workspace/netcpp.orig\l/src/udp_ip4.cpp" alt="" coords="480,472,661,536"/>
+</map>

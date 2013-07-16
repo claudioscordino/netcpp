@@ -1,0 +1,6 @@
+<map id="unlock" name="unlock">
+<area shape="rect" id="node3" href="$classnet_1_1Logger.html#a0b7db44a5dc99ef725e0f40e3ff7057a" title="Method to configure the logger. Called by the DEBUG_CONF() macro. To make implementation easier..." alt="" coords="127,5,207,35"/>
+<area shape="rect" id="node5" href="$classnet_1_1Logger.html#a0d77f27eb95c246d555904aaf08018eb" title="Destructor. It only closes the file, if open, and cleans memory." alt="" coords="128,59,205,88"/>
+<area shape="rect" id="node7" href="$classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton) It is a static method." alt="" coords="119,112,215,141"/>
+<area shape="rect" id="node9" href="$classnet_1_1Logger.html#a3cc8038ea181163e476ed33638765074" title="Method used to print messages. Called by the DEBUG() macro." alt="" coords="141,165,192,195"/>
+</map>

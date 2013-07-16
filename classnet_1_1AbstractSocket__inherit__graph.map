@@ -1,0 +1,4 @@
+<map id="AbstractSocket" name="AbstractSocket">
+<area shape="rect" id="node3" href="$classnet_1_1ip4_1_1tcp_1_1client.html" title="{client\n||+ connect()\l+ client()\l+ open()\l}" alt="" coords="5,313,104,433"/>
+<area shape="rect" id="node5" href="$classnet_1_1ip4_1_1tcp_1_1server.html" title="{server\n|&#45; max_pending_connections_\l|+ server()\l+ server()\l+ bind()\l+ listen()\l+ open()\l}" alt="" coords="128,296,336,451"/>
+</map>
