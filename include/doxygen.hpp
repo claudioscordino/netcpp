@@ -163,6 +163,12 @@
  * The build system, based on cmake, can be easily ported among all supported
  * platforms.
  *
+ * See the following picture to understand the collaboration between classes:
+ *
+ * <center>
+ * <img src="../netcpp-architecture.png" width="800"></img>
+ * </center>
+ *
  * <br>
  * <br>
  * <h1>Adding further network protocols</h1>
