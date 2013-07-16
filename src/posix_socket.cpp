@@ -42,10 +42,15 @@
 #include "logger.hpp"
 #include "tcp_ip4.hpp"
 
-
 namespace net {
 
-
+/**
+ * @brief Constructor
+ *
+ * The concrete class constructed depends on the specific protocol.
+ * @param prot protocol used by the socket
+ * @exception runtime_error in case of unknown protocol
+ */
 PosixSocket::PosixSocket(const protocol& prot):
 		AbstractSystemSocket(prot)
 {
@@ -67,6 +72,11 @@ PosixSocket::PosixSocket(const protocol& prot):
 	}
 }
 
+/**
+ * @brief Destructor.
+ *
+ * It just calls close()
+ */
 PosixSocket::~PosixSocket()
 {
 	close();
@@ -100,15 +110,21 @@ int PosixSocket::write (const void* buffer, size_t size)
 }
 
 
+/**
+ * @brief Method to close the socket
+ *
+ * @return true in case of success; false otherwise
+ */
 bool PosixSocket::close(){
 	return !(::close(fd_));
 }
 
 /**
- * \brief Constructor to accept() connections on a socket.
+ * @brief Method to accept() a connection on the socket.
  *
- * This constructor calls accept().
- * @param socket on which a new connection must be accepted.
+ * This method calls accept().
+ * This method is usually invoked on the server-side for stream communications.
+ * @param sock Socket on which the new connection must be accepted.
  * @exception runtime_error in case of error in accept()
  */
 void PosixSocket::accept (AbstractSystemSocket* sock)
@@ -125,20 +141,36 @@ void PosixSocket::accept (AbstractSystemSocket* sock)
 	}
 }
 
-
-void PosixSocket::listen (int maxPendingConnections)
+/**
+ * @brief Listen operation
+ *
+ * This method calls listen() and allows to specify the number
+ * of maximum allowed pending connections.
+ * This method is usually invoked on the server-side.
+ * @param max_pending_connections Number of maximum allowed pending connections.
+ * @exception runtime_error in case of error in listen()
+ */
+void PosixSocket::listen (int max_pending_connections)
 {
 	if (getProtocol().getType() != net::STREAM) {
  		DEBUG(ERROR, "Listen not available!");
 		throw std::runtime_error("Listen not available");
 	}
-	if (::listen(fd_, maxPendingConnections) < 0) {
+	if (::listen(fd_, max_pending_connections) < 0) {
 		::close(fd_);
  		DEBUG(ERROR, "Error when listening");
 		throw std::runtime_error ("Listen error");
 	}
 }
 
+/**
+ * @brief Method to bind() the socket to an address.
+ *
+ * This method calls bind().
+ * This method is usually invoked on the server-side.
+ * @param addr Address which the socket must be bound to
+ * @exception runtime_error in case of error in bind()
+ */
 void PosixSocket::bind (const Address& addr)
 {
 	if (getProtocol().getDomain() == net::LOCAL) {
@@ -170,6 +202,14 @@ error:
 }
 
 
+/**
+ * @brief Method to connect() the socket to an address.
+ *
+ * This method calls connect().
+ * This method is usually invoked on the client-side.
+ * @param addr Address which the socket must be connected to
+ * @exception runtime_error in case of error in connect()
+ */
 void PosixSocket::connect (const Address& addr)
 {
 	if (getProtocol().getDomain() == net::LOCAL) {
@@ -201,8 +241,4 @@ error:
 }
 
 
-
-
-
-
-}
+} // net

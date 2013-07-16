@@ -31,38 +31,79 @@
 
 namespace net {
 
+/**
+ * @brief Protocol type
+ */
 enum class protocol_type {
-	STREAM,
-	DGRAM
+	STREAM,	//< Stream (e.g., TCP) communications
+	DGRAM	//< Dgram (e.g., UDP) communications
 };
 
+/**
+ * @brief Protocol domain
+ */
 enum class protocol_domain {
-	LOCAL,
-	IPv4
+	LOCAL,	//< Local (e.g., Unix) communications
+	IPv4	//< IPv4 communications
 };
 
+
+/**
+ * @brief Protocol used for the communication
+ *
+ * This class encapsulates information about type and domain of
+ * the communication protocol.
+ */
 class protocol {
 public:
+	/**
+	 * @brief Constructor
+	 *
+	 * @param type Protocol type (see net::protocol_type)
+	 * @param domain Protocol domain (see net::protocol_domain)
+	 */
 	protocol (enum protocol_type type, 
-	enum protocol_domain domain):
+	    enum protocol_domain domain):
 		type_{type}, domain_{domain}{}
+
+	/**
+	 * @brief Get protocol type
+	 *
+	 * @return protocol type
+	 */
 	inline enum protocol_type getType() const
 	{
 		return type_;
 	}
+
+	/**
+	 * @brief Get protocol domain
+	 *
+	 * @return protocol domain
+	 */
 	inline enum protocol_domain getDomain() const
 	{
 		return domain_;
 	}
 
-	bool operator==(const protocol& p) const 
+	/**
+	 * @brief Operator ==
+	 *
+	 * @return true if protocols are equal; false otherwise
+	 */
+	inline bool operator==(const protocol& p) const 
 	{
 		if ((type_ == p.type_) && (domain_ == p.domain_))
 			return true;
 		return false;
 	}
 
-	bool operator!=(const protocol& p) const 
+	/**
+	 * @brief Operator !=
+	 *
+	 * @return false if protocols are equal; true otherwise
+	 */
+	inline bool operator!=(const protocol& p) const 
 	{
 		if ((type_ == p.type_) && (domain_ == p.domain_))
 			return false;
@@ -70,7 +111,10 @@ public:
 	}
 
 private:
+	/// Protocol type
 	enum protocol_type type_;
+
+	/// Protocol domain
 	enum protocol_domain domain_;
 };
 
@@ -79,12 +123,7 @@ static const net::protocol_type DGRAM=net::protocol_type::STREAM;
 static const net::protocol_domain IPv4=net::protocol_domain::IPv4;
 static const net::protocol_domain LOCAL=net::protocol_domain::LOCAL;
 
-// #define TCP_IPv4 protocol{STREAM, IPv4}
-// #define UDP_IPv4 protocol{DGRAM, IPv4}
-// #define STREAM_LOCAL protocol{STREAM, LOCAL}
-// #define DGRAM_LOCAL protocol{DGRAM, LOCAL}
-
-}
+} // net
 
 #endif // PROTOCOL_HPP_
 

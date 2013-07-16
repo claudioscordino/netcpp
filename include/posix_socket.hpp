@@ -35,39 +35,37 @@
 #include "address.hpp"
 #include "protocol.hpp"
 
-
 namespace net {
 
+/**
+ * @brief Class for platform-dependent code.
+ *
+ * This is the class containing the code for Posix platforms.
+ */
 class PosixSocket: public AbstractSystemSocket {
 
 public:
-	virtual void connect (const Address& addr);
-	virtual void bind (const Address& addr);
-
-	virtual int read (void* buffer, size_t size);
-	virtual int write (const void* buffer, size_t size);
-
-	virtual bool close();
-
-	virtual void accept (AbstractSystemSocket* sock);
-
-	virtual void listen (int maxPendingConnections);
-
 	PosixSocket(const protocol& prot);
 	virtual ~PosixSocket();
-
+	
+	virtual void connect (const Address& addr);
+	virtual void bind (const Address& addr);
+	virtual int read (void* buffer, size_t size);
+	virtual int write (const void* buffer, size_t size);
+	virtual bool close();
+	virtual void accept (AbstractSystemSocket* sock);
+	virtual void listen (int maxPendingConnections);
 
 private:
-
 	/**
-	 * \brief Number of the file descriptor.
+	 * @brief Number of the file descriptor.
+	 * 
 	 * This is the return value of open(), socket() or accept().
 	 */
 	int fd_;
-
 };
 
-}
+} // net
 
 
 #endif // POSIX_SOCKET_HPP_

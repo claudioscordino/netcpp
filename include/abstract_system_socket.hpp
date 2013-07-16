@@ -85,7 +85,7 @@ public:
 	/**
 	 * @brief Method to connect the socket to an address
 	 *
-	 * @param addr Address wich the socket must be connected to
+	 * @param addr Address which the socket must be connected to
 	 * @exception runtime_error in case of error
 	 */
 	virtual void connect (const Address& addr)=0;
@@ -93,7 +93,7 @@ public:
 	/**
 	 * @brief Method to bind the socket to an address
 	 *
-	 * @param addr Address wich the socket must be bound to
+	 * @param addr Address which the socket must be bound to
 	 * @exception runtime_error in case of error
 	 */
 	virtual void bind (const Address& addr)=0;

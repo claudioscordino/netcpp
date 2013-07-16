@@ -57,11 +57,9 @@ inline void Logger::unlock(){}
 #endif
 
 
-
-
-
 /**
- * \brief Constructor.
+ * @brief Constructor.
+ *
  * It is a private constructor, called only by getInstance() and only the
  * first time. It is called inside a lock, so lock inside this method
  * is not required.
@@ -78,7 +76,9 @@ Logger::Logger():
 }
 
 /**
- * \brief Method to configure the logger. Called by the DEBUG_CONF() macro.
+ * @brief Method to configure the logger. 
+ *
+ * This method is called by the DEBUG_CONF() macro.
  * To make implementation easier, the old stream is always closed.
  * Then, in case, it is open again in append mode.
  * @param outputFile Name of the file used for logging
@@ -125,7 +125,8 @@ void Logger::configure (const std::string&	outputFile,
 }
 
 /**
- * \brief Destructor.
+ * @brief Destructor.
+ *
  * It only closes the file, if open, and cleans memory.
  */
 
@@ -140,8 +141,9 @@ Logger::~Logger()
 }
 
 /**
- * \brief Method to get a reference to the object (i.e., Singleton)
- * It is a static method.
+ * @brief Method to get a reference to the object (i.e., Singleton)
+ *
+ * This is a static method.
  * @return Reference to the object.
  */
 Logger& Logger::getInstance()
@@ -157,8 +159,9 @@ Logger& Logger::getInstance()
 
 
 /**
- * \brief Method used to print messages.
- * Called by the DEBUG() macro.
+ * @brief Method used to print messages.
+ *
+ * This method is called by the DEBUG() macro.
  * @param severitylevel Severity of the debug message
  * @param file Source file where the method has been called (set equal to __FILE__
  * 	      by the DEBUG macro)

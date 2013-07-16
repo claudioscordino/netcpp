@@ -36,9 +36,8 @@
 #include <sys/time.h>
 #include <mutex>
 
-
 /**
- * \brief Macro to configure the logger.
+ * @brief Macro to configure the logger.
  *
  * @param Base name of the file used for logging (e.g. "/tmp/myproject")
  * @param File severity level (i.e., OFF, ERROR, WARN, DEBUG)
@@ -58,7 +57,7 @@
 		}
 
 /**
- * \brief Macro to print log messages.
+ * @brief Macro to print log messages.
  *
  * Example of usage of the Logger:
  * \code
@@ -74,7 +73,7 @@
 
 
 /**
- * \brief Severity level
+ * @brief Severity level
  *
  * This severity level can be specified for both console messages
  * and file messages. It allows to disable messages (i.e., OFF),
@@ -90,16 +89,8 @@ enum severity_level_t {
 
 namespace net {
 
-
-
-
-
-
-
-
-
 /**
- * \brief Simple logger to log messages on file and console.
+ * @brief Simple logger to log messages on file and console.
  *
  * This is the implementation of a simple logger in C++. It is implemented 
  * as a Singleton, so it can be easily called through two DEBUG macros.
@@ -119,71 +110,7 @@ namespace net {
  */
 class Logger
 {
-	/* \brief Current severity level for logging on file.
-	 *
-	 * It can be OFF, DEBUG, WARN or ERROR.
-	 */
-	severity_level_t fileSeverityLevel_;
-
-	/* \brief Current severity level for logging on screen.
-	 *
-	 * It can be OFF, DEBUG, WARN or ERROR.
-	 */
-	severity_level_t screenSeverityLevel_;
-
-	/**
-	 * \brief Lock for mutual exclusion between different threads
-	 */
-	static std::mutex lock_;
-	
-	/**
-	 * \brief Pointer to the unique Logger (i.e., Singleton)
-	 */
-	static Logger* m_;
-
-	/**
-	 * \brief Initial part of the name of the file used for Logging.
-	 * Date and time are automatically appended.
-	 */
-	std::string logFile_;
-
-	/**
-	 * \brief Stream used when logging on a file
-	 */
-	std::ofstream out_;
-
-	/**
-	 * \brief Initial time (used to print relative times)
-	 */
-	struct timeval initialTime_;
-
-	/**
-	 * \brief Debug: to know if the latest message has been printed
-	 * on file.
-	 */
-	bool latestMsgPrintedOnFile_;
-
-	/**
-	 * \brief Debug: to know if the latest message has been printed 
-	 * on screen.
-	 */
-	bool latestMsgPrintedOnScreen_;
-
-	Logger();
-	~Logger();
-
-	/**
-	 * \brief Method to lock in case of multithreading
-	 */
-	inline static void lock();
-
-	/**
-	 * \brief Method to unlock in case of multithreading
-	 */
-	inline static void unlock();
-
 public:
-
 	static Logger& getInstance();
 
 	void print(const severity_level_t	severityLevel,
@@ -196,7 +123,8 @@ public:
 			const severity_level_t	screenSeverityLevel);
 
 	/**
-	 * \brief Method to know if the latest message has been printed on file
+	 * @brief Method to know if the latest message has been printed on file
+	 *
 	 * @return true if it has been printed; false otherwise
 	 */
 	inline bool latestMsgPrintedOnFile() const {
@@ -204,15 +132,79 @@ public:
 	}
 
 	/**
-	 * \brief Method to know if the latest message has been printed on file
+	 * @brief Method to know if the latest message has been printed on file
+	 *
 	 * @return true if it has been printed; false otherwise
 	 */
 	inline bool latestMsgPrintedOnScreen() const {
 		return latestMsgPrintedOnScreen_;
 	}
+private:
+	/* @brief Current severity level for logging on file.
+	 *
+	 * It can be OFF, DEBUG, WARN or ERROR.
+	 */
+	severity_level_t fileSeverityLevel_;
 
+	/* @brief Current severity level for logging on screen.
+	 *
+	 * It can be OFF, DEBUG, WARN or ERROR.
+	 */
+	severity_level_t screenSeverityLevel_;
+
+	/**
+	 * @brief Lock for mutual exclusion between different threads
+	 */
+	static std::mutex lock_;
+	
+	/**
+	 * @brief Pointer to the unique Logger (i.e., Singleton)
+	 */
+	static Logger* m_;
+
+	/**
+	 * @brief Initial part of the name of the file used for Logging.
+	 *
+	 * Date and time are automatically appended.
+	 */
+	std::string logFile_;
+
+	/**
+	 * @brief Stream used when logging on a file
+	 */
+	std::ofstream out_;
+
+	/**
+	 * @brief Initial time (used to print relative times)
+	 */
+	struct timeval initialTime_;
+
+	/**
+	 * @brief Debug: to know if the latest message has been printed
+	 * on file.
+	 */
+	bool latestMsgPrintedOnFile_;
+
+	/**
+	 * @brief Debug: to know if the latest message has been printed 
+	 * on screen.
+	 */
+	bool latestMsgPrintedOnScreen_;
+
+	Logger();
+	~Logger();
+
+	/**
+	 * @brief Method to lock in case of multithreading
+	 */
+	inline static void lock();
+
+	/**
+	 * @brief Method to unlock in case of multithreading
+	 */
+	inline static void unlock();
 };
 
-} // logger
+} // net
 
 #endif // LOGGER_HPP_
