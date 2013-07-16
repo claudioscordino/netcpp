@@ -107,6 +107,7 @@
  * \endcode
  *
  * The library is put in the <i>netcpp/bin/</i> directory.
+ * The include files are available in the <i>netcpp/include/</i> directory.
  *
  * Documentation is generated through
  * <a href="htttp://www.doxygen.org" target="_blank">Doxygen</a>.
