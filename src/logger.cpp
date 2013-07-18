@@ -72,7 +72,7 @@ Logger::Logger():
 		latestMsgPrintedOnFile_(false),
 		latestMsgPrintedOnScreen_(false)
 {
-	gettimeofday(&initialTime_, NULL);
+	initialTime_ = std::chrono::system_clock::now();
 }
 
 /**
@@ -101,13 +101,13 @@ void Logger::configure (const std::string&	outputFile,
 		// Compute a new file name, if needed
 		if (outputFile != logFile_){
 			std::ostringstream oss;
-			time_t currTime;
-			time(&currTime);
-			struct tm *currTm = localtime(&currTime);
+			auto now = std::chrono::system_clock::now();
+			std::time_t currTime = std::chrono::system_clock::to_time_t(now);
+			struct tm *currTm = std::localtime(&currTime);
 			oss << outputFile << "_" <<
+					(1900 + currTm->tm_year) << "-" <<
+					currTm->tm_mon << "-" <<
 					currTm->tm_mday << "_" <<
-					currTm->tm_mon << "_" <<
-					(1900 + currTm->tm_year) << "_" <<
 					currTm->tm_hour << "-" <<
 					currTm->tm_min << "-" <<
 					currTm->tm_sec << ".log";
@@ -174,8 +174,11 @@ void Logger::print(const severity_level_t severityLevel,
 					const int line,
 					const std::string& message)
 {
-	struct timeval currentTime;
-	gettimeofday(&currentTime, NULL);
+	std::chrono::time_point<std::chrono::system_clock> currentTime = 
+		std::chrono::system_clock::now();
+
+	int elapsed_seconds = std::chrono::duration_cast<std::chrono::seconds>
+                             (currentTime - initialTime_).count();
 
 	Logger::lock();
 
@@ -183,16 +186,16 @@ void Logger::print(const severity_level_t severityLevel,
 	latestMsgPrintedOnScreen_ = false;
 
 	if (fileSeverityLevel_ >= severityLevel){
-		out_ << "DEBUG [" << file << ":" << line << "] @ " <<
-		    (currentTime.tv_sec - initialTime_.tv_sec) <<
-		    ":" << message << std::endl;
+		out_ << "DEBUG [" << file << ":" << line << "] @ "
+		    << elapsed_seconds
+		    << ":" << message << std::endl;
 		latestMsgPrintedOnFile_ = true;
 	}
 
 	if (screenSeverityLevel_ >= severityLevel){
 		std::cerr << "DEBUG [" << file << ":" << line << "] @ "
-		    << (currentTime.tv_sec - initialTime_.tv_sec) <<
-		    ":" << message << std::endl;
+		    << elapsed_seconds
+		    << ":" << message << std::endl;
 		latestMsgPrintedOnScreen_ = true;
 	}
 	Logger::unlock();

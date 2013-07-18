@@ -88,7 +88,7 @@ void do_client()
 
 int main()
 {
-	DEBUG_CONF("netcpp.log", DEBUG, DEBUG);
+	DEBUG_CONF("netcpp", DEBUG, DEBUG);
 	DEBUG(DEBUG, "Launching 1st thread...");
 	std::thread t1(do_server);
 	DEBUG(DEBUG, "Launching 2nd thread...");

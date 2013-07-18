@@ -35,6 +35,7 @@
 #include <sstream>
 #include <sys/time.h>
 #include <mutex>
+#include <chrono>
 
 /**
  * @brief Macro to configure the logger.
@@ -177,7 +178,7 @@ private:
 	/**
 	 * @brief Initial time (used to print relative times)
 	 */
-	struct timeval initialTime_;
+	std::chrono::time_point<std::chrono::system_clock> initialTime_;
 
 	/**
 	 * @brief Debug: to know if the latest message has been printed
