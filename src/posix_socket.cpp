@@ -63,11 +63,11 @@ PosixSocket::PosixSocket(const protocol& prot):
 	else if (prot == protocol(DGRAM, IPv4))	
 		fd_ = socket(AF_INET, SOCK_DGRAM, 0);
 	else {
- 		DEBUG(ERROR, "Error: protocol unkown");
+ 		ERROR("Error: protocol unkown");
 		throw std::runtime_error ("Protocol unknown");
 	}
 	if (fd_ < 0) {
- 		DEBUG(ERROR, "Error when creating socket");
+ 		ERROR("Error when creating socket");
 		throw std::runtime_error ("Socket error");
 	}
 }
@@ -130,13 +130,13 @@ bool PosixSocket::close(){
 void PosixSocket::accept (AbstractSystemSocket* sock)
 {
 	if ((sock->getProtocol() != getProtocol()) || (getProtocol().getType() != net::STREAM)) {
- 		DEBUG(ERROR, "Accept not available!");
+ 		ERROR("Accept not available!");
 		throw std::runtime_error("Accept not available");
 	}
 
 	fd_ = ::accept((dynamic_cast<PosixSocket*> (sock))->fd_, NULL, 0);
 	if (fd_ < 0) {
- 		DEBUG(ERROR, "Error in accept()!");
+ 		ERROR("Error in accept()!");
 		throw std::runtime_error("Accept error");
 	}
 }
@@ -153,12 +153,12 @@ void PosixSocket::accept (AbstractSystemSocket* sock)
 void PosixSocket::listen (int max_pending_connections)
 {
 	if (getProtocol().getType() != net::STREAM) {
- 		DEBUG(ERROR, "Listen not available!");
+ 		ERROR("Listen not available!");
 		throw std::runtime_error("Listen not available");
 	}
 	if (::listen(fd_, max_pending_connections) < 0) {
 		::close(fd_);
- 		DEBUG(ERROR, "Error when listening");
+ 		ERROR("Error when listening");
 		throw std::runtime_error ("Listen error");
 	}
 }
@@ -174,7 +174,7 @@ void PosixSocket::listen (int max_pending_connections)
 void PosixSocket::bind (const Address& addr)
 {
 	if (getProtocol().getDomain() == net::LOCAL) {
-		DEBUG(DEBUG, "Local protocol found");
+		DEBUG("Local protocol found");
 		struct sockaddr_un serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
 		serv_addr.sun_family = AF_LOCAL;
@@ -183,7 +183,7 @@ void PosixSocket::bind (const Address& addr)
 		if (::bind(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)
 			return;
 	} else if (getProtocol().getDomain() == net::IPv4) {
-		DEBUG(DEBUG, "Network protocol found");
+		DEBUG("Network protocol found");
 		struct sockaddr_in serv_addr;
 		bzero((char *) &serv_addr, sizeof(serv_addr));
 		serv_addr.sin_family = AF_INET;
@@ -192,12 +192,12 @@ void PosixSocket::bind (const Address& addr)
 		if (::bind(fd_, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == 0)
 			return;
 	} else {
-		DEBUG(ERROR, "Unknown protocol found");
+		ERROR("Unknown protocol found");
 	}
 
 error:
 	::close(fd_);
- 	DEBUG(ERROR, "Error when binding socket");
+ 	ERROR("Error when binding socket");
 	throw std::runtime_error ("Bind error");
 }
 
@@ -236,7 +236,7 @@ void PosixSocket::connect (const Address& addr)
 
 error:
 	::close(fd_);
- 	DEBUG(ERROR, "Error when creating client socket");
+ 	ERROR("Error when creating client socket");
 	throw std::runtime_error ("Client socket error");
 }
 

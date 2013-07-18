@@ -9,10 +9,11 @@ project(netcpp)
 set (netcpp_VERSION_MAJOR 0)
 set (netcpp_VERSION_MINOR 1)
 
-set (CMAKE_BUILD_TYPE Release)
+set (CMAKE_BUILD_TYPE Debug)
+## set (CMAKE_BUILD_TYPE Release)
 
 # Compiler flags:
-add_definitions(-Wextra -O3 -pthread)
+add_definitions(-Wextra -O3 -pthread -DLOG_LEVEL=3)
 set(CMAKE_CXX_FLAGS "-std=c++11")
 
 # Src directories:

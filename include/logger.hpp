@@ -38,75 +38,121 @@
 #include <chrono>
 
 /**
- * @brief Macro to configure the logger.
+ * Log levels:
+ * 0: no logging
+ * 1: log only errors messages
+ * 2: log warnings and error messages
+ * 3: log debug, warning and error messages
+ */
+#ifndef LOG_LEVEL
+#define LOG_LEVEL 3
+#endif
+
+// Uncomment for single-thread log:
+#define LOGGER_MULTITHREAD
+
+/**
+ * @brief Macro to set the file used for logging.
  *
  * @param Base name of the file used for logging (e.g. "/tmp/myproject")
- * @param File severity level (i.e., OFF, ERROR, WARN, DEBUG)
- * @param Console severity level (i.e., OFF, ERROR, WARN, DEBUG)
  *
  * Example of configuration of the Logger: *
  * \code
- * 	DEBUG_CONF("outputfile", DEBUG, ERROR);
+ * 	LOG_FILE("/tmp/myproject);
  * \endcode
  */
-#define DEBUG_CONF(outputFile, \
-		fileSeverityLevel, \
-		screenSeverityLevel) { \
-			net::Logger::getInstance().configure(outputFile, \
-						fileSeverityLevel, \
-						screenSeverityLevel); \
-		}
-
-/**
- * @brief Macro to print log messages.
- *
- * Example of usage of the Logger:
- * \code
- * 	DEBUG(DEBUG, "hello " << "world");
- * \endcode
- */
-#define DEBUG(priority, msg) { \
-	std::ostringstream __debug_stream__; \
-	__debug_stream__ << msg; \
-	net::Logger::getInstance().print(priority, __FILE__, __LINE__, \
-			__debug_stream__.str()); \
+#define LOG_FILE(outputFile) { \
+	log::Logger::getInstance().setFile(outputFile); \
 	}
 
 
-/**
- * @brief Severity level
- *
- * This severity level can be specified for both console messages
- * and file messages. It allows to disable messages (i.e., OFF),
- * show only error messages (i.e. ERROR), show error and warning
- * messages (i.e. WARN) or show all messages (i.e. DEBUG).
- */
-enum severity_level_t {
-	OFF 	= 0, //< No logging messages
-	ERROR	= 1, //< Only errors
-	WARN	= 2, //< Errors and warnings
-	DEBUG	= 3  //< Show all messages
-};
 
-namespace net {
+#if (LOG_LEVEL < 1) || (defined NDEBUG)
+	#define ERROR(...)
+#else
+	/**
+	 * @brief Macro to print error messages.
+	 *
+	 * Example of usage:
+	 * \code
+	 * 	ERROR("hello " << "world");
+	 * \endcode
+	 */
+	#define ERROR(msg) { \
+		std::ostringstream __debug_stream__; \
+		__debug_stream__ << "[ERROR]\t"; \
+		__debug_stream__ << msg; \
+		log::Logger::getInstance().print(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		}
+#endif
+
+#if (LOG_LEVEL < 2) || (defined NDEBUG)
+	#define WARNING(...)
+#else
+	/**
+	 * @brief Macro to print warning messages.
+	 *
+	 * Example of usage:
+	 * \code
+	 * 	WARNING("hello " << "world");
+	 * \endcode
+	 */
+	#define WARNING(msg) { \
+		std::ostringstream __debug_stream__; \
+		__debug_stream__ << "[WARNING]\t"; \
+		__debug_stream__ << msg; \
+		log::Logger::getInstance().print(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		}
+#endif
+
+
+
+
+#if (LOG_LEVEL < 3) || (defined NDEBUG)
+	#define DEBUG(...)
+#else
+	/**
+	 * @brief Macro to print debug messages.
+	 *
+	 * Example of usage:
+	 * \code
+	 * 	DEBUG("hello " << "world");
+	 * \endcode
+	 */
+	#define DEBUG(msg) { \
+		std::ostringstream __debug_stream__; \
+		__debug_stream__ << "[DEBUG]\t"; \
+		__debug_stream__ << msg; \
+		log::Logger::getInstance().print(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		}
+#endif
+
+
+
+namespace log {
+
+
 
 /**
  * @brief Simple logger to log messages on file and console.
  *
  * This is the implementation of a simple logger in C++. It is implemented 
- * as a Singleton, so it can be easily called through two DEBUG macros.
+ * as a Singleton, so it can be easily called through the DEBUG, WARNING
+ * and ERROR macros.
  * It is Pthread-safe.
- * It allows to log on both file and screen, and to specify a severity level
- * for both.
+ * It allows to log on both file and screen.
  *
  * Example of configuration of the Logger: *
  * \code
- * 	DEBUG_CONF("outputfile", DEBUG, ERROR);
+ * 	LOG_FILE("/tmp/myproject);
  * \endcode
  *
  * Example of usage of the Logger:
  * \code
- * 	DEBUG(DEBUG, "hello " << "world");
+ * 	DEBUG("hello " << "world");
  * \endcode
  */
 class Logger
@@ -114,49 +160,22 @@ class Logger
 public:
 	static Logger& getInstance();
 
-	void print(const severity_level_t	severityLevel,
-			const std::string&	sourceFile,
+	void print(	const std::string&	sourceFile,
 			const int 		codeLine,
 			const std::string& 	message);
 
-	void configure (const std::string&	outputFile,
-			const severity_level_t	fileSeverityLevel,
-			const severity_level_t	screenSeverityLevel);
+	void setFile (const std::string&	outputFile);
 
-	/**
-	 * @brief Method to know if the latest message has been printed on file
-	 *
-	 * @return true if it has been printed; false otherwise
-	 */
-	inline bool latestMsgPrintedOnFile() const {
-		return latestMsgPrintedOnFile_;
-	}
-
-	/**
-	 * @brief Method to know if the latest message has been printed on file
-	 *
-	 * @return true if it has been printed; false otherwise
-	 */
-	inline bool latestMsgPrintedOnScreen() const {
-		return latestMsgPrintedOnScreen_;
-	}
 private:
-	/* @brief Current severity level for logging on file.
-	 *
-	 * It can be OFF, DEBUG, WARN or ERROR.
-	 */
-	severity_level_t fileSeverityLevel_;
+	Logger();
+	~Logger();
 
-	/* @brief Current severity level for logging on screen.
-	 *
-	 * It can be OFF, DEBUG, WARN or ERROR.
-	 */
-	severity_level_t screenSeverityLevel_;
-
+#ifdef LOGGER_MULTITHREAD
 	/**
 	 * @brief Lock for mutual exclusion between different threads
 	 */
 	static std::mutex lock_;
+#endif
 	
 	/**
 	 * @brief Pointer to the unique Logger (i.e., Singleton)
@@ -181,21 +200,6 @@ private:
 	std::chrono::time_point<std::chrono::system_clock> initialTime_;
 
 	/**
-	 * @brief Debug: to know if the latest message has been printed
-	 * on file.
-	 */
-	bool latestMsgPrintedOnFile_;
-
-	/**
-	 * @brief Debug: to know if the latest message has been printed 
-	 * on screen.
-	 */
-	bool latestMsgPrintedOnScreen_;
-
-	Logger();
-	~Logger();
-
-	/**
 	 * @brief Method to lock in case of multithreading
 	 */
 	inline static void lock();
@@ -206,6 +210,6 @@ private:
 	inline static void unlock();
 };
 
-} // net
+} // log
 
 #endif // LOGGER_HPP_

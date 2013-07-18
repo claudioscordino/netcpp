@@ -32,28 +32,26 @@
 
 #include "logger.hpp"
 
-namespace net {
+namespace log {
 
 // Definition (and initialization) of static attributes
 Logger* Logger::m_ = 0;
 
-#define LOGGER_MULTITHREAD
 #ifdef LOGGER_MULTITHREAD
+	std::mutex Logger::lock_ ;
 
-std::mutex Logger::lock_ ;
+	inline void Logger::lock()
+	{
+		lock_.lock();
+	}
 
-inline void Logger::lock()
-{
-	lock_.lock();
-}
-
-inline void Logger::unlock()
-{
-    lock_.unlock();
-}
+	inline void Logger::unlock()
+	{
+	    lock_.unlock();
+	}
 #else
-inline void Logger::lock(){}
-inline void Logger::unlock(){}
+	inline void Logger::lock(){}
+	inline void Logger::unlock(){}
 #endif
 
 
@@ -67,10 +65,7 @@ inline void Logger::unlock(){}
  * configure() method.
  */
 Logger::Logger():
-		fileSeverityLevel_(OFF),
-		screenSeverityLevel_(ERROR),
-		latestMsgPrintedOnFile_(false),
-		latestMsgPrintedOnScreen_(false)
+		logFile_("")
 {
 	initialTime_ = std::chrono::system_clock::now();
 }
@@ -78,48 +73,29 @@ Logger::Logger():
 /**
  * @brief Method to configure the logger. 
  *
- * This method is called by the DEBUG_CONF() macro.
- * To make implementation easier, the old stream is always closed.
- * Then, in case, it is open again in append mode.
+ * This method is called by the LOG_FILE() macro.
  * @param outputFile Name of the file used for logging
- * @param configuration Configuration (i.e., log on file and on screen on or off)
- * @param fileSeverityLevel Severity threshold for file
- * @param screenSeverityLevel Severity threshold for screen
  */
-void Logger::configure (const std::string&	outputFile,
-			const severity_level_t	fileSeverityLevel,
-			const severity_level_t	screenSeverityLevel)
+void Logger::setFile (const std::string& outputFile)
 {
 		Logger::lock();
-		latestMsgPrintedOnFile_ = false;
-		latestMsgPrintedOnScreen_ = false;
 
-		// Close the old stream, if needed
-		if ((fileSeverityLevel_ != OFF) && (fileSeverityLevel == OFF))
-			out_.close();
+		// Compute the whole file name:
+		std::ostringstream oss;
+		auto now = std::chrono::system_clock::now();
+		std::time_t currTime = std::chrono::system_clock::to_time_t(now);
+		struct tm *currTm = std::localtime(&currTime);
+		oss << outputFile << "_" <<
+				(1900 + currTm->tm_year) << "-" <<
+				currTm->tm_mon << "-" <<
+				currTm->tm_mday << "_" <<
+				currTm->tm_hour << "-" <<
+				currTm->tm_min << "-" <<
+				currTm->tm_sec << ".log";
+		logFile_ = oss.str().c_str();
 
-		// Compute a new file name, if needed
-		if (outputFile != logFile_){
-			std::ostringstream oss;
-			auto now = std::chrono::system_clock::now();
-			std::time_t currTime = std::chrono::system_clock::to_time_t(now);
-			struct tm *currTm = std::localtime(&currTime);
-			oss << outputFile << "_" <<
-					(1900 + currTm->tm_year) << "-" <<
-					currTm->tm_mon << "-" <<
-					currTm->tm_mday << "_" <<
-					currTm->tm_hour << "-" <<
-					currTm->tm_min << "-" <<
-					currTm->tm_sec << ".log";
-			logFile_ = oss.str().c_str();
-		}
-
-		// Open a new stream, if needed
-		if ((fileSeverityLevel_ == OFF) && (fileSeverityLevel != OFF))
-			out_.open(logFile_.c_str(), std::ios::app);
-
-		fileSeverityLevel_ = fileSeverityLevel;
-		screenSeverityLevel_ = screenSeverityLevel;
+		// Open a new stream:
+		out_.open(logFile_.c_str(), std::ios::app);
 
 		Logger::unlock();
 }
@@ -133,7 +109,7 @@ void Logger::configure (const std::string&	outputFile,
 Logger::~Logger()
 {
 	Logger::lock();
-	if (fileSeverityLevel_ != OFF)
+	if (logFile_ != "")
 		out_.close();
 	delete m_;
 	Logger::unlock();
@@ -161,7 +137,7 @@ Logger& Logger::getInstance()
 /**
  * @brief Method used to print messages.
  *
- * This method is called by the DEBUG() macro.
+ * This method is called by the DEBUG(), WARNING() and ERROR() macros.
  * @param severitylevel Severity of the debug message
  * @param file Source file where the method has been called (set equal to __FILE__
  * 	      by the DEBUG macro)
@@ -169,10 +145,9 @@ Logger& Logger::getInstance()
  * called (automatically set equal to __LINE__ by the DEBUG macro)
  * @param message Message to be logged
  */
-void Logger::print(const severity_level_t severityLevel,
-					const std::string& file,
-					const int line,
-					const std::string& message)
+void Logger::print(const std::string& file,
+			const int line,
+			const std::string& message)
 {
 	std::chrono::time_point<std::chrono::system_clock> currentTime = 
 		std::chrono::system_clock::now();
@@ -181,24 +156,16 @@ void Logger::print(const severity_level_t severityLevel,
                              (currentTime - initialTime_).count();
 
 	Logger::lock();
-
-	latestMsgPrintedOnFile_ = false;
-	latestMsgPrintedOnScreen_ = false;
-
-	if (fileSeverityLevel_ >= severityLevel){
-		out_ << "DEBUG [" << file << ":" << line << "] @ "
-		    << elapsed_seconds
-		    << ":" << message << std::endl;
-		latestMsgPrintedOnFile_ = true;
+	
+	if (logFile_ != "") {
+		out_ << "[ " << elapsed_seconds << " ] " << message <<
+		"\t[ " << file << ":" << line << "]" << std::endl;
 	}
 
-	if (screenSeverityLevel_ >= severityLevel){
-		std::cerr << "DEBUG [" << file << ":" << line << "] @ "
-		    << elapsed_seconds
-		    << ":" << message << std::endl;
-		latestMsgPrintedOnScreen_ = true;
-	}
+	std::cerr << "[ " << elapsed_seconds << " ] " << message <<
+	"\t[ " << file << ":" << line << "]" << std::endl;
+
 	Logger::unlock();
 }
 
-} //net
+} // log

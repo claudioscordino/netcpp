@@ -52,14 +52,14 @@ int AbstractSocket::read (struct __buffer buf, std::size_t size)
 {
 	int ret;
 	if (buf.size_ == 0 || size > buf.size_){
-		DEBUG(ERROR, "Wrong buffer size!");
+		ERROR("Wrong buffer size!");
 		throw std::runtime_error ("Wrong buffer size");
 	}
 	read_lock_.lock();
 	try {
 		ret = __read(buf.ptr_, size);
 	} catch (...) {
-		DEBUG(ERROR, "Read error!");
+		ERROR("Read error!");
 	}
 	
 	read_lock_.unlock();
@@ -88,14 +88,14 @@ int AbstractSocket::write (struct __buffer buf, std::size_t size)
 {
 	int ret;
 	if (buf.size_ == 0 || size > buf.size_){
-		DEBUG(ERROR, "Wrong buffer size!");
+		ERROR("Wrong buffer size!");
 		throw std::runtime_error ("Wrong buffer size");
 	}
 	write_lock_.lock();
 	try {
 		ret = __write(buf.ptr_, size);
 	} catch (...) {
-		DEBUG(ERROR, "Write error!");
+		ERROR("Write error!");
 	}
 	
 	write_lock_.unlock();
@@ -123,10 +123,10 @@ int AbstractSocket::__read (void* buffer, size_t size)
 		    remaining);
 		if (ret == 0){
 			// End of file reached
-			DEBUG(DEBUG, "End of file reached");
+			DEBUG("End of file reached");
 			break;
 		} else if (ret < 0) {
-			DEBUG(ERROR, "Read error");
+			ERROR("Read error");
 			throw std::runtime_error ("Read error");
 			return -1;
 		}
@@ -155,11 +155,11 @@ int AbstractSocket::__write (const void* buffer, size_t size)
 	while (remaining > 0) {
 		ssize_t ret = socket_->write (((char*)buffer)+(size-remaining), remaining);
 		if (ret == 0){
-			DEBUG(DEBUG, "Cannot write more");
+			DEBUG("Cannot write more");
 			// Cannot write more
 			break;
 		} else if (ret < 0) {
-			DEBUG(ERROR, "Write error");
+			ERROR("Write error");
 			throw std::runtime_error ("Write error");
 			return -1;
 		}
