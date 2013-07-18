@@ -34,7 +34,6 @@
 #include "abstract_socket.hpp"
 #include "posix_socket.hpp"
 #include "address.hpp"
-#include "platform.hpp"
 
 namespace net {
 namespace ip4 {
@@ -92,8 +91,8 @@ public:
 	 * @param max_pending_connections Number of maximum allowed pending connections
 	 */
 	server(int max_pending_connections = 100):
-	    AbstractSocket(createSocket(protocol(protocol_type::STREAM,
-	        protocol_domain::IPv4))), max_pending_connections_(max_pending_connections){}
+	    AbstractSocket(protocol(STREAM, IPv4)),
+	    max_pending_connections_(max_pending_connections){}
 
 	/**
 	 * @brief Constructor to accept() a TCP connection on an existing socket.
@@ -104,8 +103,7 @@ public:
 	 * @param max_pending_connections Number of maximum allowed pending connections
 	 */
 	server(AbstractSocket* srv, int max_pending_connections = 100):
-	    AbstractSocket(createSocket(protocol(protocol_type::STREAM,
-	        protocol_domain::IPv4))), max_pending_connections_(max_pending_connections)
+	    AbstractSocket(protocol(STREAM, IPv4)), max_pending_connections_(max_pending_connections)
 	{
 			socket_->accept((srv->getSocket()));
 	}
@@ -164,8 +162,7 @@ public:
 	 * derived from net::AbstractSystemSocket.
 	 */
 	client():
-	    AbstractSocket(createSocket(protocol(protocol_type::STREAM,
-	        protocol_domain::IPv4))){}
+	    AbstractSocket(protocol(STREAM, IPv4)){}
 	
 	/**
 	 * @brief Method to connect the client to an address

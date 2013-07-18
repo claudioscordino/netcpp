@@ -37,6 +37,7 @@
 
 #include "abstract_system_socket.hpp"
 #include "logger.hpp"
+#include "platform.hpp"
 
 namespace net {
 
@@ -110,19 +111,18 @@ protected:
 	 *
 	 * Constructor is protected because only derived classes
 	 * can construct this class.
-	 * @param the platform-dependent socket; this object is
-	 * constructed by the derived class' constructor, afterwards it
-	 * is managed (i.e., kept and deleted) by this class.
+	 * The object is constructed through net::createSocket(),
+	 * which creates a platform-dependent socket.
+	 * @param the protocol type
 	 */
-	AbstractSocket(AbstractSystemSocket* sock):
-		socket_{sock} {}
+	AbstractSocket(const protocol& prot):
+		socket_{createSocket(prot)} {}
 
 
 	/**
 	 * @brief Pointer to the platform-dependent socket
 	 *
-	 * The platform-dependent socket is created by deriverd
-	 * class' constructor and then owned by this class. 
+	 * The platform-dependent socket
 	 */
 	std::unique_ptr<AbstractSystemSocket>  socket_;
 
