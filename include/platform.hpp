@@ -36,9 +36,10 @@
 
 namespace net {
 
-inline AbstractSystemSocket* createSocket(const protocol& prot)
+inline std::unique_ptr<AbstractSystemSocket> createSocket(const protocol& prot)
 {
-	return new net::PosixSocket(prot);
+	std::unique_ptr<AbstractSystemSocket> ret (new net::PosixSocket(prot));
+	return ret;
 }
 
 } // net

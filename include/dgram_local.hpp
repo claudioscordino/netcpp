@@ -55,7 +55,7 @@ public:
 	 * derived from net::AbstractSystemSocket.
 	 */
 	server():
-	    AbstractSocket(protocol(DGRAM, LOCAL)){}
+	    AbstractSocket{protocol(DGRAM, LOCAL)}{}
 	
 	/**
 	 * @brief Method to bind the server to an address
@@ -95,7 +95,7 @@ public:
 	 * derived from net::AbstractSystemSocket.
 	 */
 	client():
-	    AbstractSocket(protocol(DGRAM, LOCAL)){}
+	    AbstractSocket{protocol(DGRAM, LOCAL)}{}
 
 	/**
 	 * @brief Method to connect the client to an address

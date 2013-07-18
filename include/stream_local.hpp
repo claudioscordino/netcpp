@@ -75,8 +75,8 @@ public:
 	 * @param max_pending_connections Number of maximum allowed pending connections
 	 */
 	server(int max_pending_connections = 100):
-	    AbstractSocket(protocol(STREAM, LOCAL)),
-	    max_pending_connections_(max_pending_connections){}
+	    AbstractSocket{protocol(STREAM, LOCAL)},
+	    max_pending_connections_{max_pending_connections}{}
 
 	/**
 	 * @brief Constructor to accept() a local stream connection on an existing socket.
@@ -87,8 +87,8 @@ public:
 	 * @param max_pending_connections Number of maximum allowed pending connections
 	 */
 	server(AbstractSocket* srv, int max_pending_connections = 100):
-	    AbstractSocket(protocol (STREAM, LOCAL)),
-	    max_pending_connections_(max_pending_connections)
+	    AbstractSocket{protocol (STREAM, LOCAL)},
+	    max_pending_connections_{max_pending_connections}
 	{
 		socket_->accept((srv->getSocket()));
 	}
@@ -151,7 +151,7 @@ public:
 	 * derived from net::AbstractSystemSocket.
 	 */
 	client():
-	    AbstractSocket(protocol (STREAM, LOCAL)){}
+	    AbstractSocket{protocol (STREAM, LOCAL)}{}
 
 	/**
 	 * @brief Method to connect the client to a certain local socket
