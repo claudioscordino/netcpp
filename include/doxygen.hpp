@@ -74,7 +74,7 @@
  * made easily designed in C++. This tiny library has been built after the
  * experience with the <a href="http://onposix.sourceforge.net" target="_blank">OnPosix library</a>.
  * The syntax of the library is straightforward. The modular design given by the
- * adoption of design patterns (i.e., Abstract Factory and Bridge) allows to easily
+ * adoption of design patterns (i.e., <i>Abstract Factory</i> and <i>Bridge</i>) allows to easily
  * add new protocols and supported platforms.
  *
  *
@@ -157,12 +157,14 @@
  * The library has a modular internal design which, thanks to the design patterns 
  * used, allows to decouple specific platform-dependent code (which is on the
  * net::AbstractSystemSocket hierarchy) from any protocol design (which is on the
- * net::AbstractSocket hierarchy). Modularity is especially given by the Bridge
+ * net::AbstractSocket hierarchy). Modularity is especially given by the <i>Bridge</i>
  * pattern, which allows two class hierarchies to vary independently.
  *
- * Thus, to add a new supported platform, you only need to inherit your
- * platform-specific class from class net::AbstractSystemSocket.<br>
- * Then, change the concrete class that is allocated by net::createSocket().<br>
+ * Thus, to add a new supported platform, you only need to:
+ * <ol>
+ * <li> inherit your platform-specific class from class net::AbstractSystemSocket.
+ * <li> change the concrete class allocated by net::createSocket().
+ * </ol>
  * The build system, based on cmake, can be easily ported among all supported
  * platforms.
  *
