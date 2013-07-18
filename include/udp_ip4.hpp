@@ -35,6 +35,7 @@
 #include "posix_socket.hpp"
 #include "address.hpp"
 #include "tcp_ip4.hpp"
+#include "platform.hpp"
 
 namespace net {
 namespace ip4 {
@@ -55,7 +56,7 @@ public:
 	 * derived from net::AbstractSystemSocket.
 	 */
 	server():
-	    AbstractSocket(new PosixSocket(protocol(DGRAM, IPv4))){}
+	    AbstractSocket(createSocket(protocol(DGRAM, IPv4))){}
 	
 	/**
 	 * @brief Method to bind the server to an address
@@ -95,7 +96,7 @@ public:
 	 * derived from net::AbstractSystemSocket.
 	 */
 	client():
-	    AbstractSocket(new PosixSocket(protocol(DGRAM, IPv4))){}
+	    AbstractSocket(createSocket(protocol(DGRAM, IPv4))){}
 
 	/**
 	 * @brief Method to connect the client to an address

@@ -34,6 +34,7 @@
 #include "abstract_socket.hpp"
 #include "posix_socket.hpp"
 #include "address.hpp"
+#include "platform.hpp"
 
 namespace net {
 namespace local {
@@ -75,7 +76,7 @@ public:
 	 * @param max_pending_connections Number of maximum allowed pending connections
 	 */
 	server(int max_pending_connections = 100):
-	    AbstractSocket(new PosixSocket(protocol(STREAM, LOCAL))),
+	    AbstractSocket(createSocket(protocol(STREAM, LOCAL))),
 	    max_pending_connections_(max_pending_connections){}
 
 	/**
@@ -87,7 +88,7 @@ public:
 	 * @param max_pending_connections Number of maximum allowed pending connections
 	 */
 	server(AbstractSocket* srv, int max_pending_connections = 100):
-	    AbstractSocket(new PosixSocket(protocol (STREAM, LOCAL))),
+	    AbstractSocket(createSocket(protocol (STREAM, LOCAL))),
 	    max_pending_connections_(max_pending_connections)
 	{
 		socket_->accept((srv->getSocket()));
@@ -151,7 +152,7 @@ public:
 	 * derived from net::AbstractSystemSocket.
 	 */
 	client():
-	    AbstractSocket(new PosixSocket(protocol (STREAM, LOCAL))){}
+	    AbstractSocket(createSocket(protocol (STREAM, LOCAL))){}
 
 	/**
 	 * @brief Method to connect the client to a certain local socket

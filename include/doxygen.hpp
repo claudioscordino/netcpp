@@ -160,7 +160,8 @@
  * net::AbstractSocket hierarchy).
  *
  * Thus, to add a new supported platform, you only need to inherit your
- * platform-specific class from class net::AbstractSystemSocket.
+ * platform-specific class from class net::AbstractSystemSocket.<br>
+ * Then, change the concrete class that is allocated by net::createSocket().<br>
  * The build system, based on cmake, can be easily ported among all supported
  * platforms.
  *
@@ -177,7 +178,7 @@
  * To add a new protocol:
  * <ul>
  * <li> Create a proper namespace (like net::ip4::tcp)
- * <li> Inside the new namespace:
+ * <li> Then, inside the new namespace:
  * <ul>
  * <li> Create an address class inheriting from class Address
  * <li> Create server and client classes inheriting from class net::AbstractSocket
