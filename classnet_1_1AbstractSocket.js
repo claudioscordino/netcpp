@@ -1,6 +1,6 @@
 var classnet_1_1AbstractSocket =
 [
-    [ "AbstractSocket", "classnet_1_1AbstractSocket.html#a9c2182308e7d16e8c503a51eb72feacb", null ],
+    [ "AbstractSocket", "classnet_1_1AbstractSocket.html#ac5f5f5a549e9abd7958c4017ae73cd54", null ],
     [ "__read", "classnet_1_1AbstractSocket.html#a30755de95c241d0c8bae5eae9a38f5a1", null ],
     [ "__write", "classnet_1_1AbstractSocket.html#a98897fefb6948f3a3b2a18500ef40ca7", null ],
     [ "close", "classnet_1_1AbstractSocket.html#a46143fd6de3be9ab9951f140d3ae8c2f", null ],

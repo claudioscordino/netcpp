@@ -28,7 +28,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">NetCpp
-   &#160;<span id="projectnumber">v0.1</span>
+   &#160;<span id="projectnumber">v0.2</span>
    </div>
   </td>
  </tr>
@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('classnet_1_1PosixSocket.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -209,11 +209,11 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (prot == protocol(<a class="code" href="namespacenet.html#ad5751c8b0fa416296be84a5e10d8a0e3">DGRAM</a>, <a class="code" href="namespacenet.html#a2494e23aba629a8595be8b5dd2467d48">IPv4</a>)) </div>
 <div class="line">                <a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a> = socket(AF_INET, SOCK_DGRAM, 0);</div>
 <div class="line">        <span class="keywordflow">else</span> {</div>
-<div class="line">                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Error: protocol unkown&quot;</span>);</div>
+<div class="line">                <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Error: protocol unkown&quot;</span>);</div>
 <div class="line">                <span class="keywordflow">throw</span> std::runtime_error (<span class="stringliteral">&quot;Protocol unknown&quot;</span>);</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a> &lt; 0) {</div>
-<div class="line">                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Error when creating socket&quot;</span>);</div>
+<div class="line">                <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Error when creating socket&quot;</span>);</div>
 <div class="line">                <span class="keywordflow">throw</span> std::runtime_error (<span class="stringliteral">&quot;Socket error&quot;</span>);</div>
 <div class="line">        }</div>
 }</div>
@@ -303,13 +303,13 @@ Here is the call graph for this function:</div>
 <p>Definition at line <a class="el" href="posix__socket_8cpp_source.html#l00130">130</a> of file <a class="el" href="posix__socket_8cpp_source.html">posix_socket.cpp</a>.</p>
 <div class="fragment"><div class="line">{</div>
 <div class="line">        <span class="keywordflow">if</span> ((sock-&gt;getProtocol() != <a class="code" href="classnet_1_1AbstractSystemSocket.html#ad3230cec00a4957731fd3485d8eb6a70" title="Method to get the socket protocol.">getProtocol</a>()) || (<a class="code" href="classnet_1_1AbstractSystemSocket.html#ad3230cec00a4957731fd3485d8eb6a70" title="Method to get the socket protocol.">getProtocol</a>().getType() != <a class="code" href="namespacenet.html#a13c62bda7fafc9d24687bedd883733b0">net::STREAM</a>)) {</div>
-<div class="line">                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Accept not available!&quot;</span>);</div>
+<div class="line">                <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Accept not available!&quot;</span>);</div>
 <div class="line">                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Accept not available&quot;</span>);</div>
 <div class="line">        }</div>
 <div class="line"></div>
 <div class="line">        <a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a> = <a class="code" href="classnet_1_1PosixSocket.html#a64504b4504a65664f28082a85bc65c1e" title="Method to accept() a connection on the socket.">::accept</a>((dynamic_cast&lt;PosixSocket*&gt; (sock))-&gt;<a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a>, NULL, 0);</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a> &lt; 0) {</div>
-<div class="line">                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Error in accept()!&quot;</span>);</div>
+<div class="line">                <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Error in accept()!&quot;</span>);</div>
 <div class="line">                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Accept error&quot;</span>);</div>
 <div class="line">        }</div>
 <div class="line">}</div>
@@ -367,7 +367,7 @@ Here is the call graph for this function:</div>
 <p>Definition at line <a class="el" href="posix__socket_8cpp_source.html#l00174">174</a> of file <a class="el" href="posix__socket_8cpp_source.html">posix_socket.cpp</a>.</p>
 <div class="fragment"><div class="line">{</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1AbstractSystemSocket.html#ad3230cec00a4957731fd3485d8eb6a70" title="Method to get the socket protocol.">getProtocol</a>().getDomain() == <a class="code" href="namespacenet.html#a77471361c24b51ac6faf95e69191bac0">net::LOCAL</a>) {</div>
-<div class="line">                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>, <span class="stringliteral">&quot;Local protocol found&quot;</span>);</div>
+<div class="line">                <a class="code" href="logger_8hpp.html#aecc1f7a8a2493b9e021e5bff76a00a5b" title="Macro to print debug messages.">DEBUG</a>(<span class="stringliteral">&quot;Local protocol found&quot;</span>);</div>
 <div class="line">                <span class="keyword">struct </span>sockaddr_un serv_addr;</div>
 <div class="line">                bzero((<span class="keywordtype">char</span> *) &amp;serv_addr, <span class="keyword">sizeof</span>(serv_addr));</div>
 <div class="line">                serv_addr.sun_family = AF_LOCAL;</div>
@@ -376,7 +376,7 @@ Here is the call graph for this function:</div>
 <div class="line">                <span class="keywordflow">if</span> (::<a class="code" href="classnet_1_1PosixSocket.html#ac5c5949865c5ce0614f7321ffd250f79" title="Method to bind() the socket to an address.">bind</a>(<a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a>, (<span class="keyword">struct</span> sockaddr *) &amp;serv_addr, <span class="keyword">sizeof</span>(serv_addr)) == 0)</div>
 <div class="line">                        <span class="keywordflow">return</span>;</div>
 <div class="line">        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1AbstractSystemSocket.html#ad3230cec00a4957731fd3485d8eb6a70" title="Method to get the socket protocol.">getProtocol</a>().getDomain() == <a class="code" href="namespacenet.html#a2494e23aba629a8595be8b5dd2467d48">net::IPv4</a>) {</div>
-<div class="line">                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>, <span class="stringliteral">&quot;Network protocol found&quot;</span>);</div>
+<div class="line">                <a class="code" href="logger_8hpp.html#aecc1f7a8a2493b9e021e5bff76a00a5b" title="Macro to print debug messages.">DEBUG</a>(<span class="stringliteral">&quot;Network protocol found&quot;</span>);</div>
 <div class="line">                <span class="keyword">struct </span>sockaddr_in serv_addr;</div>
 <div class="line">                bzero((<span class="keywordtype">char</span> *) &amp;serv_addr, <span class="keyword">sizeof</span>(serv_addr));</div>
 <div class="line">                serv_addr.sin_family = AF_INET;</div>
@@ -385,12 +385,12 @@ Here is the call graph for this function:</div>
 <div class="line">                <span class="keywordflow">if</span> (::<a class="code" href="classnet_1_1PosixSocket.html#ac5c5949865c5ce0614f7321ffd250f79" title="Method to bind() the socket to an address.">bind</a>(<a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a>, (<span class="keyword">struct</span> sockaddr *) &amp;serv_addr, <span class="keyword">sizeof</span>(serv_addr)) == 0)</div>
 <div class="line">                        <span class="keywordflow">return</span>;</div>
 <div class="line">        } <span class="keywordflow">else</span> {</div>
-<div class="line">                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Unknown protocol found&quot;</span>);</div>
+<div class="line">                <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Unknown protocol found&quot;</span>);</div>
 <div class="line">        }</div>
 <div class="line"></div>
 <div class="line">error:</div>
 <div class="line">        <a class="code" href="classnet_1_1PosixSocket.html#a46143fd6de3be9ab9951f140d3ae8c2f" title="Method to close the socket.">::close</a>(<a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a>);</div>
-<div class="line">        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Error when binding socket&quot;</span>);</div>
+<div class="line">        <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Error when binding socket&quot;</span>);</div>
 <div class="line">        <span class="keywordflow">throw</span> std::runtime_error (<span class="stringliteral">&quot;Bind error&quot;</span>);</div>
 <div class="line">}</div>
 </div><!-- fragment -->
@@ -512,7 +512,7 @@ Here is the caller graph for this function:</div>
 <div class="line"></div>
 <div class="line">error:</div>
 <div class="line">        <a class="code" href="classnet_1_1PosixSocket.html#a46143fd6de3be9ab9951f140d3ae8c2f" title="Method to close the socket.">::close</a>(<a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a>);</div>
-<div class="line">        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Error when creating client socket&quot;</span>);</div>
+<div class="line">        <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Error when creating client socket&quot;</span>);</div>
 <div class="line">        <span class="keywordflow">throw</span> std::runtime_error (<span class="stringliteral">&quot;Client socket error&quot;</span>);</div>
 <div class="line">}</div>
 </div><!-- fragment -->
@@ -569,12 +569,12 @@ Here is the call graph for this function:</div>
 <p>Definition at line <a class="el" href="posix__socket_8cpp_source.html#l00153">153</a> of file <a class="el" href="posix__socket_8cpp_source.html">posix_socket.cpp</a>.</p>
 <div class="fragment"><div class="line">{</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1AbstractSystemSocket.html#ad3230cec00a4957731fd3485d8eb6a70" title="Method to get the socket protocol.">getProtocol</a>().getType() != <a class="code" href="namespacenet.html#a13c62bda7fafc9d24687bedd883733b0">net::STREAM</a>) {</div>
-<div class="line">                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Listen not available!&quot;</span>);</div>
+<div class="line">                <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Listen not available!&quot;</span>);</div>
 <div class="line">                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Listen not available&quot;</span>);</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">if</span> (::<a class="code" href="classnet_1_1PosixSocket.html#a68aeb15de91fe236b339f6430df0b5b5" title="Listen operation.">listen</a>(<a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a>, max_pending_connections) &lt; 0) {</div>
 <div class="line">                <a class="code" href="classnet_1_1PosixSocket.html#a46143fd6de3be9ab9951f140d3ae8c2f" title="Method to close the socket.">::close</a>(<a class="code" href="classnet_1_1PosixSocket.html#a4d16b31e09a7202f94eb934cde5372e5" title="Number of the file descriptor.">fd_</a>);</div>
-<div class="line">                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Error when listening&quot;</span>);</div>
+<div class="line">                <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Error when listening&quot;</span>);</div>
 <div class="line">                <span class="keywordflow">throw</span> std::runtime_error (<span class="stringliteral">&quot;Listen error&quot;</span>);</div>
 <div class="line">        }</div>
 <div class="line">}</div>
@@ -719,8 +719,8 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/cloud/work/eclipse-workspace/netcpp.orig/include/<a class="el" href="posix__socket_8hpp_source.html">posix_socket.hpp</a></li>
-<li>/home/cloud/work/eclipse-workspace/netcpp.orig/src/<a class="el" href="posix__socket_8cpp_source.html">posix_socket.cpp</a></li>
+<li>/home/cloud/work/netcpp.doc/include/<a class="el" href="posix__socket_8hpp_source.html">posix_socket.hpp</a></li>
+<li>/home/cloud/work/netcpp.doc/src/<a class="el" href="posix__socket_8cpp_source.html">posix_socket.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -728,7 +728,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacenet.html">net</a></li><li class="navelem"><a class="el" href="classnet_1_1PosixSocket.html">PosixSocket</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
+    <li class="footer">Generated on Thu Jul 18 2013 15:53:46 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

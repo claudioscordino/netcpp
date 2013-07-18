@@ -10,6 +10,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "dgram_local.hpp", "dgram__local_8hpp.html", "dgram__local_8hpp" ],
     [ "doxygen.hpp", "doxygen_8hpp.html", null ],
     [ "logger.hpp", "logger_8hpp.html", "logger_8hpp" ],
+    [ "platform.hpp", "platform_8hpp.html", "platform_8hpp" ],
     [ "posix_socket.hpp", "posix__socket_8hpp.html", [
       [ "PosixSocket", "classnet_1_1PosixSocket.html", "classnet_1_1PosixSocket" ]
     ] ],

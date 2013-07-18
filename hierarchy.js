@@ -18,6 +18,6 @@ var hierarchy =
       [ "address", "classnet_1_1ip4_1_1tcp_1_1address.html", null ],
       [ "address", "classnet_1_1local_1_1stream_1_1address.html", null ]
     ] ],
-    [ "Logger", "classnet_1_1Logger.html", null ],
+    [ "Logger", "classlog_1_1Logger.html", null ],
     [ "protocol", "classnet_1_1protocol.html", null ]
 ];

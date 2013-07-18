@@ -1,10 +1,11 @@
-<map id="/home/cloud/work/eclipse&#45;workspace/netcpp.orig/src/dgram_local.cpp" name="/home/cloud/work/eclipse&#45;workspace/netcpp.orig/src/dgram_local.cpp">
-<area shape="rect" id="node3" href="$dgram__local_8hpp.html" title="dgram_local.hpp" alt="" coords="601,117,729,147"/>
-<area shape="rect" id="node7" href="$abstract__socket_8hpp.html" title="abstract_socket.hpp" alt="" coords="271,272,423,301"/>
-<area shape="rect" id="node23" href="$address_8hpp.html" title="address.hpp" alt="" coords="809,427,911,456"/>
-<area shape="rect" id="node39" href="$posix__socket_8hpp.html" title="posix_socket.hpp" alt="" coords="771,272,901,301"/>
-<area shape="rect" id="node46" href="$stream__local_8hpp.html" title="stream_local.hpp" alt="" coords="600,195,731,224"/>
-<area shape="rect" id="node18" href="$abstract__system__socket_8hpp.html" title="abstract_system_socket.hpp" alt="" coords="493,349,699,379"/>
-<area shape="rect" id="node27" href="$logger_8hpp.html" title="logger.hpp" alt="" coords="221,349,309,379"/>
-<area shape="rect" id="node21" href="$protocol_8hpp.html" title="protocol.hpp" alt="" coords="684,427,785,456"/>
+<map id="/home/cloud/work/netcpp.doc/src/dgram_local.cpp" name="/home/cloud/work/netcpp.doc/src/dgram_local.cpp">
+<area shape="rect" id="node3" href="$dgram__local_8hpp.html" title="dgram_local.hpp" alt="" coords="432,101,560,131"/>
+<area shape="rect" id="node7" href="$abstract__socket_8hpp.html" title="abstract_socket.hpp" alt="" coords="565,256,717,285"/>
+<area shape="rect" id="node23" href="$address_8hpp.html" title="address.hpp" alt="" coords="144,565,245,595"/>
+<area shape="rect" id="node47" href="$posix__socket_8hpp.html" title="posix_socket.hpp" alt="" coords="944,411,1075,440"/>
+<area shape="rect" id="node55" href="$stream__local_8hpp.html" title="stream_local.hpp" alt="" coords="431,179,561,208"/>
+<area shape="rect" id="node18" href="$abstract__system__socket_8hpp.html" title="abstract_system_socket.hpp" alt="" coords="767,488,972,517"/>
+<area shape="rect" id="node27" href="$logger_8hpp.html" title="logger.hpp" alt="" coords="437,333,525,363"/>
+<area shape="rect" id="node41" href="$platform_8hpp.html" title="platform.hpp" alt="" coords="688,333,792,363"/>
+<area shape="rect" id="node21" href="$protocol_8hpp.html" title="protocol.hpp" alt="" coords="859,565,960,595"/>
 </map>

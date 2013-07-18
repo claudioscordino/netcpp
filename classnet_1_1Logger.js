@@ -10,6 +10,7 @@ var classnet_1_1Logger =
     [ "print", "classnet_1_1Logger.html#a3cc8038ea181163e476ed33638765074", null ],
     [ "unlock", "classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403", null ],
     [ "fileSeverityLevel_", "classnet_1_1Logger.html#ae4c1a9d717405baa78677a7552c0df9b", null ],
+    [ "initialTime_", "classnet_1_1Logger.html#a8d7c9503b631969a3412473bcfa8b5a4", null ],
     [ "latestMsgPrintedOnFile_", "classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3", null ],
     [ "latestMsgPrintedOnScreen_", "classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643", null ],
     [ "lock_", "classnet_1_1Logger.html#abc76da0f3a3ac0b07d43633a1c194418", null ],

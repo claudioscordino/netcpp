@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>NetCpp: /home/cloud/work/eclipse-workspace/netcpp.orig/src/logger.cpp Source File</title>
+<title>NetCpp: /home/cloud/work/netcpp.doc/src/logger.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,7 +28,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">NetCpp
-   &#160;<span id="projectnumber">v0.1</span>
+   &#160;<span id="projectnumber">v0.2</span>
    </div>
   </td>
  </tr>
@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('logger_8cpp_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -138,180 +138,150 @@ $(document).ready(function(){initNavTree('logger_8cpp_source.html','');});
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="logger_8hpp.html">logger.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">namespace </span>net {</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="namespacelog.html">   35</a></span>&#160;<span class="keyword">namespace </span>log {</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">// Definition (and initialization) of static attributes</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;Logger* <a class="code" href="classnet_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">Logger::m_</a> = 0;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<a class="code" href="classlog_1_1Logger.html" title="Simple logger to log messages on file and console.">Logger</a>* <a class="code" href="classlog_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">Logger::m_</a> = 0;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="logger_8cpp.html#a04a07fa8a39733d5b560afcc7277a0dd">   40</a></span>&#160;<span class="preprocessor">#define LOGGER_MULTITHREAD</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#ifdef LOGGER_MULTITHREAD</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;std::mutex <a class="code" href="classnet_1_1Logger.html#abc76da0f3a3ac0b07d43633a1c194418" title="Lock for mutual exclusion between different threads.">Logger::lock_</a> ;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#aa81aed607133209dade63a226818224d">   45</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>()</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="classnet_1_1Logger.html#abc76da0f3a3ac0b07d43633a1c194418" title="Lock for mutual exclusion between different threads.">lock_</a>.lock();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403">   50</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>()</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classnet_1_1Logger.html#abc76da0f3a3ac0b07d43633a1c194418" title="Lock for mutual exclusion between different threads.">lock_</a>.unlock();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor"></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>(){}</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>(){}</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> * @brief Constructor.</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * It is a private constructor, called only by getInstance() and only the</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> * first time. It is called inside a lock, so lock inside this method</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"> * is not required.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"> * It only initializes the initial time. All configuration is done inside the</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"> * configure() method.</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a4fac0c9f6ee2dce6abd726264b9195f7">   69</a></span>&#160;<a class="code" href="classnet_1_1Logger.html#a4fac0c9f6ee2dce6abd726264b9195f7" title="Constructor.">Logger::Logger</a>():</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                fileSeverityLevel_(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75">OFF</a>),</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                screenSeverityLevel_(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>),</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                latestMsgPrintedOnFile_(false),</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                latestMsgPrintedOnScreen_(false)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        gettimeofday(&amp;initialTime_, NULL);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"> * @brief Method to configure the logger. </span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"> * This method is called by the DEBUG_CONF() macro.</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"> * To make implementation easier, the old stream is always closed.</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"> * Then, in case, it is open again in append mode.</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"> * @param outputFile Name of the file used for logging</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"> * @param configuration Configuration (i.e., log on file and on screen on or off)</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> * @param fileSeverityLevel Severity threshold for file</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> * @param screenSeverityLevel Severity threshold for screen</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a0b7db44a5dc99ef725e0f40e3ff7057a">   89</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#a0b7db44a5dc99ef725e0f40e3ff7057a" title="Method to configure the logger.">Logger::configure</a> (<span class="keyword">const</span> std::string&amp;      outputFile,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                        <span class="keyword">const</span> <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a>  fileSeverityLevel,</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                        <span class="keyword">const</span> <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a>  screenSeverityLevel)</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <a class="code" href="classnet_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3" title="Debug: to know if the latest message has been printed on file.">latestMsgPrintedOnFile_</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643" title="Debug: to know if the latest message has been printed on screen.">latestMsgPrintedOnScreen_</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#ifdef LOGGER_MULTITHREAD</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span>        std::mutex <a class="code" href="classlog_1_1Logger.html#abc76da0f3a3ac0b07d43633a1c194418" title="Lock for mutual exclusion between different threads.">Logger::lock_</a> ;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classlog_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>()</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <a class="code" href="classlog_1_1Logger.html#abc76da0f3a3ac0b07d43633a1c194418" title="Lock for mutual exclusion between different threads.">lock_</a>.lock();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classlog_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>()</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <a class="code" href="classlog_1_1Logger.html#abc76da0f3a3ac0b07d43633a1c194418" title="Lock for mutual exclusion between different threads.">lock_</a>.unlock();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="classlog_1_1Logger.html#aa81aed607133209dade63a226818224d">   53</a></span>&#160;<span class="preprocessor"></span>        <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classlog_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>(){}</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="classlog_1_1Logger.html#a9278be8203e1c42e2619179882ae4403">   54</a></span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classlog_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>(){}</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"> * @brief Constructor.</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> * It is a private constructor, called only by getInstance() and only the</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * first time. It is called inside a lock, so lock inside this method</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * is not required.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> * It only initializes the initial time. All configuration is done inside the</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"> * configure() method.</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="code" href="classlog_1_1Logger.html#a4fac0c9f6ee2dce6abd726264b9195f7">   67</a></span>&#160;<a class="code" href="classlog_1_1Logger.html#a4fac0c9f6ee2dce6abd726264b9195f7" title="Constructor.">Logger::Logger</a>():</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                logFile_(<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="classlog_1_1Logger.html#a8d7c9503b631969a3412473bcfa8b5a4" title="Initial time (used to print relative times)">initialTime_</a> = std::chrono::system_clock::now();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"> * @brief Method to configure the logger. </span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"> * This method is called by the LOG_FILE() macro.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"> * @param outputFile Name of the file used for logging</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="code" href="classlog_1_1Logger.html#ac1a32df606d14ec16ede078fdc2b442c">   79</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classlog_1_1Logger.html#ac1a32df606d14ec16ede078fdc2b442c" title="Method to configure the logger.">Logger::setFile</a> (<span class="keyword">const</span> std::string&amp; outputFile)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <a class="code" href="classlog_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="comment">// Compute the whole file name:</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                std::ostringstream oss;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                std::time_t currTime = std::chrono::system_clock::to_time_t(now);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                <span class="keyword">struct </span>tm *currTm = std::localtime(&amp;currTime);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                oss &lt;&lt; outputFile &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                                (1900 + currTm-&gt;tm_year) &lt;&lt; <span class="stringliteral">&quot;-&quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                                currTm-&gt;tm_mon &lt;&lt; <span class="stringliteral">&quot;-&quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                                currTm-&gt;tm_mday &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                                currTm-&gt;tm_hour &lt;&lt; <span class="stringliteral">&quot;-&quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                currTm-&gt;tm_min &lt;&lt; <span class="stringliteral">&quot;-&quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                                currTm-&gt;tm_sec &lt;&lt; <span class="stringliteral">&quot;.log&quot;</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <a class="code" href="classlog_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526" title="Initial part of the name of the file used for Logging.">logFile_</a> = oss.str().c_str();</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <span class="comment">// Close the old stream, if needed</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                <span class="keywordflow">if</span> ((<a class="code" href="classnet_1_1Logger.html#ae4c1a9d717405baa78677a7552c0df9b">fileSeverityLevel_</a> != <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75">OFF</a>) &amp;&amp; (fileSeverityLevel == <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75">OFF</a>))</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        <a class="code" href="classnet_1_1Logger.html#a17eef15bcb146b377ac28137ff780364" title="Stream used when logging on a file.">out_</a>.close();</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                <span class="comment">// Compute a new file name, if needed</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                <span class="keywordflow">if</span> (outputFile != <a class="code" href="classnet_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526" title="Initial part of the name of the file used for Logging.">logFile_</a>){</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                        std::ostringstream oss;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                        time_t currTime;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                        time(&amp;currTime);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                        <span class="keyword">struct </span>tm *currTm = localtime(&amp;currTime);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        oss &lt;&lt; outputFile &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                                        currTm-&gt;tm_mday &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                                        currTm-&gt;tm_mon &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                                        (1900 + currTm-&gt;tm_year) &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                                        currTm-&gt;tm_hour &lt;&lt; <span class="stringliteral">&quot;-&quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                                        currTm-&gt;tm_min &lt;&lt; <span class="stringliteral">&quot;-&quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                                        currTm-&gt;tm_sec &lt;&lt; <span class="stringliteral">&quot;.log&quot;</span>;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                        <a class="code" href="classnet_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526" title="Initial part of the name of the file used for Logging.">logFile_</a> = oss.str().c_str();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <span class="comment">// Open a new stream:</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                <a class="code" href="classlog_1_1Logger.html#a17eef15bcb146b377ac28137ff780364" title="Stream used when logging on a file.">out_</a>.open(<a class="code" href="classlog_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526" title="Initial part of the name of the file used for Logging.">logFile_</a>.c_str(), std::ios::app);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                <a class="code" href="classlog_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"> * @brief Destructor.</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"> * It only closes the file, if open, and cleans memory.</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="code" href="classlog_1_1Logger.html#a0d77f27eb95c246d555904aaf08018eb">  109</a></span>&#160;<a class="code" href="classlog_1_1Logger.html#a0d77f27eb95c246d555904aaf08018eb" title="Destructor.">Logger::~Logger</a>()</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;{</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="classlog_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classlog_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526" title="Initial part of the name of the file used for Logging.">logFile_</a> != <span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <a class="code" href="classlog_1_1Logger.html#a17eef15bcb146b377ac28137ff780364" title="Stream used when logging on a file.">out_</a>.close();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classlog_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <a class="code" href="classlog_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>();</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="comment">// Open a new stream, if needed</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <span class="keywordflow">if</span> ((<a class="code" href="classnet_1_1Logger.html#ae4c1a9d717405baa78677a7552c0df9b">fileSeverityLevel_</a> == <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75">OFF</a>) &amp;&amp; (fileSeverityLevel != <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75">OFF</a>))</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                        <a class="code" href="classnet_1_1Logger.html#a17eef15bcb146b377ac28137ff780364" title="Stream used when logging on a file.">out_</a>.open(<a class="code" href="classnet_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526" title="Initial part of the name of the file used for Logging.">logFile_</a>.c_str(), std::ios::app);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <a class="code" href="classnet_1_1Logger.html#ae4c1a9d717405baa78677a7552c0df9b">fileSeverityLevel_</a> = fileSeverityLevel;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                <a class="code" href="classnet_1_1Logger.html#a94c743662c451d49dbe90aa3b9402eb7">screenSeverityLevel_</a> = screenSeverityLevel;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <a class="code" href="classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>();</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment"> * @brief Destructor.</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"> * It only closes the file, if open, and cleans memory.</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
-<div class="line"><a name="l00133"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a0d77f27eb95c246d555904aaf08018eb">  133</a></span>&#160;<a class="code" href="classnet_1_1Logger.html#a0d77f27eb95c246d555904aaf08018eb" title="Destructor.">Logger::~Logger</a>()</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;{</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="classnet_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>();</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1Logger.html#ae4c1a9d717405baa78677a7552c0df9b">fileSeverityLevel_</a> != <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75">OFF</a>)</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                <a class="code" href="classnet_1_1Logger.html#a17eef15bcb146b377ac28137ff780364" title="Stream used when logging on a file.">out_</a>.close();</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keyword">delete</span> <a class="code" href="classnet_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a>;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <a class="code" href="classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>();</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment"> * @brief Method to get a reference to the object (i.e., Singleton)</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment"> * This is a static method.</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment"> * @return Reference to the object.</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece">  149</a></span>&#160;<a class="code" href="classnet_1_1Logger.html" title="Simple logger to log messages on file and console.">Logger</a>&amp; <a class="code" href="classnet_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton)">Logger::getInstance</a>()</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;{</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a> == 0){</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <a class="code" href="classnet_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>();</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a> == 0)</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                <a class="code" href="classnet_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a> = <span class="keyword">new</span> <a class="code" href="classnet_1_1Logger.html#a4fac0c9f6ee2dce6abd726264b9195f7" title="Constructor.">Logger</a>;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <a class="code" href="classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>();</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordflow">return</span> *<a class="code" href="classnet_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a>;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;}</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment"> * @brief Method used to print messages.</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment"> * This method is called by the DEBUG() macro.</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment"> * @param severitylevel Severity of the debug message</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment"> * @param file Source file where the method has been called (set equal to __FILE__</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment"> *            by the DEBUG macro)</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment"> * @param line Number of line in the source code where the method has been</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment"> * called (automatically set equal to __LINE__ by the DEBUG macro)</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment"> * @param message Message to be logged</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno"><a class="code" href="classnet_1_1Logger.html#a3cc8038ea181163e476ed33638765074">  172</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classnet_1_1Logger.html#a3cc8038ea181163e476ed33638765074" title="Method used to print messages.">Logger::print</a>(<span class="keyword">const</span> <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe" title="Severity level.">severity_level_t</a> severityLevel,</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                                        <span class="keyword">const</span> std::string&amp; file,</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                                        <span class="keyword">const</span> <span class="keywordtype">int</span> line,</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                                        <span class="keyword">const</span> std::string&amp; message)</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;{</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keyword">struct </span>timeval currentTime;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        gettimeofday(&amp;currentTime, NULL);</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <a class="code" href="classnet_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>();</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3" title="Debug: to know if the latest message has been printed on file.">latestMsgPrintedOnFile_</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643" title="Debug: to know if the latest message has been printed on screen.">latestMsgPrintedOnScreen_</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1Logger.html#ae4c1a9d717405baa78677a7552c0df9b">fileSeverityLevel_</a> &gt;= severityLevel){</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                <a class="code" href="classnet_1_1Logger.html#a17eef15bcb146b377ac28137ff780364" title="Stream used when logging on a file.">out_</a> &lt;&lt; <span class="stringliteral">&quot;DEBUG [&quot;</span> &lt;&lt; file &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; line &lt;&lt; <span class="stringliteral">&quot;] @ &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                    (currentTime.tv_sec - initialTime_.tv_sec) &lt;&lt;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                    <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; message &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                <a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3" title="Debug: to know if the latest message has been printed on file.">latestMsgPrintedOnFile_</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        }</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1Logger.html#a94c743662c451d49dbe90aa3b9402eb7">screenSeverityLevel_</a> &gt;= severityLevel){</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                std::cerr &lt;&lt; <span class="stringliteral">&quot;DEBUG [&quot;</span> &lt;&lt; file &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; line &lt;&lt; <span class="stringliteral">&quot;] @ &quot;</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                    &lt;&lt; (currentTime.tv_sec - initialTime_.tv_sec) &lt;&lt;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                    <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; message &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                <a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643" title="Debug: to know if the latest message has been printed on screen.">latestMsgPrintedOnScreen_</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <a class="code" href="classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>();</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;}</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;} <span class="comment">//net</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment"> * @brief Method to get a reference to the object (i.e., Singleton)</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"> * This is a static method.</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"> * @return Reference to the object.</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="code" href="classlog_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece">  125</a></span>&#160;<a class="code" href="classlog_1_1Logger.html" title="Simple logger to log messages on file and console.">Logger</a>&amp; <a class="code" href="classlog_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton)">Logger::getInstance</a>()</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;{</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classlog_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a> == 0){</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <a class="code" href="classlog_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classlog_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a> == 0)</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                <a class="code" href="classlog_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a> = <span class="keyword">new</span> <a class="code" href="classlog_1_1Logger.html#a4fac0c9f6ee2dce6abd726264b9195f7" title="Constructor.">Logger</a>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <a class="code" href="classlog_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>();</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordflow">return</span> *<a class="code" href="classlog_1_1Logger.html#a88cc209051669c3e3ef5bd12bb5ae10b" title="Pointer to the unique Logger (i.e., Singleton)">m_</a>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">/**</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment"> * @brief Method used to print messages.</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment"> * This method is called by the DEBUG(), WARNING() and ERROR() macros.</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment"> * @param severitylevel Severity of the debug message</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment"> * @param file Source file where the method has been called (set equal to __FILE__</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment"> *            by the DEBUG macro)</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment"> * @param line Number of line in the source code where the method has been</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment"> * called (automatically set equal to __LINE__ by the DEBUG macro)</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment"> * @param message Message to be logged</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="code" href="classlog_1_1Logger.html#a32aa9e5b552d41e5a61edbc0acc7494c">  148</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classlog_1_1Logger.html#a32aa9e5b552d41e5a61edbc0acc7494c" title="Method used to print messages.">Logger::print</a>(<span class="keyword">const</span> std::string&amp; file,</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">int</span> line,</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                        <span class="keyword">const</span> std::string&amp; message)</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;{</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        std::chrono::time_point&lt;std::chrono::system_clock&gt; currentTime = </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                std::chrono::system_clock::now();</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordtype">int</span> elapsed_seconds = std::chrono::duration_cast&lt;std::chrono::seconds&gt;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                             (currentTime - <a class="code" href="classlog_1_1Logger.html#a8d7c9503b631969a3412473bcfa8b5a4" title="Initial time (used to print relative times)">initialTime_</a>).count();</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <a class="code" href="classlog_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>();</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classlog_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526" title="Initial part of the name of the file used for Logging.">logFile_</a> != <span class="stringliteral">&quot;&quot;</span>) {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                <a class="code" href="classlog_1_1Logger.html#a17eef15bcb146b377ac28137ff780364" title="Stream used when logging on a file.">out_</a> &lt;&lt; <span class="stringliteral">&quot;[ &quot;</span> &lt;&lt; elapsed_seconds &lt;&lt; <span class="stringliteral">&quot; ] &quot;</span> &lt;&lt; message &lt;&lt;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                <span class="stringliteral">&quot;\t[ &quot;</span> &lt;&lt; file &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; line &lt;&lt; <span class="stringliteral">&quot;]&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        std::cerr &lt;&lt; <span class="stringliteral">&quot;[ &quot;</span> &lt;&lt; elapsed_seconds &lt;&lt; <span class="stringliteral">&quot; ] &quot;</span> &lt;&lt; message &lt;&lt;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="stringliteral">&quot;\t[ &quot;</span> &lt;&lt; file &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; line &lt;&lt; <span class="stringliteral">&quot;]&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <a class="code" href="classlog_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;}</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;} <span class="comment">// log</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="logger_8cpp.html">logger.cpp</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
+    <li class="footer">Generated on Thu Jul 18 2013 15:53:46 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

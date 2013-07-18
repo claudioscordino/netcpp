@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>NetCpp: /home/cloud/work/eclipse-workspace/netcpp.orig/src/abstract_socket.cpp Source File</title>
+<title>NetCpp: /home/cloud/work/netcpp.doc/src/abstract_socket.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,7 +28,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">NetCpp
-   &#160;<span id="projectnumber">v0.1</span>
+   &#160;<span id="projectnumber">v0.2</span>
    </div>
   </td>
  </tr>
@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('abstract__socket_8cpp_source.html','')
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -158,14 +158,14 @@ $(document).ready(function(){initNavTree('abstract__socket_8cpp_source.html','')
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">int</span> ret;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">if</span> (buf.<a class="code" href="structnet_1_1____buffer.html#add803b988a784ef4f9d3a88a7d6e37f2" title="Size (in bytes) of data.">size_</a> == 0 || size &gt; buf.<a class="code" href="structnet_1_1____buffer.html#add803b988a784ef4f9d3a88a7d6e37f2" title="Size (in bytes) of data.">size_</a>){</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Wrong buffer size!&quot;</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Wrong buffer size!&quot;</span>);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <span class="keywordflow">throw</span> std::runtime_error (<span class="stringliteral">&quot;Wrong buffer size&quot;</span>);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classnet_1_1AbstractSocket.html#af3571714217b5da5e546d840074b8113" title="Mutex for synchronization with asynchronous read operations.">read_lock_</a>.lock();</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                ret = <a class="code" href="classnet_1_1AbstractSocket.html#a30755de95c241d0c8bae5eae9a38f5a1" title="Low-level read.">__read</a>(buf.<a class="code" href="structnet_1_1____buffer.html#afbe2be78a3ee81b2e3c6821cec74e116" title="Pointer to data in memory.">ptr_</a>, size);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        } <span class="keywordflow">catch</span> (...) {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Read error!&quot;</span>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Read error!&quot;</span>);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        </div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="classnet_1_1AbstractSocket.html#af3571714217b5da5e546d840074b8113" title="Mutex for synchronization with asynchronous read operations.">read_lock_</a>.unlock();</div>
@@ -194,14 +194,14 @@ $(document).ready(function(){initNavTree('abstract__socket_8cpp_source.html','')
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordtype">int</span> ret;</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">if</span> (buf.<a class="code" href="structnet_1_1____buffer.html#add803b988a784ef4f9d3a88a7d6e37f2" title="Size (in bytes) of data.">size_</a> == 0 || size &gt; buf.<a class="code" href="structnet_1_1____buffer.html#add803b988a784ef4f9d3a88a7d6e37f2" title="Size (in bytes) of data.">size_</a>){</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Wrong buffer size!&quot;</span>);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Wrong buffer size!&quot;</span>);</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">throw</span> std::runtime_error (<span class="stringliteral">&quot;Wrong buffer size&quot;</span>);</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        }</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="classnet_1_1AbstractSocket.html#a98ce9c3ce04dbaab5e55851fbcca534c" title="Mutex for synchronization with asynchronous write operations.">write_lock_</a>.lock();</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                ret = <a class="code" href="classnet_1_1AbstractSocket.html#a98897fefb6948f3a3b2a18500ef40ca7" title="Low-level write.">__write</a>(buf.<a class="code" href="structnet_1_1____buffer.html#afbe2be78a3ee81b2e3c6821cec74e116" title="Pointer to data in memory.">ptr_</a>, size);</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        } <span class="keywordflow">catch</span> (...) {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Write error!&quot;</span>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Write error!&quot;</span>);</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        }</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        </div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <a class="code" href="classnet_1_1AbstractSocket.html#a98ce9c3ce04dbaab5e55851fbcca534c" title="Mutex for synchronization with asynchronous write operations.">write_lock_</a>.unlock();</div>
@@ -229,10 +229,10 @@ $(document).ready(function(){initNavTree('abstract__socket_8cpp_source.html','')
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                    remaining);</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <span class="keywordflow">if</span> (ret == 0){</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                        <span class="comment">// End of file reached</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>, <span class="stringliteral">&quot;End of file reached&quot;</span>);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                        <a class="code" href="logger_8hpp.html#aecc1f7a8a2493b9e021e5bff76a00a5b" title="Macro to print debug messages.">DEBUG</a>(<span class="stringliteral">&quot;End of file reached&quot;</span>);</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (ret &lt; 0) {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Read error&quot;</span>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                        <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Read error&quot;</span>);</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                        <span class="keywordflow">throw</span> std::runtime_error (<span class="stringliteral">&quot;Read error&quot;</span>);</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                        <span class="keywordflow">return</span> -1;</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                }</div>
@@ -261,11 +261,11 @@ $(document).ready(function(){initNavTree('abstract__socket_8cpp_source.html','')
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">while</span> (remaining &gt; 0) {</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                ssize_t ret = socket_-&gt;write (((<span class="keywordtype">char</span>*)buffer)+(size-remaining), remaining);</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                <span class="keywordflow">if</span> (ret == 0){</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>, <span class="stringliteral">&quot;Cannot write more&quot;</span>);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                        <a class="code" href="logger_8hpp.html#aecc1f7a8a2493b9e021e5bff76a00a5b" title="Macro to print debug messages.">DEBUG</a>(<span class="stringliteral">&quot;Cannot write more&quot;</span>);</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                        <span class="comment">// Cannot write more</span></div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (ret &lt; 0) {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                        <a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90">ERROR</a>, <span class="stringliteral">&quot;Write error&quot;</span>);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                        <a class="code" href="logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3" title="Macro to print error messages.">ERROR</a>(<span class="stringliteral">&quot;Write error&quot;</span>);</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                        <span class="keywordflow">throw</span> std::runtime_error (<span class="stringliteral">&quot;Write error&quot;</span>);</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                        <span class="keywordflow">return</span> -1;</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                }</div>
@@ -281,7 +281,7 @@ $(document).ready(function(){initNavTree('abstract__socket_8cpp_source.html','')
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="abstract__socket_8cpp.html">abstract_socket.cpp</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
+    <li class="footer">Generated on Thu Jul 18 2013 15:53:46 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

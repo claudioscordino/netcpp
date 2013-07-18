@@ -158,6 +158,9 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a764f938b47b7ce29bbcfb7d8841a2526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial part of the name of the file used for Logging.  <a href="#a764f938b47b7ce29bbcfb7d8841a2526"></a><br/></td></tr>
 <tr class="memitem:a17eef15bcb146b377ac28137ff780364"><td class="memItemLeft" align="right" valign="top">std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1Logger.html#a17eef15bcb146b377ac28137ff780364">out_</a></td></tr>
 <tr class="memdesc:a17eef15bcb146b377ac28137ff780364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream used when logging on a file.  <a href="#a17eef15bcb146b377ac28137ff780364"></a><br/></td></tr>
+<tr class="memitem:a8d7c9503b631969a3412473bcfa8b5a4"><td class="memItemLeft" align="right" valign="top">std::chrono::time_point<br class="typebreak"/>
+&lt; std::chrono::system_clock &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1Logger.html#a8d7c9503b631969a3412473bcfa8b5a4">initialTime_</a></td></tr>
+<tr class="memdesc:a8d7c9503b631969a3412473bcfa8b5a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial time (used to print relative times)  <a href="#a8d7c9503b631969a3412473bcfa8b5a4"></a><br/></td></tr>
 <tr class="memitem:a53a78d31eee16d7c5a14a179603422d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3">latestMsgPrintedOnFile_</a></td></tr>
 <tr class="memdesc:a53a78d31eee16d7c5a14a179603422d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug: to know if the latest message has been printed on file.  <a href="#a53a78d31eee16d7c5a14a179603422d3"></a><br/></td></tr>
 <tr class="memitem:a77d9e9497977727c55731431d5844643"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643">latestMsgPrintedOnScreen_</a></td></tr>
@@ -178,7 +181,7 @@ Static Private Attributes</h2></td></tr>
 </div><!-- fragment --><p>Example of usage of the <a class="el" href="classnet_1_1Logger.html" title="Simple logger to log messages on file and console.">Logger</a>: </p>
 <div class="fragment"><div class="line"><a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>(<a class="code" href="logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f">DEBUG</a>, <span class="stringliteral">&quot;hello &quot;</span> &lt;&lt; <span class="stringliteral">&quot;world&quot;</span>);</div>
 </div><!-- fragment --> 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00111">111</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00112">112</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a4fac0c9f6ee2dce6abd726264b9195f7"></a>
 <div class="memitem">
@@ -211,7 +214,7 @@ Static Private Attributes</h2></td></tr>
 <div class="line">                <a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3" title="Debug: to know if the latest message has been printed on file.">latestMsgPrintedOnFile_</a>(<span class="keyword">false</span>),</div>
 <div class="line">                <a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643" title="Debug: to know if the latest message has been printed on screen.">latestMsgPrintedOnScreen_</a>(<span class="keyword">false</span>)</div>
 <div class="line">{</div>
-<div class="line">        gettimeofday(&amp;initialTime_, NULL);</div>
+<div class="line">        <a class="code" href="classnet_1_1Logger.html#a8d7c9503b631969a3412473bcfa8b5a4" title="Initial time (used to print relative times)">initialTime_</a> = std::chrono::system_clock::now();</div>
 }</div>
 </div><!-- fragment -->
 <p><div class="dynheader">
@@ -326,13 +329,13 @@ Here is the call graph for this function:</div>
 <div class="line">                <span class="comment">// Compute a new file name, if needed</span></div>
 <div class="line">                <span class="keywordflow">if</span> (outputFile != <a class="code" href="classnet_1_1Logger.html#a764f938b47b7ce29bbcfb7d8841a2526" title="Initial part of the name of the file used for Logging.">logFile_</a>){</div>
 <div class="line">                        std::ostringstream oss;</div>
-<div class="line">                        time_t currTime;</div>
-<div class="line">                        time(&amp;currTime);</div>
-<div class="line">                        <span class="keyword">struct </span>tm *currTm = localtime(&amp;currTime);</div>
+<div class="line">                        <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
+<div class="line">                        std::time_t currTime = std::chrono::system_clock::to_time_t(now);</div>
+<div class="line">                        <span class="keyword">struct </span>tm *currTm = std::localtime(&amp;currTime);</div>
 <div class="line">                        oss &lt;&lt; outputFile &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt;</div>
+<div class="line">                                        (1900 + currTm-&gt;tm_year) &lt;&lt; <span class="stringliteral">&quot;-&quot;</span> &lt;&lt;</div>
+<div class="line">                                        currTm-&gt;tm_mon &lt;&lt; <span class="stringliteral">&quot;-&quot;</span> &lt;&lt;</div>
 <div class="line">                                        currTm-&gt;tm_mday &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt;</div>
-<div class="line">                                        currTm-&gt;tm_mon &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt;</div>
-<div class="line">                                        (1900 + currTm-&gt;tm_year) &lt;&lt; <span class="stringliteral">&quot;_&quot;</span> &lt;&lt;</div>
 <div class="line">                                        currTm-&gt;tm_hour &lt;&lt; <span class="stringliteral">&quot;-&quot;</span> &lt;&lt;</div>
 <div class="line">                                        currTm-&gt;tm_min &lt;&lt; <span class="stringliteral">&quot;-&quot;</span> &lt;&lt;</div>
 <div class="line">                                        currTm-&gt;tm_sec &lt;&lt; <span class="stringliteral">&quot;.log&quot;</span>;</div>
@@ -431,7 +434,7 @@ Here is the call graph for this function:</div>
 <p>Method to know if the latest message has been printed on file. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if it has been printed; false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00130">130</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00131">131</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 <div class="fragment"><div class="line">                                                   {</div>
 <div class="line">                <span class="keywordflow">return</span> <a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3" title="Debug: to know if the latest message has been printed on file.">latestMsgPrintedOnFile_</a>;</div>
 <div class="line">        }</div>
@@ -462,7 +465,7 @@ Here is the call graph for this function:</div>
 <p>Method to know if the latest message has been printed on file. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if it has been printed; false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00139">139</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00140">140</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 <div class="fragment"><div class="line">                                                     {</div>
 <div class="line">                <span class="keywordflow">return</span> <a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643" title="Debug: to know if the latest message has been printed on screen.">latestMsgPrintedOnScreen_</a>;</div>
 <div class="line">        }</div>
@@ -558,8 +561,11 @@ Here is the caller graph for this function:</div>
 
 <p>Definition at line <a class="el" href="logger_8cpp_source.html#l00172">172</a> of file <a class="el" href="logger_8cpp_source.html">logger.cpp</a>.</p>
 <div class="fragment"><div class="line">{</div>
-<div class="line">        <span class="keyword">struct </span>timeval currentTime;</div>
-<div class="line">        gettimeofday(&amp;currentTime, NULL);</div>
+<div class="line">        std::chrono::time_point&lt;std::chrono::system_clock&gt; currentTime = </div>
+<div class="line">                std::chrono::system_clock::now();</div>
+<div class="line"></div>
+<div class="line">        <span class="keywordtype">int</span> elapsed_seconds = std::chrono::duration_cast&lt;std::chrono::seconds&gt;</div>
+<div class="line">                             (currentTime - <a class="code" href="classnet_1_1Logger.html#a8d7c9503b631969a3412473bcfa8b5a4" title="Initial time (used to print relative times)">initialTime_</a>).count();</div>
 <div class="line"></div>
 <div class="line">        <a class="code" href="classnet_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading.">Logger::lock</a>();</div>
 <div class="line"></div>
@@ -567,16 +573,16 @@ Here is the caller graph for this function:</div>
 <div class="line">        <a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643" title="Debug: to know if the latest message has been printed on screen.">latestMsgPrintedOnScreen_</a> = <span class="keyword">false</span>;</div>
 <div class="line"></div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1Logger.html#ae4c1a9d717405baa78677a7552c0df9b">fileSeverityLevel_</a> &gt;= severityLevel){</div>
-<div class="line">                <a class="code" href="classnet_1_1Logger.html#a17eef15bcb146b377ac28137ff780364" title="Stream used when logging on a file.">out_</a> &lt;&lt; <span class="stringliteral">&quot;DEBUG [&quot;</span> &lt;&lt; file &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; line &lt;&lt; <span class="stringliteral">&quot;] @ &quot;</span> &lt;&lt;</div>
-<div class="line">                    (currentTime.tv_sec - initialTime_.tv_sec) &lt;&lt;</div>
-<div class="line">                    <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; message &lt;&lt; std::endl;</div>
+<div class="line">                <a class="code" href="classnet_1_1Logger.html#a17eef15bcb146b377ac28137ff780364" title="Stream used when logging on a file.">out_</a> &lt;&lt; <span class="stringliteral">&quot;DEBUG [&quot;</span> &lt;&lt; file &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; line &lt;&lt; <span class="stringliteral">&quot;] @ &quot;</span></div>
+<div class="line">                    &lt;&lt; elapsed_seconds</div>
+<div class="line">                    &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; message &lt;&lt; std::endl;</div>
 <div class="line">                <a class="code" href="classnet_1_1Logger.html#a53a78d31eee16d7c5a14a179603422d3" title="Debug: to know if the latest message has been printed on file.">latestMsgPrintedOnFile_</a> = <span class="keyword">true</span>;</div>
 <div class="line">        }</div>
 <div class="line"></div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code" href="classnet_1_1Logger.html#a94c743662c451d49dbe90aa3b9402eb7">screenSeverityLevel_</a> &gt;= severityLevel){</div>
 <div class="line">                std::cerr &lt;&lt; <span class="stringliteral">&quot;DEBUG [&quot;</span> &lt;&lt; file &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; line &lt;&lt; <span class="stringliteral">&quot;] @ &quot;</span></div>
-<div class="line">                    &lt;&lt; (currentTime.tv_sec - initialTime_.tv_sec) &lt;&lt;</div>
-<div class="line">                    <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; message &lt;&lt; std::endl;</div>
+<div class="line">                    &lt;&lt; elapsed_seconds</div>
+<div class="line">                    &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; message &lt;&lt; std::endl;</div>
 <div class="line">                <a class="code" href="classnet_1_1Logger.html#a77d9e9497977727c55731431d5844643" title="Debug: to know if the latest message has been printed on screen.">latestMsgPrintedOnScreen_</a> = <span class="keyword">true</span>;</div>
 <div class="line">        }</div>
 <div class="line">        <a class="code" href="classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading.">Logger::unlock</a>();</div>
@@ -651,7 +657,31 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00147">147</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00148">148</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8d7c9503b631969a3412473bcfa8b5a4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::time_point&lt;std::chrono::system_clock&gt; initialTime_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial time (used to print relative times) </p>
+
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00181">181</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
 </div>
 </div>
@@ -675,7 +705,7 @@ Here is the caller graph for this function:</div>
 
 <p>Debug: to know if the latest message has been printed on file. </p>
 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00186">186</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00187">187</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
 </div>
 </div>
@@ -699,7 +729,7 @@ Here is the caller graph for this function:</div>
 
 <p>Debug: to know if the latest message has been printed on screen. </p>
 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00192">192</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00193">193</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
 </div>
 </div>
@@ -723,7 +753,7 @@ Here is the caller graph for this function:</div>
 
 <p>Lock for mutual exclusion between different threads. </p>
 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00158">158</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00159">159</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
 </div>
 </div>
@@ -748,7 +778,7 @@ Here is the caller graph for this function:</div>
 <p>Initial part of the name of the file used for Logging. </p>
 <p>Date and time are automatically appended. </p>
 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00170">170</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00171">171</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
 </div>
 </div>
@@ -772,7 +802,7 @@ Here is the caller graph for this function:</div>
 
 <p>Pointer to the unique <a class="el" href="classnet_1_1Logger.html" title="Simple logger to log messages on file and console.">Logger</a> (i.e., Singleton) </p>
 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00163">163</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00164">164</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
 </div>
 </div>
@@ -796,7 +826,7 @@ Here is the caller graph for this function:</div>
 
 <p>Stream used when logging on a file. </p>
 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00175">175</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00176">176</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
 </div>
 </div>
@@ -818,13 +848,13 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00153">153</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logger_8hpp_source.html#l00154">154</a> of file <a class="el" href="logger_8hpp_source.html">logger.hpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/cloud/work/eclipse-workspace/netcpp.orig/include/<a class="el" href="logger_8hpp_source.html">logger.hpp</a></li>
-<li>/home/cloud/work/eclipse-workspace/netcpp.orig/src/<a class="el" href="logger_8cpp_source.html">logger.cpp</a></li>
+<li>/home/cloud/work/netcpp/include/<a class="el" href="logger_8hpp_source.html">logger.hpp</a></li>
+<li>/home/cloud/work/netcpp/src/<a class="el" href="logger_8cpp_source.html">logger.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -832,7 +862,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacenet.html">net</a></li><li class="navelem"><a class="el" href="classnet_1_1Logger.html">Logger</a></li>
-    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
+    <li class="footer">Generated on Thu Jul 18 2013 14:43:31 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

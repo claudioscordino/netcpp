@@ -1,0 +1,13 @@
+<map id="/home/cloud/work/netcpp.doc/include/platform.hpp" name="/home/cloud/work/netcpp.doc/include/platform.hpp">
+<area shape="rect" id="node3" href="$abstract__socket_8hpp.html" title="/home/cloud/work/netcpp.doc\l/include/abstract_socket.hpp" alt="" coords="288,102,496,149"/>
+<area shape="rect" id="node5" href="$abstract__socket_8cpp.html" title="/home/cloud/work/netcpp.doc\l/src/abstract_socket.cpp" alt="" coords="5,198,213,245"/>
+<area shape="rect" id="node7" href="$dgram__local_8hpp.html" title="/home/cloud/work/netcpp.doc\l/include/dgram_local.hpp" alt="" coords="56,294,264,341"/>
+<area shape="rect" id="node11" href="$stream__local_8hpp.html" title="/home/cloud/work/netcpp.doc\l/include/stream_local.hpp" alt="" coords="288,198,496,245"/>
+<area shape="rect" id="node16" href="$tcp__ip4_8hpp.html" title="/home/cloud/work/netcpp.doc\l/include/tcp_ip4.hpp" alt="" coords="600,198,808,245"/>
+<area shape="rect" id="node22" href="$udp__ip4_8hpp.html" title="/home/cloud/work/netcpp.doc\l/include/udp_ip4.hpp" alt="" coords="984,294,1192,341"/>
+<area shape="rect" id="node9" href="$dgram__local_8cpp.html" title="/home/cloud/work/netcpp.doc\l/src/dgram_local.cpp" alt="" coords="56,390,264,437"/>
+<area shape="rect" id="node13" href="$stream__local_8cpp.html" title="/home/cloud/work/netcpp.doc\l/src/stream_local.cpp" alt="" coords="288,294,496,341"/>
+<area shape="rect" id="node18" href="$posix__socket_8cpp.html" title="/home/cloud/work/netcpp.doc\l/src/posix_socket.cpp" alt="" coords="520,294,728,341"/>
+<area shape="rect" id="node20" href="$tcp__ip4_8cpp.html" title="/home/cloud/work/netcpp.doc\l/src/tcp_ip4.cpp" alt="" coords="752,294,960,341"/>
+<area shape="rect" id="node24" href="$udp__ip4_8cpp.html" title="/home/cloud/work/netcpp.doc\l/src/udp_ip4.cpp" alt="" coords="984,390,1192,437"/>
+</map>

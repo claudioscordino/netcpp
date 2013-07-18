@@ -28,7 +28,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">NetCpp
-   &#160;<span id="projectnumber">v0.1</span>
+   &#160;<span id="projectnumber">v0.2</span>
    </div>
   </td>
  </tr>
@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('index.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -123,7 +123,7 @@ easy to use </li>
 <li>
 easy to extend (either in terms of protocols and of supported architectures) </li>
 </ul>
-<p>NetCpp is a proof of concept to show that such a networking library can be made easily designed in C++. This tiny library has been built after the experience with the <a href="http://onposix.sourceforge.net" target="_blank">OnPosix library</a>. The syntax of the library is straightforward. The modular design given by the adoption of design patterns allows to easily add new protocols and supported platforms.</p>
+<p>NetCpp is a proof of concept to show that such a networking library can be made easily designed in C++. This tiny library has been built after the experience with the <a href="http://onposix.sourceforge.net" target="_blank">OnPosix library</a>. The syntax of the library is straightforward. The modular design given by the adoption of design patterns (i.e., Abstract Factory and Bridge) allows to easily add new protocols and supported platforms.</p>
 <p><br/>
  <br/>
  </p>
@@ -168,15 +168,17 @@ a C++11 compiler (e.g., gcc 4.7+ or LLVM 3.3+) </li>
 </div><!-- fragment --><p>Example of TCP client: </p>
 <div class="fragment"><div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1address.html" title="Address for IPv4 TCP communications.">net::ip4::tcp::address</a> addr (std::string(<span class="stringliteral">&quot;127.0.0.1&quot;</span>), 1234);</div>
 <div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1client.html" title="Client for IPv4 TCP communications.">net::ip4::tcp::client</a> clt;</div>
-<div class="line">clt.<a class="code" href="classnet_1_1ip4_1_1tcp_1_1client.html#a41b2488190f8374aff25d7b86f2020d8" title="Method to open the client towards a certain address.">open</a>(&amp;addr);</div>
+<div class="line">clt.open(&amp;addr);</div>
 <div class="line">std::array&lt;char, 5&gt; b {<span class="charliteral">&#39;h&#39;</span>, <span class="charliteral">&#39;e&#39;</span>, <span class="charliteral">&#39;l&#39;</span>, <span class="charliteral">&#39;l&#39;</span>, <span class="charliteral">&#39;o&#39;</span>};</div>
 <div class="line">clt.<a class="code" href="classnet_1_1AbstractSocket.html#ae432b4291e92c68b56e187c024ce3322" title="Write operation on the socket.">write</a>(<a class="code" href="namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40" title="Function to pass a std::array to AbstractSocket.">net::buffer</a>(b), 3);</div>
 </div><!-- fragment --><p><br/>
  <br/>
  </p>
 <h1>Supported platforms</h1>
-<p>The library has a modular internal design which, thanks to the design patterns used, allows to decouple specific platform-dependent code (which is on the <a class="el" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">net::AbstractSystemSocket</a> hierarchy) from any protocol design (which is on the <a class="el" href="classnet_1_1AbstractSocket.html" title="Base abstract class for protocols.">net::AbstractSocket</a> hierarchy).</p>
-<p>Thus, to add a new supported platform, you only need to inherit your platform-specific class from class <a class="el" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">net::AbstractSystemSocket</a>. The build system, based on cmake, can be easily ported among all supported platforms.</p>
+<p>The library has a modular internal design which, thanks to the design patterns used, allows to decouple specific platform-dependent code (which is on the <a class="el" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">net::AbstractSystemSocket</a> hierarchy) from any protocol design (which is on the <a class="el" href="classnet_1_1AbstractSocket.html" title="Base abstract class for protocols.">net::AbstractSocket</a> hierarchy). Modularity is especially given by the Bridge pattern, which allows two class hierarchies to vary independently.</p>
+<p>Thus, to add a new supported platform, you only need to inherit your platform-specific class from class <a class="el" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">net::AbstractSystemSocket</a>.<br/>
+ Then, change the concrete class that is allocated by <a class="el" href="namespacenet.html#af2f861701e729ecfe24a0d9ddab08000">net::createSocket()</a>.<br/>
+ The build system, based on cmake, can be easily ported among all supported platforms.</p>
 <p>See the following picture to understand the collaboration between classes:</p>
 <center> <div class="image">
 <img src="netcpp-architecture.png"  width="800"/>
@@ -190,7 +192,7 @@ a C++11 compiler (e.g., gcc 4.7+ or LLVM 3.3+) </li>
 <li>
 Create a proper namespace (like <a class="el" href="namespacenet_1_1ip4_1_1tcp.html">net::ip4::tcp</a>) </li>
 <li>
-Inside the new namespace: <ul>
+Then, inside the new namespace: <ul>
 <li>
 Create an address class inheriting from class Address </li>
 <li>
@@ -223,7 +225,7 @@ Add asynchronous operations </li>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Jul 16 2013 17:22:18 for NetCpp by
+    <li class="footer">Generated on Thu Jul 18 2013 15:53:46 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

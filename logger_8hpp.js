@@ -1,12 +1,10 @@
 var logger_8hpp =
 [
-    [ "Logger", "classnet_1_1Logger.html", "classnet_1_1Logger" ],
-    [ "DEBUG", "logger_8hpp.html#a6096d2de68803d9fb947ee1353df1804", null ],
-    [ "DEBUG_CONF", "logger_8hpp.html#a4fa6c077331384e914f46be8eddbcec8", null ],
-    [ "severity_level_t", "logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbe", [
-      [ "OFF", "logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbeaac132f2982b98bcaa3445e535a03ff75", null ],
-      [ "ERROR", "logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea2fd6f336d08340583bd620a7f5694c90", null ],
-      [ "WARN", "logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea74dac7ac23d5b810db6d4067f14e8676", null ],
-      [ "DEBUG", "logger_8hpp.html#a909577eea3bf87ccccf0ffbff27e5cbea0593585da9181e972974c1274d8f2b4f", null ]
-    ] ]
+    [ "Logger", "classlog_1_1Logger.html", "classlog_1_1Logger" ],
+    [ "DEBUG", "logger_8hpp.html#aecc1f7a8a2493b9e021e5bff76a00a5b", null ],
+    [ "ERROR", "logger_8hpp.html#a435175024ad996b2a45d734fa9eea0e3", null ],
+    [ "LOG_FILE", "logger_8hpp.html#a45e759f9796ef2fb9c71fb5b841dc155", null ],
+    [ "LOG_LEVEL", "logger_8hpp.html#a0b87e0d3bf5853bcbb0b66a7c48fdc05", null ],
+    [ "LOGGER_MULTITHREAD", "logger_8hpp.html#a04a07fa8a39733d5b560afcc7277a0dd", null ],
+    [ "WARNING", "logger_8hpp.html#a5eb81717658ef959b101d61d2fa2cce7", null ]
 ];

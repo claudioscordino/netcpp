@@ -1,0 +1,6 @@
+<map id="lock" name="lock">
+<area shape="rect" id="node3" href="$classlog_1_1Logger.html#ac1a32df606d14ec16ede078fdc2b442c" title="Method to configure the logger." alt="" coords="120,5,181,35"/>
+<area shape="rect" id="node5" href="$classlog_1_1Logger.html#a0d77f27eb95c246d555904aaf08018eb" title="Destructor." alt="" coords="112,59,189,88"/>
+<area shape="rect" id="node7" href="$classlog_1_1Logger.html#aea1c5241e904e7476eb2b86013c1cece" title="Method to get a reference to the object (i.e., Singleton)" alt="" coords="103,112,199,141"/>
+<area shape="rect" id="node9" href="$classlog_1_1Logger.html#a32aa9e5b552d41e5a61edbc0acc7494c" title="Method used to print messages." alt="" coords="125,165,176,195"/>
+</map>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['bind',['bind',['../classnet_1_1AbstractSystemSocket.html#a682f147b20d030d49fffd48de59f05d0',1,'net::AbstractSystemSocket::bind()'],['../classnet_1_1local_1_1dgram_1_1server.html#ac5c5949865c5ce0614f7321ffd250f79',1,'net::local::dgram::server::bind()'],['../classnet_1_1PosixSocket.html#ac5c5949865c5ce0614f7321ffd250f79',1,'net::PosixSocket::bind()'],['../classnet_1_1local_1_1stream_1_1server.html#ac5c5949865c5ce0614f7321ffd250f79',1,'net::local::stream::server::bind()'],['../classnet_1_1ip4_1_1tcp_1_1server.html#ac5c5949865c5ce0614f7321ffd250f79',1,'net::ip4::tcp::server::bind()'],['../classnet_1_1ip4_1_1udp_1_1server.html#ac5c5949865c5ce0614f7321ffd250f79',1,'net::ip4::udp::server::bind()']]],
+  ['bind',['bind',['../classnet_1_1AbstractSystemSocket.html#a682f147b20d030d49fffd48de59f05d0',1,'net::AbstractSystemSocket::bind()'],['../classnet_1_1PosixSocket.html#ac5c5949865c5ce0614f7321ffd250f79',1,'net::PosixSocket::bind()']]],
   ['buffer',['buffer',['../namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40',1,'net']]]
 ];
