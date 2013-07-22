@@ -149,7 +149,7 @@
  * net::ip4::tcp::server srv(&main_srv); // accept()
  * srv.open(&addr);
  * std::array<char, 5> buf;
- * srv.read(net::buffer(buf), 5);
+ * srv.receive(net::buffer(buf), 5);
  * \endcode
  *
  * Example of TCP client:
@@ -158,7 +158,7 @@
  * net::ip4::tcp::client clt;
  * clt.open(&addr);
  * std::array<char, 5> b {'h', 'e', 'l', 'l', 'o'};
- * clt.write(net::buffer(b), 3);
+ * clt.send(net::buffer(b), 3);
  * \endcode
  *
  *
@@ -170,7 +170,7 @@
  * net::ip4::udp::server srv;
  * srv.open(&addr);
  * std::array<char, 5> buf;
- * srv.read(net::buffer(buf), 5);
+ * srv.receive(net::buffer(buf), 5);
  * \endcode
  *
  * Example of UDP client:
@@ -179,7 +179,7 @@
  * net::ip4::udp::client clt;
  * clt.open(&addr);
  * std::array<char, 5> b {'h', 'e', 'l', 'l', 'o'};
- * clt.write(net::buffer(b), 3);
+ * clt.send(net::buffer(b), 3);
  * \endcode
  *
  * <br>
@@ -242,7 +242,7 @@
  * <br>
  * <a name="todo"><h2>Todo</h2></a>
  * <ul>
- * <li> Add other protocols besides TCP/IP and local Unix sockets.
+ * <li> Add recvfrom and sendto for dgram connections
  * <li> Add asynchronous operations
  * </ul>
  */

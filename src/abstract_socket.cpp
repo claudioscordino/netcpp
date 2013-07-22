@@ -31,47 +31,47 @@
 namespace net {
 
 /**
- * @brief Read operation on the socket
+ * @brief Receive operation
  *
- * This function reads from the socket taking care of synchronization
+ * This function sendsendsensendsendsendcare of synchronization
  * with any other asynchronous operations.
- * Note: it can block the caller, because it calls __read() which
- * continues reading until the given number of bytes have been read.
- * @param buf Pointer where read data must be put
- * @param size Size of data to be read
- * @return Number of bytes actually read
+ * Note: it can block the caller, because it calls __receive() which
+ * continues receiving until the given number of bytes have been received.
+ * @param buf Pointer where received data must be put
+ * @param size Size of data to be received
+ * @return Number of bytes actually received
  * @exception runtime_error in case of too small buffer
  *
  * Example of usage:
  * <code>
  * 		std::array<char, 5> buf;
- * 		AbstractSocket::read(net::buffer(b), 3);
+ * 		AbstractSocket::receive(net::buffer(b), 3);
  * </code>
  */
-int AbstractSocket::read (struct __buffer buf, std::size_t size)
+int AbstractSocket::receive (struct __buffer buf, std::size_t size)
 {
 	int ret;
 	if (buf.size_ == 0 || size > buf.size_){
 		ERROR("Wrong buffer size!");
 		throw std::runtime_error ("Wrong buffer size");
 	}
-	read_lock_.lock();
+	receive_lock_.lock();
 	try {
-		ret = __read(buf.ptr_, size);
+		ret = __receive(buf.ptr_, size);
 	} catch (...) {
-		ERROR("Read error!");
+		ERROR("Receive error!");
 	}
 	
-	read_lock_.unlock();
+	receive_lock_.unlock();
 	return ret;
 }
 
 /**
- * @brief Write operation on the socket
+ * @brief Send operation
  *
- * This function writes to the socket taking care of synchronization
+ * This function sends data to the socket taking care of synchronization
  * with any other asynchronous operations.
- * Note: it can block the caller, because it calls __write() which
+ * Note: it can block the caller, because it calls __send() which
  * continues writing until the given number of bytes have been written.
  * @param buf Pointer to data to be written
  * @param size Size of data to be written
@@ -81,41 +81,41 @@ int AbstractSocket::read (struct __buffer buf, std::size_t size)
  * Example of usage:
  * <code>
  * 		std::array<char, 5> buf;
- * 		AbstractSocket::write(net::buffer(b), 3);
+ * 		AbstractSocket::send(net::buffer(b), 3);
  * </code>
  */
-int AbstractSocket::write (struct __buffer buf, std::size_t size)
+int AbstractSocket::send (struct __buffer buf, std::size_t size)
 {
 	int ret;
 	if (buf.size_ == 0 || size > buf.size_){
 		ERROR("Wrong buffer size!");
 		throw std::runtime_error ("Wrong buffer size");
 	}
-	write_lock_.lock();
+	send_lock_.lock();
 	try {
-		ret = __write(buf.ptr_, size);
+		ret = __send(buf.ptr_, size);
 	} catch (...) {
-		ERROR("Write error!");
+		ERROR("Send error!");
 	}
 	
-	write_lock_.unlock();
+	send_lock_.unlock();
 	return ret;
 
 }
 
 /**
- * \brief Low-level read
+ * \brief Low-level receive
  *
- * This method is private because it is meant to be used through the other read()
- * methods.
- * Note: it can block the caller, because it continues reading until the given
- * number of bytes have been read.
- * @param buffer Pointer to the buffer where read bytes must be stored
- * @param size Number of bytes to be read
- * @exception runtime_error if the ::read() returns an error
- * @return The number of actually read bytes or -1 in case of error
+ * This method is private because it is meant to be used through the other receive()
+ * method.
+ * Note: it can block the caller, because it continues receiving until the given
+ * number of bytes have been received.
+ * @param buffer Pointer to the buffer where received bytes must be stored
+ * @param size Number of bytes to be received
+ * @exception runtime_error if the read() returns an error
+ * @return The number of actually received bytes or -1 in case of error
  */
-int AbstractSocket::__read (void* buffer, size_t size)
+int AbstractSocket::__receive (void* buffer, size_t size)
 {
 	size_t remaining = size;
 	while (remaining > 0) {
@@ -126,8 +126,8 @@ int AbstractSocket::__read (void* buffer, size_t size)
 			DEBUG("End of file reached");
 			break;
 		} else if (ret < 0) {
-			ERROR("Read error");
-			throw std::runtime_error ("Read error");
+			ERROR("Receive error");
+			throw std::runtime_error ("Receive error");
 			return -1;
 		}
 		remaining -= ret;
@@ -138,29 +138,29 @@ int AbstractSocket::__read (void* buffer, size_t size)
 
 
 /**
- * \brief Low-level write
+ * \brief Low-level send
  *
  * This method is private because it is meant to be used through the other
- * write() methods.
+ * send() method.
  * Note: it can block the caller, because it continues writing until the
  * given number of bytes have been written.
  * @param buffer Pointer to the buffer containing bytes to be written
  * @param size Number of bytes to be written
- * @exception runtime_error if the ::write() returns 0 or an error
+ * @exception runtime_error if the write() returns 0 or an error
  * @return The number of actually written bytes or -1 in case of error
  */
-int AbstractSocket::__write (const void* buffer, size_t size)
+int AbstractSocket::__send(const void* buffer, size_t size)
 {
 	size_t remaining = size;
 	while (remaining > 0) {
 		ssize_t ret = socket_->write (((char*)buffer)+(size-remaining), remaining);
 		if (ret == 0){
-			DEBUG("Cannot write more");
-			// Cannot write more
+			DEBUG("Cannot send any further");
+			// Cannot send more
 			break;
 		} else if (ret < 0) {
-			ERROR("Write error");
-			throw std::runtime_error ("Write error");
+			ERROR("Send error");
+			throw std::runtime_error ("Send error");
 			return -1;
 		}
 		remaining -= ret;

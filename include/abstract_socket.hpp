@@ -102,8 +102,8 @@ public:
 		return socket_.get();
 	}
 
-	int read (__buffer buf, std::size_t size);
-	int write (__buffer buf, std::size_t size);
+	int receive (__buffer buf, std::size_t size);
+	int send (__buffer buf, std::size_t size);
 
 protected:
 	/**
@@ -128,28 +128,28 @@ protected:
 
 private:
 
-	int __read (void* buffer, size_t size);
-	int __write (const void* buffer, size_t size);
+	int __receive (void* buffer, size_t size);
+	int __send (const void* buffer, size_t size);
 
 	/**
-	 * @brief Thread for asynchronous read operations
+	 * @brief Thread for asynchronous receive operations
 	 */
-	std::unique_ptr<std::thread> read_worker_;
+	std::unique_ptr<std::thread> receive_worker_;
 
 	/**
-	 * @brief Thread for asynchronous read operations
+	 * @brief Thread for asynchronous send operations
 	 */
-	std::unique_ptr<std::thread> write_worker_;
+	std::unique_ptr<std::thread> send_worker_;
 
 	/**
-	 * @brief Mutex for synchronization with asynchronous read operations.
+	 * @brief Mutex for synchronization with asynchronous receive operations.
 	 */
-	std::mutex read_lock_;
+	std::mutex receive_lock_;
 	
 	/**
-	 * @brief Mutex for synchronization with asynchronous write operations.
+	 * @brief Mutex for synchronization with asynchronous send operations.
 	 */
-	std::mutex write_lock_;
+	std::mutex send_lock_;
 };
 
 } // net

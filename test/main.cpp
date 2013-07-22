@@ -55,8 +55,8 @@ void do_server()
 	while (true){
 		DEBUG("SERVER: Creating buffer...");
 		std::array<char, 5> b;
-		DEBUG("SERVER: Reading...");
-		srv2.read(net::buffer(b), 3);
+		DEBUG("SERVER: Receiving...");
+		srv2.receive(net::buffer(b), 3);
 		DEBUG("SERVER: Received: " << b[0] << " "
 			<< b[1] << " " 
 			<< b[2] << " "
@@ -81,8 +81,8 @@ void do_client()
 	while (true){
 		DEBUG("CLIENT: Creating buffer...");
 		std::array<char, 5> b {'c', 'i', 'a', 'o'};
-		DEBUG("CLIENT: Writing...");
-		clt.write(net::buffer(b), 3);
+		DEBUG("CLIENT: Sending...");
+		clt.send(net::buffer(b), 3);
 	}
 }
 
