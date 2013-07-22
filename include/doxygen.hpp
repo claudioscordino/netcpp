@@ -32,7 +32,7 @@
  * <br>
  * <center>
  * <img src="../netcpp.png" width="300"></img><br>
- * A C++ network library
+ * A tiny C++ network library
  * </center>
  * <br>
  * \endhtmlonly
@@ -41,16 +41,26 @@
  * 
  * @author Evidence Srl - <a href="http://www.evidence.eu.com" target="_blank">www.evidence.eu.com</a>
  *
- * <br>
- * <br>
- * <h1>Introduction</h1>
- *
- * NetCpp is a tiny C++ network library.
  *
  *
  * <br>
  * <br>
- * <h1>Rationale</h1>
+ * <h1>Table of contents</h1>
+ * <ol>
+ * <li><a href="#rationale">Rationale</a>
+ * <li><a href="#requirements">Requirements</a>
+ * <li><a href="#build">How to build the library</a>
+ * <li><a href="#usage">Usage</a>
+ * <li><a href="#platforms">Supported platforms</a>
+ * <li><a href="#protocols">Adding further network protocols</a>
+ * <li><a href="#license">License</a>
+ * <li><a href="#support">Support</a>
+ * <li><a href="#todo">To do</a>
+ * </ol>
+ *
+ * <br>
+ * <br>
+ * <a name="rationale"><h2>Rationale</h2></a>
  *
  * The C++ standard library is known to be less comprehensive than the libraries
  * traditionally available for other programming languages (e.g., Java, Python,
@@ -80,7 +90,7 @@
  *
  * <br>
  * <br>
- * <h1>Requirements</h1>
+ * <a name="requirements"><h2>Requirements</h2></a> 
  *
  * To build NetCpp you need both:
  * <ul>
@@ -94,7 +104,7 @@
  *
  * <br>
  * <br>
- * <h1>How to build the library</h1>
+ * <a name="build"><h2>How to build the library</h2></a>
  *
  * Compile through the following commands:
  *
@@ -126,15 +136,17 @@
  *
  * <br>
  * <br>
- * <h1>Usage</h1>
+ * <a name="usage"> <h2>Usage</h2></a>
  *
  * Usage of the library is straightforward:
  *
+ * <h3>TCP client/server</h3>
+ * 
  * Example of TCP server:
  * \code
  * net::ip4::tcp::address addr (std::string("127.0.0.1"), 1234);
  * net::ip4::tcp::server main_srv;
- * net::ip4::tcp::server srv(&main_srv);
+ * net::ip4::tcp::server srv(&main_srv); // accept()
  * srv.open(&addr);
  * std::array<char, 5> buf;
  * srv.read(net::buffer(buf), 5);
@@ -150,9 +162,29 @@
  * \endcode
  *
  *
+ * <h3>UDP client/server</h3>
+ * 
+ * Example of UDP server:
+ * \code
+ * net::ip4::udp::address addr (std::string("127.0.0.1"), 1234);
+ * net::ip4::udp::server srv;
+ * srv.open(&addr);
+ * std::array<char, 5> buf;
+ * srv.read(net::buffer(buf), 5);
+ * \endcode
+ *
+ * Example of UDP client:
+ * \code
+ * net::ip4::udp::address addr (std::string("127.0.0.1"), 1234);
+ * net::ip4::udp::client clt;
+ * clt.open(&addr);
+ * std::array<char, 5> b {'h', 'e', 'l', 'l', 'o'};
+ * clt.write(net::buffer(b), 3);
+ * \endcode
+ *
  * <br>
  * <br>
- * <h1>Supported platforms</h1>
+ * <a name="platforms"><h2>Supported platforms</h2></a>
  *
  * The library has a modular internal design which, thanks to the design patterns 
  * used, allows to decouple specific platform-dependent code (which is on the
@@ -176,7 +208,7 @@
  *
  * <br>
  * <br>
- * <h1>Adding further network protocols</h1>
+ * <a name="protocols"><h2>Adding further network protocols</h2></a>
  *
  * To add a new protocol:
  * <ul>
@@ -190,7 +222,7 @@
  *
  * <br>
  * <br>
- * <h1>License</h1>
+ * <a name="license"><h2>License</h2></a>
  *
  * The library is under the
  * <a href="http://www.boost.org/users/license.html" target="_blank">Boost license</a>.
@@ -199,7 +231,7 @@
  *
  * <br>
  * <br>
- * <h1>Support</h1>
+ * <a name="support"><h2>Support</h2></a>
  *
  * For reporting bugs or proposing new patches, use 
  * <a href="https://github.com/claudioscordino/netcpp/issues" target="_blank">
@@ -208,7 +240,7 @@
  *
  * <br>
  * <br>
- * <h1>Todo</h1>
+ * <a name="todo"><h2>Todo</h2></a>
  * <ul>
  * <li> Add other protocols besides TCP/IP and local Unix sockets.
  * <li> Add asynchronous operations
