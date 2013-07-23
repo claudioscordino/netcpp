@@ -102,19 +102,38 @@ $(document).ready(function(){initNavTree('index.html','');});
 <br>
 <center>
 <img src="netcpp.png" width="300"></img><br>
-A C++ network library
+A tiny C++ network library
 </center>
 <br>
 <dl class="section author"><dt>Author</dt><dd>Evidence Srl - <a href="http://www.evidence.eu.com" target="_blank">www.evidence.eu.com</a></dd></dl>
 <p><br/>
  <br/>
  </p>
-<h1>Introduction</h1>
-<p>NetCpp is a tiny C++ network library.</p>
+<h1>Table of contents</h1>
+<ol>
+<li>
+<a href="#rationale">Rationale</a> </li>
+<li>
+<a href="#requirements">Requirements</a> </li>
+<li>
+<a href="#build">How to build the library</a> </li>
+<li>
+<a href="#usage">Usage</a> </li>
+<li>
+<a href="#platforms">Supported platforms</a> </li>
+<li>
+<a href="#protocols">Adding further network protocols</a> </li>
+<li>
+<a href="#license">License</a> </li>
+<li>
+<a href="#support">Support</a> </li>
+<li>
+<a href="#todo">To do</a> </li>
+</ol>
 <p><br/>
  <br/>
- </p>
-<h1>Rationale</h1>
+ <a class="anchor" id="rationale"></a></p>
+<h2>Rationale</h2>
 <p>The C++ standard library is known to be less comprehensive than the libraries traditionally available for other programming languages (e.g., Java, Python, etc.). The C++11 standard began to fill this gap by adding several features like support for multithreading, smart pointers, etc. Incredibly, however, a basic support for networking is still missing.</p>
 <p>During the last years, a number of C++ libraries have been proposed to have portable networking in C++, the most important being <a href="http://www.boost.org/libs/asio/" target="_blank">Boost::asio</a> and <a href="http://cpp-netlib.org" target="_blank">cpp-netlib</a>. However, we believe that the syntax of both these libraries is still more complicated than necessary. In particular, we believe that an ideal C++ networking library should be: </p>
 <ul>
@@ -123,11 +142,11 @@ easy to use </li>
 <li>
 easy to extend (either in terms of protocols and of supported architectures) </li>
 </ul>
-<p>NetCpp is a proof of concept to show that such a networking library can be made easily designed in C++. This tiny library has been built after the experience with the <a href="http://onposix.sourceforge.net" target="_blank">OnPosix library</a>. The syntax of the library is straightforward. The modular design given by the adoption of design patterns (i.e., Abstract Factory and Bridge) allows to easily add new protocols and supported platforms.</p>
+<p>NetCpp is a proof of concept to show that such a networking library can be made easily designed in C++. This tiny library has been built after the experience with the <a href="http://onposix.sourceforge.net" target="_blank">OnPosix library</a>. The syntax of the library is straightforward. The modular design given by the adoption of design patterns (i.e., <em>Abstract Factory</em> and <em>Bridge</em>) allows to easily add new protocols and supported platforms.</p>
 <p><br/>
  <br/>
- </p>
-<h1>Requirements</h1>
+ <a class="anchor" id="requirements"></a></p>
+<h2>Requirements</h2>
 <p>To build NetCpp you need both: </p>
 <ul>
 <li>
@@ -138,8 +157,8 @@ a C++11 compiler (e.g., gcc 4.7+ or LLVM 3.3+) </li>
 <p>Currently, only Posix systems (e.g., Linux). However, porting the library to different platforms is very easy thanks to its modular design.</p>
 <p><br/>
  <br/>
- </p>
-<h1>How to build the library</h1>
+ <a class="anchor" id="build"></a></p>
+<h2>How to build the library</h2>
 <p>Compile through the following commands:</p>
 <div class="fragment"><div class="line">git clone https:<span class="comment">//github.com/claudioscordino/netcpp.git</span></div>
 <div class="line">cd netcpp/build</div>
@@ -155,38 +174,57 @@ a C++11 compiler (e.g., gcc 4.7+ or LLVM 3.3+) </li>
 </div><!-- fragment --><p>Start reading documentation by opening <em>doc/html/index.html</em>.</p>
 <p><br/>
  <br/>
- </p>
-<h1>Usage</h1>
+ <a class="anchor" id="usage"></a> </p>
+<h2>Usage</h2>
 <p>Usage of the library is straightforward:</p>
+<h3>TCP client/server</h3>
 <p>Example of TCP server: </p>
 <div class="fragment"><div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1address.html" title="Address for IPv4 TCP communications.">net::ip4::tcp::address</a> addr (std::string(<span class="stringliteral">&quot;127.0.0.1&quot;</span>), 1234);</div>
 <div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1server.html" title="Server for IPv4 TCP communications.">net::ip4::tcp::server</a> main_srv;</div>
-<div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1server.html" title="Server for IPv4 TCP communications.">net::ip4::tcp::server</a> srv(&amp;main_srv);</div>
+<div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1server.html" title="Server for IPv4 TCP communications.">net::ip4::tcp::server</a> srv(&amp;main_srv); <span class="comment">// accept()</span></div>
 <div class="line">srv.open(&amp;addr);</div>
 <div class="line">std::array&lt;char, 5&gt; buf;</div>
-<div class="line">srv.read(<a class="code" href="namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40" title="Function to pass a std::array to AbstractSocket.">net::buffer</a>(buf), 5);</div>
+<div class="line">srv.receive(<a class="code" href="namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40" title="Function to pass a std::array to AbstractSocket.">net::buffer</a>(buf), 5);</div>
 </div><!-- fragment --><p>Example of TCP client: </p>
 <div class="fragment"><div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1address.html" title="Address for IPv4 TCP communications.">net::ip4::tcp::address</a> addr (std::string(<span class="stringliteral">&quot;127.0.0.1&quot;</span>), 1234);</div>
 <div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1client.html" title="Client for IPv4 TCP communications.">net::ip4::tcp::client</a> clt;</div>
 <div class="line">clt.open(&amp;addr);</div>
 <div class="line">std::array&lt;char, 5&gt; b {<span class="charliteral">&#39;h&#39;</span>, <span class="charliteral">&#39;e&#39;</span>, <span class="charliteral">&#39;l&#39;</span>, <span class="charliteral">&#39;l&#39;</span>, <span class="charliteral">&#39;o&#39;</span>};</div>
-<div class="line">clt.<a class="code" href="classnet_1_1AbstractSocket.html#ae432b4291e92c68b56e187c024ce3322" title="Write operation on the socket.">write</a>(<a class="code" href="namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40" title="Function to pass a std::array to AbstractSocket.">net::buffer</a>(b), 3);</div>
+<div class="line">clt.<a class="code" href="classnet_1_1AbstractSocket.html#acda06e99bafb26105536df9e66c8086f" title="Send operation.">send</a>(<a class="code" href="namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40" title="Function to pass a std::array to AbstractSocket.">net::buffer</a>(b), 3);</div>
+</div><!-- fragment --><h3>UDP client/server</h3>
+<p>Example of UDP server: </p>
+<div class="fragment"><div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1address.html" title="Address for IPv4 TCP communications.">net::ip4::udp::address</a> addr (std::string(<span class="stringliteral">&quot;127.0.0.1&quot;</span>), 1234);</div>
+<div class="line"><a class="code" href="classnet_1_1ip4_1_1udp_1_1server.html" title="Server for IPv4 UDP communications.">net::ip4::udp::server</a> srv;</div>
+<div class="line">srv.open(&amp;addr);</div>
+<div class="line">std::array&lt;char, 5&gt; buf;</div>
+<div class="line">srv.<a class="code" href="classnet_1_1AbstractSocket.html#a17b08b696834112a8fe084950e933c67" title="Receive operation.">receive</a>(<a class="code" href="namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40" title="Function to pass a std::array to AbstractSocket.">net::buffer</a>(buf), 5);</div>
+</div><!-- fragment --><p>Example of UDP client: </p>
+<div class="fragment"><div class="line"><a class="code" href="classnet_1_1ip4_1_1tcp_1_1address.html" title="Address for IPv4 TCP communications.">net::ip4::udp::address</a> addr (std::string(<span class="stringliteral">&quot;127.0.0.1&quot;</span>), 1234);</div>
+<div class="line"><a class="code" href="classnet_1_1ip4_1_1udp_1_1client.html" title="Client for IPv4 UDP communications.">net::ip4::udp::client</a> clt;</div>
+<div class="line">clt.open(&amp;addr);</div>
+<div class="line">std::array&lt;char, 5&gt; b {<span class="charliteral">&#39;h&#39;</span>, <span class="charliteral">&#39;e&#39;</span>, <span class="charliteral">&#39;l&#39;</span>, <span class="charliteral">&#39;l&#39;</span>, <span class="charliteral">&#39;o&#39;</span>};</div>
+<div class="line">clt.<a class="code" href="classnet_1_1AbstractSocket.html#acda06e99bafb26105536df9e66c8086f" title="Send operation.">send</a>(<a class="code" href="namespacenet.html#a5fccc0864c0e439d69d6eaa09e251b40" title="Function to pass a std::array to AbstractSocket.">net::buffer</a>(b), 3);</div>
 </div><!-- fragment --><p><br/>
  <br/>
- </p>
-<h1>Supported platforms</h1>
-<p>The library has a modular internal design which, thanks to the design patterns used, allows to decouple specific platform-dependent code (which is on the <a class="el" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">net::AbstractSystemSocket</a> hierarchy) from any protocol design (which is on the <a class="el" href="classnet_1_1AbstractSocket.html" title="Base abstract class for protocols.">net::AbstractSocket</a> hierarchy). Modularity is especially given by the Bridge pattern, which allows two class hierarchies to vary independently.</p>
-<p>Thus, to add a new supported platform, you only need to inherit your platform-specific class from class <a class="el" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">net::AbstractSystemSocket</a>.<br/>
- Then, change the concrete class that is allocated by <a class="el" href="namespacenet.html#af2f861701e729ecfe24a0d9ddab08000">net::createSocket()</a>.<br/>
- The build system, based on cmake, can be easily ported among all supported platforms.</p>
+ <a class="anchor" id="platforms"></a></p>
+<h2>Supported platforms</h2>
+<p>The library has a modular internal design which, thanks to the design patterns used, allows to decouple specific platform-dependent code (which is on the <a class="el" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">net::AbstractSystemSocket</a> hierarchy) from any protocol design (which is on the <a class="el" href="classnet_1_1AbstractSocket.html" title="Base abstract class for protocols.">net::AbstractSocket</a> hierarchy). Modularity is especially given by the <em>Bridge</em> pattern, which allows two class hierarchies to vary independently.</p>
+<p>Thus, to add a new supported platform, you only need to: </p>
+<ol>
+<li>
+inherit your platform-specific class from class <a class="el" href="classnet_1_1AbstractSystemSocket.html" title="Virtual class for platform-dependent code.">net::AbstractSystemSocket</a>. </li>
+<li>
+change the concrete class allocated by <a class="el" href="namespacenet.html#af2f861701e729ecfe24a0d9ddab08000">net::createSocket()</a>. </li>
+</ol>
+<p>The build system, based on cmake, can be easily ported among all supported platforms.</p>
 <p>See the following picture to understand the collaboration between classes:</p>
 <center> <div class="image">
 <img src="netcpp-architecture.png"  width="800"/>
 </div>
  </center><p><br/>
  <br/>
- </p>
-<h1>Adding further network protocols</h1>
+ <a class="anchor" id="protocols"></a></p>
+<h2>Adding further network protocols</h2>
 <p>To add a new protocol: </p>
 <ul>
 <li>
@@ -202,21 +240,21 @@ Create server and client classes inheriting from class <a class="el" href="class
 </ul>
 <p><br/>
  <br/>
- </p>
-<h1>License</h1>
+ <a class="anchor" id="license"></a></p>
+<h2>License</h2>
 <p>The library is under the <a href="http://www.boost.org/users/license.html" target="_blank">Boost license</a>. Read the LICENSE file for more information.</p>
 <p><br/>
  <br/>
- </p>
-<h1>Support</h1>
+ <a class="anchor" id="support"></a></p>
+<h2>Support</h2>
 <p>For reporting bugs or proposing new patches, use <a href="https://github.com/claudioscordino/netcpp/issues" target="_blank">the issues link of GitHub</a>.</p>
 <p><br/>
  <br/>
- </p>
-<h1>Todo</h1>
+ <a class="anchor" id="todo"></a></p>
+<h2>Todo</h2>
 <ul>
 <li>
-Add other protocols besides TCP/IP and local Unix sockets. </li>
+Add recvfrom and sendto for dgram connections </li>
 <li>
 Add asynchronous operations </li>
 </ul>
@@ -225,7 +263,7 @@ Add asynchronous operations </li>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jul 18 2013 15:53:46 for NetCpp by
+    <li class="footer">Generated on Tue Jul 23 2013 09:15:01 for NetCpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

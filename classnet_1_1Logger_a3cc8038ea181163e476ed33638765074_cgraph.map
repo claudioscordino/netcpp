@@ -1,4 +1,0 @@
-<map id="print" name="print">
-<area shape="rect" id="node3" href="$classnet_1_1Logger.html#aa81aed607133209dade63a226818224d" title="Method to lock in case of multithreading." alt="" coords="113,5,159,35"/>
-<area shape="rect" id="node5" href="$classnet_1_1Logger.html#a9278be8203e1c42e2619179882ae4403" title="Method to unlock in case of multithreading." alt="" coords="105,59,167,88"/>
-</map>

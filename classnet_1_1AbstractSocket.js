@@ -1,14 +1,14 @@
 var classnet_1_1AbstractSocket =
 [
     [ "AbstractSocket", "classnet_1_1AbstractSocket.html#ac5f5f5a549e9abd7958c4017ae73cd54", null ],
-    [ "__read", "classnet_1_1AbstractSocket.html#a30755de95c241d0c8bae5eae9a38f5a1", null ],
-    [ "__write", "classnet_1_1AbstractSocket.html#a98897fefb6948f3a3b2a18500ef40ca7", null ],
+    [ "__receive", "classnet_1_1AbstractSocket.html#a6fdbd1cdd7c2fcfab9358fa4ea32c968", null ],
+    [ "__send", "classnet_1_1AbstractSocket.html#a66c27960ed4e04aa52852a1493550240", null ],
     [ "close", "classnet_1_1AbstractSocket.html#a46143fd6de3be9ab9951f140d3ae8c2f", null ],
     [ "getSocket", "classnet_1_1AbstractSocket.html#a84029066deff65d018d52d492c6d301b", null ],
-    [ "read", "classnet_1_1AbstractSocket.html#ad257944671b2cbe4cc2ea7c5ba622cb0", null ],
-    [ "write", "classnet_1_1AbstractSocket.html#ae432b4291e92c68b56e187c024ce3322", null ],
-    [ "read_lock_", "classnet_1_1AbstractSocket.html#af3571714217b5da5e546d840074b8113", null ],
-    [ "read_worker_", "classnet_1_1AbstractSocket.html#a0a6a15cd4b28e100f3123d7bfa7488ed", null ],
-    [ "write_lock_", "classnet_1_1AbstractSocket.html#a98ce9c3ce04dbaab5e55851fbcca534c", null ],
-    [ "write_worker_", "classnet_1_1AbstractSocket.html#aa097e404f38034298f0949aa6e1820d3", null ]
+    [ "receive", "classnet_1_1AbstractSocket.html#a17b08b696834112a8fe084950e933c67", null ],
+    [ "send", "classnet_1_1AbstractSocket.html#acda06e99bafb26105536df9e66c8086f", null ],
+    [ "receive_lock_", "classnet_1_1AbstractSocket.html#acc86b6efdf5a38614d61684771755fc0", null ],
+    [ "receive_worker_", "classnet_1_1AbstractSocket.html#a67965d67419caab32fa313a20d812647", null ],
+    [ "send_lock_", "classnet_1_1AbstractSocket.html#a36fc27c0cd434b4c40c0a520eebbd050", null ],
+    [ "send_worker_", "classnet_1_1AbstractSocket.html#a92237add7bca98fcec08f70cc0cf4cef", null ]
 ];
