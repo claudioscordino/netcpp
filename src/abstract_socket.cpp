@@ -33,7 +33,7 @@ namespace net {
 /**
  * @brief Receive operation
  *
- * This function sendsendsensendsendsendcare of synchronization
+ * This function receives data from the socket taking care of synchronization
  * with any other asynchronous operations.
  * Note: it can block the caller, because it calls do_receive() which
  * continues receiving until the given number of bytes have been received.
@@ -55,14 +55,14 @@ int AbstractSocket::receive (struct buff buf, std::size_t size)
 		ERROR("Wrong buffer size!");
 		throw std::runtime_error ("Wrong buffer size");
 	}
-	receive_lock_.lock();
+	lock_.lock();
 	try {
 		ret = do_receive(buf.ptr_, size);
 	} catch (...) {
 		ERROR("Receive error!");
 	}
 	
-	receive_lock_.unlock();
+	lock_.unlock();
 	return ret;
 }
 
@@ -73,9 +73,9 @@ int AbstractSocket::receive (struct buff buf, std::size_t size)
  * with any other asynchronous operations.
  * Note: it can block the caller, because it calls do_send() which
  * continues writing until the given number of bytes have been written.
- * @param buf Pointer to data to be written
- * @param size Size of data to be written
- * @return Number of bytes actually written
+ * @param buf Pointer to data to be sent
+ * @param size Size of data to be sent
+ * @return Number of bytes actually sent
  * @exception runtime_error in case of too small buffer
  *
  * Example of usage:
@@ -91,14 +91,14 @@ int AbstractSocket::send (struct buff buf, std::size_t size)
 		ERROR("Wrong buffer size!");
 		throw std::runtime_error ("Wrong buffer size");
 	}
-	send_lock_.lock();
+	lock_.lock();
 	try {
 		ret = do_send(buf.ptr_, size);
 	} catch (...) {
 		ERROR("Send error!");
 	}
 	
-	send_lock_.unlock();
+	lock_.unlock();
 	return ret;
 
 }
@@ -112,14 +112,14 @@ int AbstractSocket::send (struct buff buf, std::size_t size)
  * number of bytes have been received.
  * @param buffer Pointer to the buffer where received bytes must be stored
  * @param size Number of bytes to be received
- * @exception runtime_error if the read() returns an error
+ * @exception runtime_error if receive() returns an error
  * @return The number of actually received bytes or -1 in case of error
  */
 int AbstractSocket::do_receive (void* buffer, size_t size)
 {
 	size_t remaining = size;
 	while (remaining > 0) {
-		ssize_t ret = socket_->read (((char*)buffer)+(size-remaining),
+		ssize_t ret = socket_->receive (((char*)buffer)+(size-remaining),
 		    remaining);
 		if (ret == 0){
 			// End of file reached
@@ -146,14 +146,14 @@ int AbstractSocket::do_receive (void* buffer, size_t size)
  * given number of bytes have been written.
  * @param buffer Pointer to the buffer containing bytes to be written
  * @param size Number of bytes to be written
- * @exception runtime_error if the write() returns 0 or an error
+ * @exception runtime_error if send() returns 0 or an error
  * @return The number of actually written bytes or -1 in case of error
  */
 int AbstractSocket::do_send(const void* buffer, size_t size)
 {
 	size_t remaining = size;
 	while (remaining > 0) {
-		ssize_t ret = socket_->write (((char*)buffer)+(size-remaining), remaining);
+		ssize_t ret = socket_->send (((char*)buffer)+(size-remaining), remaining);
 		if (ret == 0){
 			DEBUG("Cannot send any further");
 			// Cannot send more

@@ -84,13 +84,13 @@ PosixSocket::~PosixSocket()
 
 
 /**
- * \brief Low-level read
+ * \brief Platform-speific (i.e., Posix) receive method
  *
- * @param buffer Pointer to the buffer where read bytes must be stored
- * @param size Number of bytes to be read
- * @return The number of actually read bytes or -1 in case of error
+ * @param buffer Pointer to the buffer where received bytes must be stored
+ * @param size Number of bytes to receive
+ * @return The number of bytes actually received or -1 in case of error
  */
-int PosixSocket::read (void* buffer, size_t size)
+int PosixSocket::receive (void* buffer, size_t size)
 {
 	return ::read(fd_, buffer , size);
 }
@@ -98,13 +98,13 @@ int PosixSocket::read (void* buffer, size_t size)
 
 
 /**
- * \brief Low-level write
+ * \brief Platform-speific (i.e., Posix) send method
  *
- * @param buffer Pointer to the buffer containing bytes to be written
- * @param size Number of bytes to be written
- * @return The number of actually written bytes or -1 in case of error
+ * @param buffer Pointer to the buffer containing bytes to be sent
+ * @param size Number of bytes to send
+ * @return The number of bytes actually sent or -1 in case of error
  */
-int PosixSocket::write (const void* buffer, size_t size)
+int PosixSocket::send (const void* buffer, size_t size)
 {
 	return ::write(fd_, buffer, size);
 }

@@ -76,34 +76,18 @@ inline buff buffer(std::array<char, N>& buf)
 class AbstractSocket {
 public:
 
-	/**
-	 * @brief Close the socket
-	 *
-	 * Method to close the socket. Currently, there is no mechanism
-	 * to re-open a closed socket.
-	 *
-	 * @return true in case of success; false otherwise
-	 */
-	inline bool close()
-	{
-		return socket_->close();
-	}
+	int receive (buff buf, std::size_t size);
+	int send (buff buf, std::size_t size);
 
 	/**
 	 * @brief get the socket
 	 *
-	 * This method is used to let derived classes of AbstractSocket invoke
-	 * specific protocol-dependent functions (e.g., accept()).
-	 *
 	 * @return the socket used by this instance of the class
 	 */
-	inline AbstractSystemSocket* getSocket()
-	{
+	inline AbstractSystemSocket* getSocket() {
 		return socket_.get();
 	}
 
-	int receive (buff buf, std::size_t size);
-	int send (buff buf, std::size_t size);
 
 protected:
 	/**
@@ -132,24 +116,14 @@ private:
 	int do_send (const void* buffer, size_t size);
 
 	/**
-	 * @brief Thread for asynchronous receive operations
+	 * @brief Thread for asynchronous operations
 	 */
-	std::unique_ptr<std::thread> receive_worker_;
-
-	/**
-	 * @brief Thread for asynchronous send operations
-	 */
-	std::unique_ptr<std::thread> send_worker_;
+	std::unique_ptr<std::thread> worker_;
 
 	/**
 	 * @brief Mutex for synchronization with asynchronous receive operations.
 	 */
-	std::mutex receive_lock_;
-	
-	/**
-	 * @brief Mutex for synchronization with asynchronous send operations.
-	 */
-	std::mutex send_lock_;
+	std::mutex lock_;
 };
 
 } // net

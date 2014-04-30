@@ -50,13 +50,13 @@ public:
 	
 	virtual void connect (const Address& addr);
 	virtual void bind (const Address& addr);
-	virtual int read (void* buffer, size_t size);
-	virtual int write (const void* buffer, size_t size);
-	virtual bool close();
+	virtual int receive (void* buffer, size_t size);
+	virtual int send (const void* buffer, size_t size);
 	virtual void accept (AbstractSystemSocket* sock);
 	virtual void listen (int maxPendingConnections);
 
 private:
+	virtual bool close();
 	/**
 	 * @brief Number of the file descriptor.
 	 * 

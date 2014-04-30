@@ -48,23 +48,23 @@ class AbstractSystemSocket {
 
 public:
 	/**
-	 * \brief Method to read data from the socket.
+	 * \brief Method to receive data from the socket.
 	 *
-	 * The buffer is filled with the read data.
+	 * The buffer is filled with the received data.
 	 * @param p buf Pointer to the memory address containing data
-	 * @param size Number of bytes that must be read
-	 * @return the number of bytes actually read; < 0 in case of error
+	 * @param size Number of bytes that must be received
+	 * @return the number of bytes actually received; < 0 in case of error
 	 */
-	virtual int read (void* buf, size_t size)=0;
+	virtual int receive (void* buf, size_t size)=0;
 	
 	/**
-	 * \brief Method to write data to the socket.
+	 * \brief Method to send data to the socket.
 	 *
 	 * @param p buf Pointer to the memory address containing data
-	 * @param size Number of bytes that must be written
-	 * @return the number of bytes actually written; < 0 in case of error
+	 * @param size Number of bytes that must be sent
+	 * @return the number of bytes actually sent; < 0 in case of error
 	 */
-	virtual int write (const void* buf, size_t size)=0;
+	virtual int send (const void* buf, size_t size)=0;
 
 	/**
 	 * @brief Method to close the socket
