@@ -80,7 +80,7 @@ void do_client()
 
 	while (true){
 		DEBUG("CLIENT: Creating buffer...");
-		std::array<char, 5> b {'c', 'i', 'a', 'o'};
+		std::array<char, 5> b {{'c', 'i', 'a', 'o'}};
 		DEBUG("CLIENT: Sending...");
 		clt.send(net::buffer(b), 3);
 	}

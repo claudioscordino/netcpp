@@ -50,7 +50,7 @@ namespace net {
  */
 int AbstractSocket::receive (struct __buffer buf, std::size_t size)
 {
-	int ret;
+	int ret = 0;
 	if (buf.size_ == 0 || size > buf.size_){
 		ERROR("Wrong buffer size!");
 		throw std::runtime_error ("Wrong buffer size");
@@ -86,7 +86,7 @@ int AbstractSocket::receive (struct __buffer buf, std::size_t size)
  */
 int AbstractSocket::send (struct __buffer buf, std::size_t size)
 {
-	int ret;
+	int ret = 0;
 	if (buf.size_ == 0 || size > buf.size_){
 		ERROR("Wrong buffer size!");
 		throw std::runtime_error ("Wrong buffer size");

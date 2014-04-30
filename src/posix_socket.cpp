@@ -195,9 +195,8 @@ void PosixSocket::bind (const Address& addr)
 		ERROR("Unknown protocol found");
 	}
 
-error:
-	::close(fd_);
  	ERROR("Error when binding socket");
+	::close(fd_);
 	throw std::runtime_error ("Bind error");
 }
 
@@ -234,9 +233,8 @@ void PosixSocket::connect (const Address& addr)
 			return;
 	}
 
-error:
-	::close(fd_);
  	ERROR("Error when creating client socket");
+	::close(fd_);
 	throw std::runtime_error ("Client socket error");
 }
 
