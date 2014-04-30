@@ -135,7 +135,7 @@ Logger& Logger::getInstance()
 
 
 /**
- * @brief Method used to print messages.
+ * @brief Method used to print messages on console.
  *
  * This method is called by the DEBUG(), WARNING() and ERROR() macros.
  * @param severitylevel Severity of the debug message
@@ -145,7 +145,7 @@ Logger& Logger::getInstance()
  * called (automatically set equal to __LINE__ by the DEBUG macro)
  * @param message Message to be logged
  */
-void Logger::print(const std::string& file,
+void Logger::printOnConsole(const std::string& file,
 			const int line,
 			const std::string& message)
 {
@@ -157,13 +157,44 @@ void Logger::print(const std::string& file,
 
 	Logger::lock();
 	
-	if (logFile_ != "") {
-		out_ << "[ " << elapsed_seconds << " ] " << message <<
-		"\t[ " << file << ":" << line << "]" << std::endl;
-	}
+	std::cout <<
+	       elapsed_seconds <<
+	       ":" << message << "\t\t[" << file << ":" << line << "]"
+	     << std::endl;
 
-	std::cerr << "[ " << elapsed_seconds << " ] " << message <<
-	"\t[ " << file << ":" << line << "]" << std::endl;
+	Logger::unlock();
+}
+
+
+/**
+ * @brief Method used to print messages on file.
+ *
+ * This method is called by the DEBUG(), WARNING() and ERROR() macros.
+ * @param severitylevel Severity of the debug message
+ * @param file Source file where the method has been called (set equal to __FILE__
+ * 	      by the DEBUG macro)
+ * @param line Number of line in the source code where the method has been
+ * called (automatically set equal to __LINE__ by the DEBUG macro)
+ * @param message Message to be logged
+ */
+void Logger::printOnFile(const std::string& file,
+			const int line,
+			const std::string& message)
+{
+	std::chrono::time_point<std::chrono::system_clock> currentTime =
+		std::chrono::system_clock::now();
+
+	int elapsed_seconds = std::chrono::duration_cast<std::chrono::seconds>
+			     (currentTime - initialTime_).count();
+
+	Logger::lock();
+
+	if (logFile_ != "") {
+		out_ <<
+		       elapsed_seconds <<
+		       ":" << message << "\t\t[" << file << ":" << line << "]"
+		     << std::endl;
+	}
 
 	Logger::unlock();
 }

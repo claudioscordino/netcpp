@@ -37,15 +37,23 @@
 #include <mutex>
 #include <chrono>
 
-/**
- * Log levels:
- * 0: no logging
- * 1: log only errors messages
- * 2: log warnings and error messages
- * 3: log debug, warning and error messages
- */
-#ifndef LOG_LEVEL
-#define LOG_LEVEL 3
+// Comment this line if you don't need multithread support
+#define LOG_MULTITHREAD
+
+/// Log levels:
+#define LOG_NOLOG	0 ///< No logging
+#define LOG_ERRORS	1 ///< Log only error messages
+#define LOG_WARNINGS	2 ///< Log warnings and error messages
+#define LOG_ALL		3 ///< Log all
+
+/// Log level for console messages:
+#ifndef LOG_LEVEL_CONSOLE
+#define LOG_LEVEL_CONSOLE	LOG_WARNINGS
+#endif
+
+/// Log level for file:
+#ifndef LOG_LEVEL_FILE
+#define LOG_LEVEL_FILE		LOG_ALL
 #endif
 
 // Uncomment for single-thread log:
@@ -54,7 +62,7 @@
 /**
  * @brief Macro to set the file used for logging.
  *
- * @param Base name of the file used for logging (e.g. "/tmp/myproject")
+ * @param Base name of the file used for logging (e.g., "/tmp/myproject")
  *
  * Example of configuration of the Logger: *
  * \code
@@ -65,71 +73,122 @@
 	log::Logger::getInstance().setFile(outputFile); \
 	}
 
-
-
-#if (LOG_LEVEL < 1) || (defined NDEBUG)
+/**
+ * @brief Macro to print error messages.
+ *
+ * Example of usage:
+ * \code
+ * 	ERROR("hello " << "world");
+ * \endcode
+ */
+#if (defined NDEBUG) || (LOG_LEVEL_CONSOLE < LOG_ERRORS && LOG_LEVEL_FILE < LOG_ERRORS)
 	#define ERROR(...)
-#else
-	/**
-	 * @brief Macro to print error messages.
-	 *
-	 * Example of usage:
-	 * \code
-	 * 	ERROR("hello " << "world");
-	 * \endcode
-	 */
+#elif (LOG_LEVEL_CONSOLE < LOG_ERRORS)
 	#define ERROR(msg) { \
 		std::ostringstream __debug_stream__; \
 		__debug_stream__ << "[ERROR]\t"; \
 		__debug_stream__ << msg; \
-		log::Logger::getInstance().print(__FILE__, __LINE__, \
+		log::Logger::getInstance().printOnFile(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		}
+#elif (LOG_LEVEL_FILE < LOG_ERRORS)
+	#define ERROR(msg) { \
+		std::ostringstream __debug_stream__; \
+		__debug_stream__ << "[ERROR]\t"; \
+		__debug_stream__ << msg; \
+		log::Logger::getInstance().printOnConsole(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		}
+#else
+	#define ERROR(msg) { \
+		std::ostringstream __debug_stream__; \
+		__debug_stream__ << "[ERROR]\t"; \
+		__debug_stream__ << msg; \
+		log::Logger::getInstance().printOnConsole(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		log::Logger::getInstance().printOnFile(__FILE__, __LINE__, \
 				__debug_stream__.str()); \
 		}
 #endif
 
-#if (LOG_LEVEL < 2) || (defined NDEBUG)
+
+/**
+ * @brief Macro to print warning messages.
+ *
+ * Example of usage:
+ * \code
+ * 	WARNING("hello " << "world");
+ * \endcode
+ */
+#if (defined NDEBUG) || (LOG_LEVEL_CONSOLE < LOG_WARNINGS && LOG_LEVEL_FILE < LOG_WARNINGS)
 	#define WARNING(...)
-#else
-	/**
-	 * @brief Macro to print warning messages.
-	 *
-	 * Example of usage:
-	 * \code
-	 * 	WARNING("hello " << "world");
-	 * \endcode
-	 */
+#elif (LOG_LEVEL_CONSOLE < LOG_WARNINGS)
 	#define WARNING(msg) { \
 		std::ostringstream __debug_stream__; \
 		__debug_stream__ << "[WARNING]\t"; \
 		__debug_stream__ << msg; \
-		log::Logger::getInstance().print(__FILE__, __LINE__, \
+		log::Logger::getInstance().printOnFile(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		}
+#elif (LOG_LEVEL_FILE < LOG_WARNINGS)
+	#define WARNING(msg) { \
+		std::ostringstream __debug_stream__; \
+		__debug_stream__ << "[WARNING]\t"; \
+		__debug_stream__ << msg; \
+		log::Logger::getInstance().printOnConsole(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		}
+#else
+	#define WARNING(msg) { \
+		std::ostringstream __debug_stream__; \
+		__debug_stream__ << "[WARNING]\t"; \
+		__debug_stream__ << msg; \
+		log::Logger::getInstance().printOnConsole(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		log::Logger::getInstance().printOnFile(__FILE__, __LINE__, \
 				__debug_stream__.str()); \
 		}
 #endif
 
 
 
-
-#if (LOG_LEVEL < 3) || (defined NDEBUG)
+/**
+ * @brief Macro to print debug messages.
+ *
+ * Example of usage:
+ * \code
+ * 	DEBUG("hello " << "world");
+ * \endcode
+ */
+#if (defined NDEBUG) || (LOG_LEVEL_CONSOLE < LOG_ALL && LOG_LEVEL_FILE < LOG_ALL)
 	#define DEBUG(...)
-#else
-	/**
-	 * @brief Macro to print debug messages.
-	 *
-	 * Example of usage:
-	 * \code
-	 * 	DEBUG("hello " << "world");
-	 * \endcode
-	 */
+#elif (LOG_LEVEL_CONSOLE < LOG_ALL)
 	#define DEBUG(msg) { \
 		std::ostringstream __debug_stream__; \
 		__debug_stream__ << "[DEBUG]\t"; \
 		__debug_stream__ << msg; \
-		log::Logger::getInstance().print(__FILE__, __LINE__, \
+		log::Logger::getInstance().printOnFile(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		}
+#elif (LOG_LEVEL_FILE < LOG_ALL)
+	#define DEBUG(msg) { \
+		std::ostringstream __debug_stream__; \
+		__debug_stream__ << "[DEBUG]\t"; \
+		__debug_stream__ << msg; \
+		log::Logger::getInstance().printOnConsole(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		}
+#else
+	#define DEBUG(msg) { \
+		std::ostringstream __debug_stream__; \
+		__debug_stream__ << "[DEBUG]\t"; \
+		__debug_stream__ << msg; \
+		log::Logger::getInstance().printOnConsole(__FILE__, __LINE__, \
+				__debug_stream__.str()); \
+		log::Logger::getInstance().printOnFile(__FILE__, __LINE__, \
 				__debug_stream__.str()); \
 		}
 #endif
-
 
 
 namespace log {
@@ -160,9 +219,12 @@ class Logger
 public:
 	static Logger& getInstance();
 
-	void print(	const std::string&	sourceFile,
-			const int 		codeLine,
-			const std::string& 	message);
+	void printOnConsole(	const std::string&	sourceFile,
+				const int 		codeLine,
+				const std::string& 	message);
+	void printOnFile(	const std::string&	sourceFile,
+				const int 		codeLine,
+				const std::string& 	message);
 
 	void setFile (const std::string&	outputFile);
 
