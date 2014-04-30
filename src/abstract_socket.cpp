@@ -35,7 +35,7 @@ namespace net {
  *
  * This function sendsendsensendsendsendcare of synchronization
  * with any other asynchronous operations.
- * Note: it can block the caller, because it calls __receive() which
+ * Note: it can block the caller, because it calls do_receive() which
  * continues receiving until the given number of bytes have been received.
  * @param buf Pointer where received data must be put
  * @param size Size of data to be received
@@ -48,7 +48,7 @@ namespace net {
  * 		AbstractSocket::receive(net::buffer(b), 3);
  * </code>
  */
-int AbstractSocket::receive (struct __buffer buf, std::size_t size)
+int AbstractSocket::receive (struct buff buf, std::size_t size)
 {
 	int ret = 0;
 	if (buf.size_ == 0 || size > buf.size_){
@@ -57,7 +57,7 @@ int AbstractSocket::receive (struct __buffer buf, std::size_t size)
 	}
 	receive_lock_.lock();
 	try {
-		ret = __receive(buf.ptr_, size);
+		ret = do_receive(buf.ptr_, size);
 	} catch (...) {
 		ERROR("Receive error!");
 	}
@@ -71,7 +71,7 @@ int AbstractSocket::receive (struct __buffer buf, std::size_t size)
  *
  * This function sends data to the socket taking care of synchronization
  * with any other asynchronous operations.
- * Note: it can block the caller, because it calls __send() which
+ * Note: it can block the caller, because it calls do_send() which
  * continues writing until the given number of bytes have been written.
  * @param buf Pointer to data to be written
  * @param size Size of data to be written
@@ -84,7 +84,7 @@ int AbstractSocket::receive (struct __buffer buf, std::size_t size)
  * 		AbstractSocket::send(net::buffer(b), 3);
  * </code>
  */
-int AbstractSocket::send (struct __buffer buf, std::size_t size)
+int AbstractSocket::send (struct buff buf, std::size_t size)
 {
 	int ret = 0;
 	if (buf.size_ == 0 || size > buf.size_){
@@ -93,7 +93,7 @@ int AbstractSocket::send (struct __buffer buf, std::size_t size)
 	}
 	send_lock_.lock();
 	try {
-		ret = __send(buf.ptr_, size);
+		ret = do_send(buf.ptr_, size);
 	} catch (...) {
 		ERROR("Send error!");
 	}
@@ -115,7 +115,7 @@ int AbstractSocket::send (struct __buffer buf, std::size_t size)
  * @exception runtime_error if the read() returns an error
  * @return The number of actually received bytes or -1 in case of error
  */
-int AbstractSocket::__receive (void* buffer, size_t size)
+int AbstractSocket::do_receive (void* buffer, size_t size)
 {
 	size_t remaining = size;
 	while (remaining > 0) {
@@ -149,7 +149,7 @@ int AbstractSocket::__receive (void* buffer, size_t size)
  * @exception runtime_error if the write() returns 0 or an error
  * @return The number of actually written bytes or -1 in case of error
  */
-int AbstractSocket::__send(const void* buffer, size_t size)
+int AbstractSocket::do_send(const void* buffer, size_t size)
 {
 	size_t remaining = size;
 	while (remaining > 0) {
