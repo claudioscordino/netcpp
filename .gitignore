@@ -13,6 +13,12 @@
 .project
 .settings/
 doc/html/
+*.config
+*.creator
+*.files
+*.includes
+*.user
+*.sh
 
 
 
