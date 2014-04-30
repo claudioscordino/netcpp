@@ -31,10 +31,14 @@
 #include <chrono>
 #include <thread>
 
+#define LOG_LEVEL_CONSOLE       LOG_ALL
+#define LOG_LEVEL_FILE		LOG_ALL
+#include "logger.hpp"
+
 #include "tcp_ip4.hpp"
 #include "stream_local.hpp"
 #include "address.hpp"
-#include "logger.hpp"
+
 
 
 void do_server()
