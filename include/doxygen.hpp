@@ -31,7 +31,7 @@
  * \htmlonly
  * <br>
  * <center>
- * <img src="../netcpp.png" width="300"></img><br>
+ * <img src="netcpp.png" width="300"></img><br>
  * A tiny C++ network library
  * </center>
  * <br>
@@ -130,7 +130,7 @@
  * make doc
  * \endcode
  *
- * Start reading documentation by opening <i>doc/html/index.html</i>.
+ * Start reading documentation by opening the file <i>bin/index.html</i> (which points to <i>bin/doc/html/index.html</i>).
  *  
  *
  *
@@ -203,7 +203,7 @@
  * See the following picture to understand the collaboration between classes:
  *
  * <center>
- * <img src="../netcpp-architecture.png" width="800"></img>
+ * <img src="netcpp-architecture.png" width="800"></img>
  * </center>
  *
  * <br>
